@@ -1,0 +1,37 @@
+<section class="section">
+  <div class="columns">
+    <div class="column">
+      {{#bulma-control}}
+        {{#bulma-select}}
+          <select onchange={{action (mut selectedTrainee) value='target.value'}}>
+            <option value>Select a trainee</option>
+            {{#each traineeFixtures as |t|}}
+              <option value="{{t}}">{{t}}</option>
+            {{/each}}
+          </select>
+        {{/bulma-select}}
+      {{/bulma-control}}
+    </div>
+
+    {{#if selectedTrainee}}
+      <div class="column">
+        Some Data about {{selectedTrainee}}
+      </div>
+
+      <div class="column">
+        {{#if cameraUri}}
+          <img src="{{cameraUri}}" />
+        {{/if}}
+
+        {{#ember-webcam
+        didSnap=(action 'capture')
+        didError=(action 'captureError')
+        as |camera|}}
+          <button type="button" class="button is-primary is-large" {{action camera.snap}}>
+            Take Picture
+          </button>
+        {{/ember-webcam}}
+      </div>
+    {{/if}}
+  </div>
+</section>

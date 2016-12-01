@@ -13,6 +13,10 @@ Router.map(function() {
   this.route('unauthorized');
   this.route('catchall', {path: '/*wildcard'});
   this.route('register');
+  this.route('classes', function() {
+    this.route('add');
+  });
+  this.route('check-in');
 });
 
 export default Router;

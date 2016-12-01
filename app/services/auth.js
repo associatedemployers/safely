@@ -115,7 +115,7 @@ export default Service.extend({
       return Ember.RSVP.Promise.resolve();
     }
 
-    return this.get('store').find('company-user', userId);
+    return this.get('store').find('user', userId);
   }),
 
   isExpired: computed('clock.minute', 'session.expires', function () {

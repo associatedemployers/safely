@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import ajaxStatus from 'safely/mixins/ajax-status';
 
-const { Controller } = Ember;
+const { Controller, inject } = Ember;
 
 export default Controller.extend(ajaxStatus, {
+  auth: inject.service(),
   queryParams: [ 'expired' ],
   expired: false,
 
@@ -18,7 +19,7 @@ export default Controller.extend(ajaxStatus, {
         return this.ajaxError('Please complete all fields before submitting.');
       }
 
-      this.auth.login(email, password)
+      this.get('auth').login(email, password)
       .then(() => {
         let previousTransition = this.get('previousTransition');
         this.ajaxSuccess('Successfully logged in.');
@@ -26,7 +27,7 @@ export default Controller.extend(ajaxStatus, {
         if ( previousTransition ) {
           previousTransition.retry();
         } else {
-          this.transitionToRoute('account.index');
+          this.transitionToRoute('index');
         }
       })
       .catch(this.ajaxError.bind(this));
