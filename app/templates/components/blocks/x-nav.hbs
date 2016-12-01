@@ -1,0 +1,40 @@
+{{#bulma-nav}}
+  <div class="nav-center">
+    {{#active-link class="nav-item is-brand"}}
+      {{#link-to 'index'}}
+        <strong>Safely</strong>
+      {{/link-to}}
+    {{/active-link}}
+  </div>
+
+  <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+
+  <div class="nav-right nav-menu">
+    {{#if auth.user.administrative}}
+      {{#link-to 'index' class='nav-item'}}
+        {{fa-icon 'area-chart' fixedWidth=true}} Dashboard
+      {{/link-to}}
+      <a class="nav-item" href="#">
+        {{fa-icon 'list' fixedWidth=true}} Check Ins
+      </a>
+      <span class="nav-item">
+        {{#link-to 'register' class='button is-success'}}
+          {{fa-icon 'plus' fixedWidth=true}} Register
+        {{/link-to}}
+      </span>
+    {{else}}
+      {{#link-to 'index' class='nav-item'}}
+        {{fa-icon 'area-chart'}} Dashboard
+      {{/link-to}}
+      <span class="nav-item">
+        {{#link-to 'register' class='button is-success'}}
+          {{fa-icon 'plus' fixedWidth=true}} Register
+        {{/link-to}}
+      </span>
+    {{/if}}
+  </div>
+{{/bulma-nav}}
