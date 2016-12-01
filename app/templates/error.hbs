@@ -1,0 +1,23 @@
+<div class="ui raised text container segment">
+  <h1 class="text-center text-danger">{{#if fromError.status}}{{fromError.status}}{{/if}} Uh oh.</h1>
+  <div class="ui divider"></div>
+  <p class="text-danger text-center">
+    {{#if clientError}}You did something bad.{{else}}Something is broken.{{/if}}<br />
+    {{#if fromError.responseText}}
+      <small>
+        <code>{{fromError.responseText}}</code> That's all we know.
+      </small>
+    {{/if}}
+    {{#if fromError.message}}
+      <small>
+        <code>{{fromError.message}}</code> That's all we know.
+      </small>
+    {{/if}}
+  </p>
+
+  <p class="text-center text-sm">
+    {{#link-to 'index'}}Back to index{{/link-to}}
+  </p>
+
+  <div class="landing-img goof"></div>
+</div>

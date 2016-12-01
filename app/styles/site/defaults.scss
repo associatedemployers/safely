@@ -1,0 +1,18 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .title;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    @extend .is-#{$i};
+  }
+}
+
+.section {
+  background: none;
+}

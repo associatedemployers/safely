@@ -2,6 +2,12 @@
   "name": "safely",
   "dependencies": {
     "ember": "~2.10.0-beta.1",
-    "ember-cli-shims": "0.1.3"
+    "ember-cli-shims": "0.1.3",
+    "hammer.js": "^2.0.8",
+    "matchMedia": "0.2.0",
+    "nprogress": "^0.2.0",
+    "bulma": "0.1.2",
+    "localforage": "~1.3.1",
+    "font-awesome": "~4.5.0"
   }
 }

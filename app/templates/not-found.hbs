@@ -1,0 +1,14 @@
+<h1 class="text-center text-danger">404 Not Found</h1>
+<hr />
+<p class="text-danger text-center">
+  We could not find that page.<br />
+  {{#if fromError.responseText}}
+    <small>
+      <code>{{fromError.responseText}}</code> That's all we know.
+    </small>
+  {{/if}}
+</p>
+
+<p class="text-center text-sm">
+  {{#link-to 'index'}}Back to index{{/link-to}}
+</p>
