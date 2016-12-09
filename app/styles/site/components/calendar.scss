@@ -1,0 +1,77 @@
+///////////////////////////
+// Time Off Calendar Styles
+///////////////////////////
+
+$cal-active-state-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+
+.cal__component {
+  position: relative;
+
+  width: 100%;
+
+  .cal__controls {
+    font-size: 1.3em;
+    margin: 14px 0;
+    text-align: center;
+
+    > .cal__label-month {
+      margin: 0 5px;
+    }
+  }
+
+  .cal__calendar-view {
+    .cal__list-days {
+      @include clearfix;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+
+      > .cal__day {
+        background-color: $white;
+        border: 1px solid $gray;
+        float: left;
+        height: 80px;
+        overflow: auto;
+        position: relative;
+        transition: all .2s ease-in-out;
+        width: 70%;
+      }
+
+      > .cal__day:hover {
+        box-shadow: $cal-active-state-shadow;
+        z-index: 1;
+      }
+
+      > .cal__day.cal__gray {
+        color: $gray;
+      }
+
+      > .cal__day .cal__label-day {
+        float: right;
+        font-size: 90%;
+        margin: 2px 4px;
+        text-align: center;
+      }
+
+      > .cal__day ul.cal__list-events {
+        margin: 22px 5px 0;
+
+        > li.cal__event {
+          background-color: $success;
+          border: 1px solid $white;
+          color: $white;
+          cursor: pointer;
+          font-size: .6em;
+          padding: 1px 2px;
+          transition: all .35s ease-in-out;
+
+          &.cal__event-focused {
+            background: $info;
+            box-shadow: $cal-active-state-shadow;
+          }
+        }
+      }
+    }
+  }
+}

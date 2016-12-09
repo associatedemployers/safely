@@ -1,0 +1,21 @@
+<div class="cal__controls">
+  <a href="#" class="pull-left" {{action "changeMonth" lastMonth}}>
+    <i class="fa fa-fw fa-angle-double-left"></i>
+    {{lastMonth}}
+  </a>
+  <span class="cal__label-month">{{month}} {{year}}</span>
+  <a href="#" class="pull-right" {{action "changeMonth" nextMonth}}>
+    {{nextMonth}}
+    <i class="fa fa-fw fa-angle-double-right"></i>
+  </a>
+</div>
+
+<div class="cal__calendar-view">
+  {{#each _weeks as |week|}}
+    <ul class="cal__list-days">
+      {{#each week.days as |day|}}
+        {{calendar/x-day day=day focusedRequest=focusedRequest focusRequest=(action 'focusRequest') unfocusRequest=(action 'unfocusRequest') class="animated fadeIn"}}
+      {{/each}}
+    </ul>
+  {{/each}}
+</div>

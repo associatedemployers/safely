@@ -2,7 +2,7 @@
   <div class="nav-center">
     {{#active-link class="nav-item is-brand"}}
       {{#link-to 'index'}}
-        <strong>Safely</strong>
+        Safely
       {{/link-to}}
     {{/active-link}}
   </div>
@@ -14,27 +14,38 @@
   </span>
 
   <div class="nav-right nav-menu">
-    {{#if auth.user.administrative}}
-      {{#link-to 'index' class='nav-item'}}
-        {{fa-icon 'area-chart' fixedWidth=true}} Dashboard
-      {{/link-to}}
-      <a class="nav-item" href="#">
-        {{fa-icon 'list' fixedWidth=true}} Check Ins
-      </a>
-      <span class="nav-item">
-        {{#link-to 'register' class='button is-success'}}
-          {{fa-icon 'plus' fixedWidth=true}} Register
+    {{#if auth.authenticated}}
+      {{#if auth.user.administrative}}
+        {{#link-to 'index' class='nav-item'}}
+          Dashboard
         {{/link-to}}
-      </span>
-    {{else}}
-      {{#link-to 'index' class='nav-item'}}
-        {{fa-icon 'area-chart'}} Dashboard
-      {{/link-to}}
-      <span class="nav-item">
-        {{#link-to 'register' class='button is-success'}}
-          {{fa-icon 'plus' fixedWidth=true}} Register
+        {{#link-to 'check-in' class="nav-item"}}
+          Check Ins
         {{/link-to}}
-      </span>
+        {{#link-to 'companies' class="nav-item"}}
+          Companies
+        {{/link-to}}
+        {{#link-to 'seats' class="nav-item"}}
+          Seats
+        {{/link-to}}
+        {{#link-to 'classes.index' class="nav-item"}}
+          Classes
+        {{/link-to}}
+        <span class="nav-item">
+          {{#link-to 'register' class='button is-success'}}
+            Register
+          {{/link-to}}
+        </span>
+      {{else}}
+        {{#link-to 'index' class='nav-item'}}
+          Dashboard
+        {{/link-to}}
+        <span class="nav-item">
+          {{#link-to 'register' class='button is-success'}}
+            Register
+          {{/link-to}}
+        </span>
+      {{/if}}
     {{/if}}
   </div>
 {{/bulma-nav}}

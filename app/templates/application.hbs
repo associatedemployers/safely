@@ -1,4 +1,8 @@
 {{blocks/x-nav}}
 {{notification-container}}
 
-{{outlet}}
+<div class="application__container">
+  {{outlet}}
+</div>
+
+{{blocks/x-footer logout=(route-action "logout")}}

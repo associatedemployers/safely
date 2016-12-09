@@ -1,1 +1,28 @@
-{{outlet}}
+<div class="segment container is-spaced">
+  {{#bulma-nav}}
+    <div class="nav-left">
+      {{#if adding}}
+        {{#link-to 'classes.index' class='nav-item'}}
+          <span class="icon">
+            <i class="fa fa-fw fa-arrow-left"></i>
+          </span>
+        {{/link-to}}
+      {{else}}
+        {{#link-to 'classes.add' class='nav-item'}}
+          <span class="icon">
+            <i class="fa fa-fw fa-plus"></i>
+          </span>
+        {{/link-to}}
+      {{/if}}
+    </div>
+
+    <div class="nav-center">
+      <span class="nav-item is-brand">{{if adding 'Adding Class' 'Classes'}}</span>
+    </div>
+
+    <div class="nav-right nav-menu"></div>
+  {{/bulma-nav}}
+  <hr />
+
+  {{outlet}}
+</div>

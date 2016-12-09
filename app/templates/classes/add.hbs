@@ -1,1 +1,20 @@
-{{outlet}}
+<form {{action "save" on="submit"}}>
+  {{#bulma-control}}
+    <label for="class-name">Class Name</label>
+    {{bulma-input type="text" id="class-name" placeholder="ex. Bigoil Corp T223" oninput=(action (mut model.name) value='target.value')}}
+  {{/bulma-control}}
+
+  {{#bulma-control}}
+    <label for="class-description">Class Description</label>
+    {{bulma-textarea id="class-description" placeholder="Class Description" oninput=(action (mut model.description) value='target.value')}}
+  {{/bulma-control}}
+
+  {{#bulma-control}}
+    <label for="class-hours">Class Hours</label>
+    {{bulma-input type="number" id="class-hours" min="2" max="8" step="2" placeholder="Class Hours (2-8, multiples of 2)" oninput=(action (mut model.hours) value='target.value')}}
+  {{/bulma-control}}
+
+  {{#bulma-control}}
+    {{#form/action-button type="submit" class="button is-large is-primary is-fullwidth" loading=working}}Save{{/form/action-button}}
+  {{/bulma-control}}
+</form>

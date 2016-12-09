@@ -1,0 +1,17 @@
+{{#if model}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |companies|}}
+        {{list/company-item company onDelete=(action 'delete')}}
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  No companies available.
+{{/if}}

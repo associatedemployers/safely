@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import authenticated from 'safely/mixins/authenticated';
 
-export default Ember.Route.extend({
-});
+const { Route } = Ember;
+
+export default Route.extend(authenticated, {});

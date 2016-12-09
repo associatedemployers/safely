@@ -1,0 +1,15 @@
+<form {{action "save" on="submit"}}>
+  {{#bulma-control}}
+    <label for="company-name">Company Name</label>
+    {{bulma-input type="text" id="company-name" placeholder="ex. Bigoil Corp" oninput=(action (mut model.name) value='target.value')}}
+  {{/bulma-control}}
+
+  {{#bulma-control}}
+    <label for="company-email">Company Primary Email</label>
+    {{bulma-input type="email" id="company-email" placeholder="Valid Email Address" oninput=(action (mut model.email) value='target.value')}}
+  {{/bulma-control}}
+
+  {{#bulma-control}}
+    {{#form/action-button type="submit" class="button is-large is-primary is-fullwidth" loading=working}}Save{{/form/action-button}}
+  {{/bulma-control}}
+</form>

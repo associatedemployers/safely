@@ -1,4 +1,8 @@
 import Ember from 'ember';
+import add from 'safely/mixins/route-abstractions/add';
 
-export default Ember.Route.extend({
+const { Route } = Ember;
+
+export default Route.extend(add, {
+  modelName: 'class'
 });

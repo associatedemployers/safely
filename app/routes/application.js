@@ -58,6 +58,8 @@ export default Route.extend({
       .then(() => {
         if ( expired ) {
           this.transitionTo('login', { queryParams: { expired: true } });
+        } else {
+          this.transitionTo('login');
         }
       });
     },

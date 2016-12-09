@@ -1,5 +1,19 @@
-{{#each model as |class|}}
-  {{list/class-item class}}
+{{#if model}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Hours</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |class|}}
+        {{list/class-item class onDelete=(action 'delete')}}
+      {{/each}}
+    </tbody>
+  </table>
 {{else}}
   No classes available.
-{{/each}}
+{{/if}}
