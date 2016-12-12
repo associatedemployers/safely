@@ -1,4 +1,7 @@
 <span class="cal__label-day">{{time day.date 'Do'}}</span>
 {{#each dayAvailabilities as |block|}}
-  {{block.start}}-{{block.end}}-{{block.information.seats}}
+  <a href="#" class="button {{if lowseats is-warning is-success}}">
+    <span>{{block.start}}-{{block.end}}</span>
+    <span>{{block.information.seats}}</span>
+  </a>
 {{/each}}

@@ -19,6 +19,7 @@ export default Component.extend({
   classNames: [ 'cal__component' ],
   month: undefined,
   year: undefined,
+  ajax: Ember.inject.service(),
 
   setMonthYear: on('init', function () {
     if ( this.get('month') || this.get('year') ) {
@@ -31,6 +32,29 @@ export default Component.extend({
       month: now.format('MMMM'),
       year: now.format('YYYY')
     });
+  }),
+
+  setAvailability: on('init', function () {
+    let currentMonthSelected = moment(this.get('_momentComputed'));
+    return this.get('ajax').request('/api/v1/availability', {
+      data: {
+        month: currentMonthSelected.month() + 1,
+        year: currentMonthSelected.year()
+      }
+    })
+    .then(res => {
+      this.set('availability', res.availability);
+    });
+  }),
+
+  dayLabels: computed(function () {
+    let labels = [];
+
+    for (let i = 0; i < 7; i++) {
+      labels.push(moment().day(i).format('dddd'));
+    }
+
+    return labels; // [ 'Sunday', 'Monday' ... 'Saturday' ]
   }),
 
   _momentComputed: computed('month', 'year', function () {
@@ -120,6 +144,7 @@ export default Component.extend({
       }
 
       this.setProperties({ month, year });
+      this.setAvailability();
     },
 
     focusRequest ( request ) {
