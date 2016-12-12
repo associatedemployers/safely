@@ -9,12 +9,16 @@
     <i class="fa fa-fw fa-angle-double-right"></i>
   </a>
 </div>
-
 <div class="cal__calendar-view">
-  {{#each _weeks as |week|}}
+  <ul class="cal__list-day-labels">
+    {{#each dayLabels as |label|}}
+      <li>{{label}}</li>
+    {{/each}}
+  </ul>
+  {{#each _weeks as |week weekIndex|}}
     <ul class="cal__list-days">
       {{#each week.days as |day|}}
-        {{calendar/x-day day=day focusedRequest=focusedRequest focusRequest=(action 'focusRequest') unfocusRequest=(action 'unfocusRequest') class="animated fadeIn"}}
+        {{calendar/x-day day=day availability=availability week=weekIndex focusedRequest=focusedRequest focusRequest=(action 'focusRequest') unfocusRequest=(action 'unfocusRequest') class="animated fadeIn"}}
       {{/each}}
     </ul>
   {{/each}}

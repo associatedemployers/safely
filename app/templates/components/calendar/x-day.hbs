@@ -1,1 +1,4 @@
 <span class="cal__label-day">{{time day.date 'Do'}}</span>
+{{#each dayAvailabilities as |block|}}
+  {{block.start}}-{{block.end}}-{{block.information.seats}}
+{{/each}}

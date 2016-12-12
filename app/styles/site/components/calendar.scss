@@ -1,13 +1,13 @@
 ///////////////////////////
-// Time Off Calendar Styles
+// Calendar Styles
 ///////////////////////////
 
-$cal-active-state-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+$cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
 
 .cal__component {
   position: relative;
-
-  width: 100%;
+  width: 90%;
+  margin: 1em auto;
 
   .cal__controls {
     font-size: 1.3em;
@@ -20,8 +20,25 @@ $cal-active-state-shadow: 0 1px 2px rgba(0, 0, 0, .3);
   }
 
   .cal__calendar-view {
+    .cal__list-day-labels {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+
+      > li {
+        text-align: center;
+        font-size: 0.7em;
+        flex: 1 1 auto;
+        width: 100%;
+        margin: 0;
+        padding: 0 0 1em 0;
+      }
+    }
+
     .cal__list-days {
-      @include clearfix;
+      display: flex;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -30,12 +47,12 @@ $cal-active-state-shadow: 0 1px 2px rgba(0, 0, 0, .3);
       > .cal__day {
         background-color: $white;
         border: 1px solid $gray;
-        float: left;
-        height: 80px;
+        height: 100px;
+        width: 100%;
         overflow: auto;
         position: relative;
         transition: all .2s ease-in-out;
-        width: 70%;
+        flex: 1 1 auto;
       }
 
       > .cal__day:hover {
