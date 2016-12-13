@@ -1,7 +1,9 @@
 <span class="cal__label-day">{{time day.date 'Do'}}</span>
-{{#each dayAvailabilities as |block|}}
-  <a href="#" class="button {{if lowseats is-warning is-success}}">
-    <span>{{block.start}}-{{block.end}}</span>
-    <span>{{block.information.seats}}</span>
-  </a>
-{{/each}}
+<div class="cal__avail-list">
+  {{#each dayAvailabilities as |block|}}
+    <a href="#" class="cal__avail-button button is-outlined {{if block.lowseats "is-warning" "is-dark"}}">
+      <span>{{block.start}}-{{block.end}}</span>
+      <span class="cal__avail-seats"> Seats:{{block.information.seats}}</span>
+    </a>
+  {{/each}}
+</div>
