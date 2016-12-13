@@ -1,1 +1,16 @@
+<div class="container">
+  <div class="control">
+    {{#power-select-multiple
+      options=classes
+      searchField="name"
+      selected=selectedClasses
+      placeholder="Select Classes..."
+      onchange=(action (mut selectedClasses))
+      as |class|
+    }}
+      {{class.name}} - {{class.hours}} hours
+    {{/power-select-multiple}}
+  </div>
+</div>
+<hr />
 {{calendar/x-calendar}}
