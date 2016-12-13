@@ -47,12 +47,37 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
       > .cal__day {
         background-color: $white;
         border: 1px solid $gray;
-        height: 100px;
+        height: 150px;
         width: 100%;
         overflow: auto;
         position: relative;
         transition: all .2s ease-in-out;
         flex: 1 1 auto;
+
+        .cal__avail-list {
+          margin-top: 20px;
+          padding: .5em .8em;
+
+          .cal__avail-button {
+            display: block;
+            width: auto;
+            height: 26px;
+            padding: 0 0.5em;
+            font-size: .7em;
+            font-weight: 800;
+            text-align: left;
+
+            &:not(:last-child) {
+              margin-bottom: 2px;
+            }
+
+            .cal__avail-seats {
+              font-weight: 400;
+              float: right;
+            }
+          }
+
+        }
       }
 
       > .cal__day:hover {

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 const { Component, computed } = Ember;
 
@@ -23,8 +24,8 @@ export default Component.extend({
 
       return {
         information,
-        start: block[0],
-        end: block[1],
+        start: moment().hour(block[0]).format('ha'),
+        end: moment().hour(block[1]).format('ha'),
         lowSeats: information && information.seats < 5
       };
     }) : [];
