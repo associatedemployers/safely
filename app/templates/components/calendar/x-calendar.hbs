@@ -1,15 +1,21 @@
-<div class="cal__controls">
-  <a href="#" class="pull-left" {{action "changeMonth" lastMonth}}>
-    <i class="fa fa-fw fa-angle-double-left"></i>
-    {{lastMonth}}
-  </a>
-  <span class="cal__label-month">{{month}} {{year}}</span>
-  <a href="#" class="pull-right" {{action "changeMonth" nextMonth}}>
-    {{nextMonth}}
-    <i class="fa fa-fw fa-angle-double-right"></i>
-  </a>
+<div class="columns cal__controls">
+  <div class="column has-text-left">
+    <a href="#" {{action "changeMonth" lastMonth}}>
+      <i class="fa fa-fw fa-angle-double-left"></i>
+      {{lastMonth}}
+    </a>
+  </div>
+  <div class="column">
+    <span class="cal__label-month">{{month}} {{year}}</span>
+  </div>
+  <div class="column has-text-right">
+    <a href="#" {{action "changeMonth" nextMonth}}>
+      {{nextMonth}}
+      <i class="fa fa-fw fa-angle-double-right"></i>
+    </a>
+  </div>
 </div>
-<div class="cal__calendar-view">
+<div class="cal__calendar-view {{if registerWarning 'cal__calendar-view--warning'}}">
   <ul class="cal__list-day-labels">
     {{#each dayLabels as |label|}}
       <li>{{label}}</li>
@@ -18,7 +24,7 @@
   {{#each _weeks as |week weekIndex|}}
     <ul class="cal__list-days">
       {{#each week.days as |day|}}
-        {{calendar/x-day day=day availability=availability week=weekIndex focusedRequest=focusedRequest focusRequest=(action 'focusRequest') unfocusRequest=(action 'unfocusRequest') class="animated fadeIn"}}
+        {{calendar/x-day day=day availability=availability week=weekIndex activeBlocks=activeBlocks focusBlock=(action 'focusBlock') unfocusBlock=(action 'unfocusBlock') class="animated fadeIn"}}
       {{/each}}
     </ul>
   {{/each}}

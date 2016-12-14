@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import moment from 'moment';
 
-const { Component, computed, run, on } = Ember;
+const { Component, A, computed, on, inject: { service } } = Ember;
 
 function getWeekNums (momentObj) {
   var clonedMoment = moment(momentObj),
@@ -19,7 +20,7 @@ export default Component.extend({
   classNames: [ 'cal__component' ],
   month: undefined,
   year: undefined,
-  ajax: Ember.inject.service(),
+  ajax: service(),
 
   setMonthYear: on('init', function () {
     if ( this.get('month') || this.get('year') ) {
@@ -86,15 +87,6 @@ export default Component.extend({
       });
     }
 
-    // let requestsForDay = day => {
-    //   return requests.filter(request => {
-    //     let rejected = !request.get('approved') && request.get('reviewedOn');
-    //     return rejected ? false : request.get('days').find(d => {
-    //       return moment(d.date).isSame(day.date, 'day');
-    //     });
-    //   });
-    // };
-
     let setDaysForWeek = week => {
       week.days = [];
 
@@ -124,15 +116,63 @@ export default Component.extend({
     return m ? moment(m).subtract(1, 'month').format('MMMM') : undefined;
   }),
 
+  flattenedAvailabilities: computed('availability', function () {
+    let a = A(),
+        weeks = this.get('_weeks');
+
+    this.get('availability').forEach((week, weekIndex) => week.forEach((day, dayIndex) => day.forEach(block => {
+      a.pushObject({
+        block,
+        date: moment(weeks[weekIndex].days[dayIndex].date).format('M/D/YY')
+      });
+    })));
+
+    return a;
+  }),
+
+  updateActiveBlocks (startBlock) {
+    this.setProperties({
+      unsuitableBlock: null,
+      registerWarning: null
+    });
+
+    let availability = this.get('flattenedAvailabilities'),
+        hours = this.get('hours'),
+        numberRegistering = this.get('registrants.length') || 0,
+        activeBlocks = A([]);
+
+    let block = availability.find(a => {
+      return a.date === startBlock.date && a.block[0] === startBlock.block[0] && a.block[1] === startBlock.block[1];
+    });
+
+    let unsuitable = () => {
+      this.set('unsuitableBlock', true);
+    };
+
+    for (let i = availability.indexOf(block); activeBlocks.get('length') < hours / 2; i++) {
+      let nextAvailability = availability.objectAt(i);
+
+      if ( !nextAvailability ) {
+        return unsuitable();
+      }
+
+      let information = nextAvailability.block ? nextAvailability.block[2] : false;
+
+      if ( information && information.seats < numberRegistering ) {
+        this.set('registerWarning', 'Not all trainees will be able to register for this time block.');
+      }
+
+      if ( !information || information.seats < 1 ) {
+        return unsuitable();
+      }
+
+      activeBlocks.addObject(nextAvailability);
+    }
+
+    this.set('activeBlocks', activeBlocks);
+  },
+
   actions: {
-    approve () {
-      this.get('approve')(...arguments);
-    },
-
-    reject () {
-      this.get('reject')(...arguments);
-    },
-
     changeMonth ( month ) {
       var m = this.get('month'),
           year = parseFloat(this.get('year'));
@@ -147,15 +187,15 @@ export default Component.extend({
       this.setAvailability();
     },
 
-    focusRequest ( request ) {
-      // Wait for any unfocus events to propagate
-      run.next(() => {
-        this.set('focusedRequest', request);
+    focusBlock (block, date) {
+      this.updateActiveBlocks({
+        block,
+        date: moment(date).format('M/D/YY')
       });
     },
 
-    unfocusRequest () {
-      this.set('focusedRequest', null);
+    unfocusBlock () {
+      this.set('activeBlocks', A());
     }
   }
 });

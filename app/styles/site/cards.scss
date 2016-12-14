@@ -1,0 +1,18 @@
+.card {
+  &:not(.card__grouped) {
+    margin-bottom: 1.5em;
+  }
+
+  .card-header {
+    .fa {
+      line-height: 1.3em;
+    }
+  }
+
+  .card-header-right {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+}

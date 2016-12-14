@@ -20,6 +20,10 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
   }
 
   .cal__calendar-view {
+    &.cal__calendar-view--warning .cal__avail-button--active {
+      background-color: $danger !important;
+    }
+
     .cal__list-day-labels {
       display: flex;
       list-style: none;
@@ -60,15 +64,27 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
 
           .cal__avail-button {
             display: block;
-            width: auto;
+            width: 100%;
             height: 26px;
             padding: 0 0.5em;
             font-size: .7em;
             font-weight: 800;
             text-align: left;
+            transition: all .3s ease-in-out;
 
             &:not(:last-child) {
               margin-bottom: 2px;
+            }
+
+            &:hover:not(.cal__avail-button--active) {
+              text-decoration: line-through;
+            }
+
+            &.cal__avail-button--active {
+              background-color: $success;
+              box-shadow: $cal-active-state-shadow;
+              color: $white;
+              border-color: transparent;
             }
 
             .cal__avail-seats {

@@ -32,3 +32,16 @@ h6 {
     }
   }
 }
+
+label {
+  cursor: default;
+}
+
+.input[type="search"],
+[type="search"].textarea {
+  border-radius: 3px;
+}
+
+.fa.fa-fw {
+  margin-right: 0.3em;
+}
