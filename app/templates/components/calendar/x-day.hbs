@@ -1,9 +1,6 @@
 <span class="cal__label-day">{{time day.date 'Do'}}</span>
 <div class="cal__avail-list">
   {{#each dayAvailabilities as |block|}}
-    <a href="#" class="cal__avail-button button is-outlined {{if block.lowseats "is-warning" "is-dark"}}">
-      <span>{{block.start}}-{{block.end}}</span>
-      <span class="cal__avail-seats"> Seats:{{block.information.seats}}</span>
-    </a>
+    {{calendar/x-block block=block activeBlocks=activeBlocks focusBlock=focusBlock unfocusBlock=unfocusBlock date=day.date}}
   {{/each}}
 </div>

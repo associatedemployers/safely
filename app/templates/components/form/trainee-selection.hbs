@@ -1,0 +1,83 @@
+<form class="is-fullwidth" {{action "lookupRecord" lookup lookupKey on="submit"}}>
+  <label class="label" for="ssn-lookup">Search for Trainee by {{all-caps lookupKey}}</label>
+  <div class="control is-grouped">
+    <p class="control is-expanded">
+      {{input type="search" class="input" placeholder="Social Security Number" value=lookup}}
+    </p>
+    <p class="control">
+      {{#form/action-button class="button is-info" disabled=disabled loading=working}}
+        Search
+      {{/form/action-button}}
+    </p>
+  </div>
+</form>
+
+{{#if noRecordFound}}
+  <hr />
+  {{#if showNewForm}}
+    <form class="is-fullwidth" {{action "save" registrant on="submit"}}>
+      <label class="label" for="registrant-name-first">Name</label>
+      <div class="control is-grouped">
+        <p class="control is-expanded">
+          {{input type="text" id="registrant-name-first" class="input" value=registrant.name.first placeholder="First"}}
+        </p>
+        <p class="control is-expanded">
+          {{input type="text" id="registrant-name-middle" class="input" value=registrant.name.middle placeholder="Middle"}}
+        </p>
+        <p class="control is-expanded">
+          {{input type="text" id="registrant-name-last" class="input" value=registrant.name.last placeholder="Last"}}
+        </p>
+      </div>
+      <div class="control is-grouped">
+        <p class="control is-expanded">
+          <label class="label" for="registrant-ssn">SSN</label>
+          <p class="control has-addons">
+            {{masked-input id="registrant-ssn" type=ssnInputType maskholder='X' mask="999-99-9999" class="input is-expanded" placeholder="Social Security Number" value=registrant.ssn}}
+            <button type="button" class="button" {{action (toggle 'showSsn' this)}}>
+              <i class="fa {{if showSsn 'fa-eye-slash' 'fa-eye'}}"></i>
+            </button>
+          </p>
+        </p>
+        <p class="control is-expanded">
+          <label class="label" for="registrant-email">Email Address</label>
+          {{input type="text" id="registrant-email" class="input" value=registrant.email placeholder="registrant@yoohoo.com"}}
+        </p>
+      </div>
+      <button class="button is-success is-fullwidth" action="submit">
+        Save this Registrant
+      </button>
+    </form>
+
+  {{else}}
+    <h3 class="has-text-centered">We couldn't find a record with that information. <a class="trainee-selection__create-button" href="#" {{action 'showNewForm'}}>Create a new registrant?</a></h3>
+  {{/if}}
+{{/if}}
+
+{{#if selection}}
+  <hr />
+{{/if}}
+
+{{#each selection as |registrant|}}
+  <div class="card card__grouped is-fullwidth">
+    <header class="card-header">
+      <div class="card-header-title">
+        <div>
+          {{registrant.name.first}}
+          {{registrant.name.last}}
+          {{#if registrant.email}}
+            <span class="tag is-dark">
+              <i class="fa fa-fw fa-envelope"></i>
+              <span> {{registrant.email}}</span>
+            </span>
+          {{/if}}
+          <br />
+          <small>{{registrant.ssnMasked}}</small>
+        </div>
+      </div>
+
+      <div class="card-header-right">
+        <button class="button is-danger"{{action "removeFromSelection" registrant}}><i class="fa fa-minus-square"></i></button>
+      </div>
+    </header>
+  </div>
+{{/each}}
