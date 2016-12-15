@@ -1,4 +1,12 @@
+{{#if block.information.seats}}
   <span>{{block.start}}-{{block.end}}</span>
   <span class="cal__avail-seats">
     Seats:{{block.information.seats}}
   </span>
+{{else}}
+  <span>{{block.start}}-{{block.end}}</span>
+  <span class="cal__avail-seats">Full!</span>
+{{/if}}
+{{#tooltip-on-component side='left' delay=500 enableLazyRendering=true}}
+  {{if hover toolTipMessage}}
+{{/tooltip-on-component}}

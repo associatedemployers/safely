@@ -24,7 +24,7 @@
   {{#each _weeks as |week weekIndex|}}
     <ul class="cal__list-days">
       {{#each week.days as |day|}}
-        {{calendar/x-day day=day availability=availability week=weekIndex activeBlocks=activeBlocks focusBlock=(action 'focusBlock') unfocusBlock=(action 'unfocusBlock') class="animated fadeIn"}}
+        {{calendar/x-day day=day availability=availability week=weekIndex activeBlocks=activeBlocks registerWarning=registerWarning focusBlock=(action 'focusBlock') unfocusBlock=(action 'unfocusBlock') register=register class="animated fadeIn"}}
       {{/each}}
     </ul>
   {{/each}}
