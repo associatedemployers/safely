@@ -6,7 +6,7 @@ export default Model.extend({
   name: attr('string'),
   email: attr('string'),
 
-  created:     attr('date', {
+  created: attr('date', {
     defaultValue: () => new Date()
   })
 });

@@ -40,11 +40,13 @@ export default Component.extend({
     return this.get('ajax').request('/api/v1/availability', {
       data: {
         month: currentMonthSelected.month() + 1,
-        year: currentMonthSelected.year()
+        year: currentMonthSelected.year(),
+        showBackdate: true
       }
     })
     .then(res => {
       this.set('availability', res.availability);
+      this.get('flattenedAvailabilities');
     });
   }),
 
@@ -146,7 +148,10 @@ export default Component.extend({
     });
 
     let unsuitable = () => {
-      this.set('unsuitableBlock', true);
+      this.setProperties({
+        activeBlocks: A(),
+        unsuitableBlock: true
+      });
     };
 
     for (let i = availability.indexOf(block); activeBlocks.get('length') < hours / 2; i++) {
@@ -158,18 +163,20 @@ export default Component.extend({
 
       let information = nextAvailability.block ? nextAvailability.block[2] : false;
 
-      if ( information && information.seats < numberRegistering ) {
-        this.set('registerWarning', 'Not all trainees will be able to register for this time block.');
-      }
-
       if ( !information || information.seats < 1 ) {
         return unsuitable();
+      }
+
+      if ( information && information.seats < numberRegistering ) {
+        this.set('registerWarning', `Only ${information.seats} will be able to register for this time block.`);
       }
 
       activeBlocks.addObject(nextAvailability);
     }
 
-    this.set('activeBlocks', activeBlocks);
+    this.setProperties({
+      activeBlocks
+    });
   },
 
   actions: {

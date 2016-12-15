@@ -31,6 +31,10 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
       padding: 0;
       width: 100%;
 
+      @media (max-width: $screen-md) {
+        display: none;
+      }
+
       > li {
         text-align: center;
         font-size: 0.7em;
@@ -47,6 +51,10 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
       margin: 0;
       padding: 0;
       width: 100%;
+
+      @media (max-width: $screen-md) {
+        flex-wrap: wrap;
+      }
 
       > .cal__day {
         background-color: $white;
@@ -76,14 +84,30 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
               margin-bottom: 2px;
             }
 
-            &:hover:not(.cal__avail-button--active) {
-              text-decoration: line-through;
-            }
-
             &.cal__avail-button--active {
               background-color: $success;
               box-shadow: $cal-active-state-shadow;
               color: $white;
+              border-color: transparent;
+            }
+
+            &.cal__avail-button--no-seats {
+              background-color: darken($gray, 15%);
+              color: $black;
+              border-color: transparent;
+            }
+
+            &.cal__avail-seats--none {
+              font-weight: 600;
+              float: right !important;
+            }
+
+
+            &.cal__avail-button--unsuitable {
+              box-shadow: $cal-active-state-shadow;
+              background-color: $gray;
+              color: darken($gray, 15%);
+              cursor: not-allowed;
               border-color: transparent;
             }
 

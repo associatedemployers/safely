@@ -16,11 +16,8 @@
   <div class="nav-right nav-menu">
     {{#if auth.authenticated}}
       {{#if auth.user.administrative}}
-        {{#link-to 'index' class='nav-item'}}
-          Dashboard
-        {{/link-to}}
-        {{#link-to 'check-in' class="nav-item"}}
-          Check Ins
+        {{#link-to 'registrations' class="nav-item"}}
+          Registrations
         {{/link-to}}
         {{#link-to 'companies' class="nav-item"}}
           Companies
@@ -39,6 +36,9 @@
       {{else}}
         {{#link-to 'index' class='nav-item'}}
           Dashboard
+        {{/link-to}}
+        {{#link-to 'registrations' class="nav-item"}}
+          Registrations
         {{/link-to}}
         <span class="nav-item">
           {{#link-to 'register' class='button is-success'}}

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import addEdit from 'safely/mixins/controller-abstractions/add-edit';
 
-const { Component, A, on, run, computed, inject: { service } } = Ember;
+const { Component, A, on, run, computed, observer, inject: { service } } = Ember;
 
 export default Component.extend(addEdit, {
   store: service(),
@@ -9,20 +9,24 @@ export default Component.extend(addEdit, {
   lookupKey: 'ssn',
   enableNotify: false,
   transitionAfterSave: false,
-  selection: A(),
   showSsn: true,
 
-  didUpdateAttrs () {
-    this._super(...arguments);
+  _selection: A(),
 
-    const selection = this.get('selected');
-
-    if ( selection ) {
-      let a = A();
-      a.addObjects(selection);
-      this.set('selection', a);
+  selection: computed('selected', {
+    get() {
+      return this.get('selected');
+    },
+    set() {
+      return null;
     }
-  },
+  }),
+
+  updateSelection: observer('selected', function () {
+    let a = A();
+    a.addObjects(this.get('selected'));
+    this.set('_selection', a);
+  }),
 
   disabled: computed.or('working', 'lookupIsShort'),
   noRecordFound: computed.and('lookedUp', 'noRecord'),

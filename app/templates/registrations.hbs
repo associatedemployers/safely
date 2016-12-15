@@ -1,0 +1,50 @@
+<div class="container container__text">
+  <div class="card is-fullwidth animated fadeInUp">
+    <div class="card-content">
+      {{#bulma-nav}}
+        <div class="nav-left">
+          <a href="#" {{action "changeLookback" "decrement"}}>
+            <i class="fa fa-fw fa-arrow-left"></i> Previous {{range}}
+          </a>
+        </div>
+
+        <div class="nav-center">
+          {{rangeHumanized}}
+        </div>
+
+        <div class="nav-right nav-menu">
+          <a href="#" {{action "changeLookback" "increment"}}>
+            Next {{range}} <i class="fa fa-fw fa-arrow-right"></i>
+          </a>
+        </div>
+      {{/bulma-nav}}
+
+      <hr />
+
+      <table class="table is-striped is-bordered">
+        <thead>
+          <tr>
+            <th>Registrant</th>
+            <th>Company</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Classes</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each modelGroups as |day|}}
+            <tr><th colspan="6">Registrations for {{time day.date defaultFormat}}</th></tr>
+            {{#each day.registrations as |registration|}}
+              {{list/registration-item registration}}
+            {{/each}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {{#power-select options=ranges selected=range onchange=(action (mut range)) as |r|}}
+    {{r}}
+  {{/power-select}}
+</div>

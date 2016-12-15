@@ -1,5 +1,32 @@
-<div class=" container container__text">
-  <div class="card is-fullwidth">
+<div class="container container__text">
+  {{#if auth.user.administrative}}
+    <div class="card is-fullwidth animated fadeInUp">
+      <header class="card-header">
+        <p class="card-header-title">
+          <i class="fa fa-fw fa-building"></i> Select Company
+        </p>
+        <p class="card-header-right">
+          {{#if company}}
+            Company Selected
+          {{/if}}
+        </p>
+      </header>
+      <div class="card-content">
+        {{#power-select
+          options=companies
+          searchField="name"
+          selected=company
+          placeholder="Select Company..."
+          onchange=(action (mut company))
+          as |company|
+        }}
+          {{company.name}}
+        {{/power-select}}
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="card is-fullwidth animated fadeInUp">
     <header class="card-header">
       <p class="card-header-title">
         <i class="fa fa-fw fa-users"></i> Select Trainee(s)
@@ -13,52 +40,56 @@
       </p>
     </header>
     <div class="card-content">
-      {{form/trainee-selection onChange=(action (mut registrants))}}
+      {{form/trainee-selection selected=registrants onChange=(action (mut registrants))}}
     </div>
   </div>
 
-  <div class="card is-fullwidth">
-    <header class="card-header">
-      <p class="card-header-title">
-        <i class="fa fa-fw fa-graduation-cap"></i> Select Class(es)
-      </p>
-      <p class="card-header-right">
-        {{#if selectedClasses.length}}
-          <span class="tag-list">
-            <span class="tag is-primary is-small">
-              {{selectedClasses.length}} Selected
+  {{#if registrants}}
+    <div class="card is-fullwidth animated fadeInUp">
+      <header class="card-header">
+        <p class="card-header-title">
+          <i class="fa fa-fw fa-graduation-cap"></i> Select Class(es)
+        </p>
+        <p class="card-header-right">
+          {{#if selectedClasses.length}}
+            <span class="tag-list">
+              <span class="tag is-primary is-small">
+                {{selectedClasses.length}} Selected
+              </span>
+              <span class="tag is-dark is-small">
+                {{hours}}hrs
+              </span>
             </span>
-            <span class="tag is-dark is-small">
-              {{hours}}hrs
-            </span>
-          </span>
-        {{/if}}
-      </p>
-    </header>
-    <div class="card-content">
-      <div class="control">
-        {{#power-select-multiple
-          options=classes
-          searchField="name"
-          selected=selectedClasses
-          placeholder="Select Classes..."
-          onchange=(action (mut selectedClasses))
-          as |class|
-        }}
-          {{class.name}} - {{class.hours}} hours
-        {{/power-select-multiple}}
+          {{/if}}
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="control">
+          {{#power-select-multiple
+            options=classes
+            searchField="name"
+            selected=selectedClasses
+            placeholder="Select Classes..."
+            onchange=(action (mut selectedClasses))
+            as |class|
+          }}
+            {{class.name}} - {{class.hours}} hours
+          {{/power-select-multiple}}
+        </div>
       </div>
     </div>
-  </div>
+  {{/if}}
 
-  <div class="card is-fullwidth">
-    <header class="card-header">
-      <p class="card-header-title">
-        <i class="fa fa-fw fa-calendar"></i> Select Dates
-      </p>
-    </header>
-    <div class="card-content">
-      {{calendar/x-calendar hours=hours registrants=registrants}}
+  {{#if selectedClasses}}
+    <div class="card is-fullwidth animated fadeInUp">
+      <header class="card-header">
+        <p class="card-header-title">
+          <i class="fa fa-fw fa-calendar"></i> Select Dates
+        </p>
+      </header>
+      <div class="card-content">
+        {{calendar/x-calendar hours=hours registrants=registrants register=(action 'register')}}
+      </div>
     </div>
-  </div>
+  {{/if}}
 </div>
