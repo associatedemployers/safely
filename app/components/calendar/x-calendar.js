@@ -40,8 +40,7 @@ export default Component.extend({
     return this.get('ajax').request('/api/v1/availability', {
       data: {
         month: currentMonthSelected.month() + 1,
-        year: currentMonthSelected.year(),
-        showBackdate: true
+        year: currentMonthSelected.year()
       }
     })
     .then(res => {

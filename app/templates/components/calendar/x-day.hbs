@@ -1,11 +1,11 @@
 <span class="cal__label-day">{{time day.date 'Do'}}</span>
-<div class="cal__avail-list">
+<div class="cal__avail-list {{unless dayAvailabilities "cal__unavail-day"}}">
   {{#if dayAvailabilities}}
     {{#each dayAvailabilities as |block|}}
       {{calendar/x-block block=block activeBlocks=activeBlocks focusBlock=focusBlock unfocusBlock=unfocusBlock date=day.date registerWarning=registerWarning onClick=register}}
     {{/each}}
   {{else}}
-  <i class="fa fa-fw fa-university"></i>
+  <i class="fa fa-ban on fa-calendar-times-o cal__avail-list--not-open"></i>
   <div>Training Lab Closed</div>
   {{/if}}
 </div>
