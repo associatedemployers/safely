@@ -2,7 +2,14 @@
 <div class="cal__avail-list {{unless dayAvailabilities "cal__unavail-day"}}">
   {{#if dayAvailabilities}}
     {{#each dayAvailabilities as |block|}}
-      {{calendar/x-block block=block activeBlocks=activeBlocks focusBlock=focusBlock unfocusBlock=unfocusBlock date=day.date registerWarning=registerWarning onClick=register}}
+      {{calendar/x-block
+        block=block
+        activeBlocks=activeBlocks
+        focusBlock=focusBlock
+        unfocusBlock=unfocusBlock
+        date=day.date
+        registerWarning=registerWarning
+        onClick=register}}
     {{/each}}
   {{else}}
   <i class="fa fa-ban on fa-calendar-times-o cal__avail-list--not-open"></i>

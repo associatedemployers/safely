@@ -11,6 +11,10 @@ Router.map(function() {
   this.route('register');
   this.route('classes', function() {
     this.route('add');
+    this.route('class', function() {});
+    this.route('blackouts', function() {
+      this.route('new');
+    });
   });
   this.route('check-in');
   this.route('companies', function() {

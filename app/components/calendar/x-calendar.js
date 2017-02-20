@@ -153,6 +153,9 @@ export default Component.extend({
       });
     };
 
+    let allClassesInRestriction = (restriction) => this.get('classes')
+    .filter(c => !A(restriction).findBy('_id', c.get('id'))).length < 1;
+
     for (let i = availability.indexOf(block); activeBlocks.get('length') < hours / 2; i++) {
       let nextAvailability = availability.objectAt(i);
 
@@ -163,6 +166,11 @@ export default Component.extend({
       let information = nextAvailability.block ? nextAvailability.block[2] : false;
 
       if ( !information || information.seats < 1 ) {
+        return unsuitable();
+      }
+
+      if ( information && information.onlyClasses && information.onlyClasses && !allClassesInRestriction(information.onlyClasses) ) {
+        this.set('registerWarning', 'The classes you have selected fall within a class-specific blackout date.');
         return unsuitable();
       }
 

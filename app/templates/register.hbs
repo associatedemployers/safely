@@ -88,7 +88,11 @@
         </p>
       </header>
       <div class="card-content">
-        {{calendar/x-calendar hours=hours registrants=registrants register=(action 'register')}}
+        {{calendar/x-calendar
+          hours=hours
+          registrants=registrants
+          classes=selectedClasses
+          register=(action 'register')}}
       </div>
     </div>
   {{/if}}

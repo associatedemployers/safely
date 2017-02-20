@@ -1,0 +1,19 @@
+<td>{{time model.start}}</td>
+<td>{{time model.end}}</td>
+<td>
+  {{#each model.blocks as |block|}}
+    <span class="tag">
+      {{block.firstObject}} - {{block.lastObject}}
+    </span>
+  {{/each}}
+</td>
+<td>
+  {{#each model.classExceptions as |class|}}
+    <span class="tag">
+      {{class.name}}
+    </span>
+  {{/each}}
+</td>
+<td>
+  <a href="#" {{action "delete"}}><i class="fa fa-trash-o"></i></a>
+</td>

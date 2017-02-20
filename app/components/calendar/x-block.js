@@ -44,7 +44,7 @@ export default Component.extend({
     let registerWarning = this.get('registerWarning'),
         unsuitable = this.get('unsuitable');
 
-    return unsuitable ? 'Unsuitable block for your requirements. Please try another' : registerWarning ? registerWarning : 'Click to Book';
+    return registerWarning ? registerWarning : unsuitable ? 'Unsuitable block for your requirements. Please try another' : 'Click to Book';
   }),
 
   inActiveBlocks: computed('activeBlocks.[]', 'block.originalBlock.[]', 'date', function () {

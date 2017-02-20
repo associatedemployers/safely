@@ -1,0 +1,20 @@
+{{#if model}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Starts</th>
+        <th>Ends</th>
+        <th>Times</th>
+        <th>Allowed Classes</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |blackout|}}
+        {{list/class-blackout-item blackout onDelete=(action 'delete')}}
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  No class blackouts available.
+{{/if}}
