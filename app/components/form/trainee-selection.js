@@ -51,7 +51,8 @@ export default Component.extend(addEdit, {
     this.setProperties({
       showNewForm: false,
       lookedUp: false,
-      lookup: null
+      lookup: null,
+      addingEmail: null
     });
   },
 
@@ -123,6 +124,10 @@ export default Component.extend(addEdit, {
     removeFromSelection (trainee) {
       this.get('selection').removeObject(trainee);
       this.updateEvent();
+    },
+
+    addEmail (registrant) {
+      this.set('addingEmail', registrant.get('id'));
     }
   }
 });

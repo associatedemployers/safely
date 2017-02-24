@@ -35,7 +35,7 @@ export default Controller.extend(ajaxStatus, {
           classes,
           trainee: registrant,
           start: selectedTime,
-          company: this.get('auth.user.company')
+          company: this.get('company') || this.get('auth.user.company')
         });
 
         return promise.then(() => registration.save())

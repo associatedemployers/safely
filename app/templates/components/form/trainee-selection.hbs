@@ -64,11 +64,20 @@
         <div>
           {{registrant.name.first}}
           {{registrant.name.last}}
-          {{#if registrant.email}}
+          {{#if (and registrant.email (not (eq addingEmail registrant.id)))}}
             <span class="tag is-dark">
               <i class="fa fa-fw fa-envelope"></i>
               <span> {{registrant.email}}</span>
             </span>
+          {{else}}
+            {{#if (eq addingEmail registrant.id)}}
+              <form {{action "save" registrant on="submit"}}>
+                {{input type="text" id="registrant-email-selection" class="input" value=registrant.email placeholder="Email Address"}}
+                {{#form/action-button type="submit" class="button is-primary" loading=working}}Save{{/form/action-button}}
+              </form>
+            {{else}}
+              <a href="#" {{action "addEmail" registrant}}>Add email for automatic notification</a>
+            {{/if}}
           {{/if}}
           <br />
           <small>{{registrant.ssnMasked}}</small>
