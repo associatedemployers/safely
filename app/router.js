@@ -29,6 +29,7 @@ Router.map(function() {
   this.route('unauthorized');
   this.route('catchall', {path: '/*wildcard'});
   this.route('registrations');
+  this.route('activate', { path: '/activate/:id' });
 });
 
 export default Router;
