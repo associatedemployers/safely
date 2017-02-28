@@ -3,3 +3,34 @@
   box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1);
   padding: 1em 1.2em;
 }
+
+.index__hero {
+  position: relative;
+  min-height: 99vh;
+  background-color: $success;
+  background-image: url('/assets/images/index_splash.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply;
+
+  .index-hero__content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $white;
+      text-align: center;
+      font-weight: 800;
+      text-shadow: 0 2px 5px fade($black, 80%);
+    }
+  }
+}
