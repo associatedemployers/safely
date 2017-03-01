@@ -1,0 +1,20 @@
+{{#if model}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Starts</th>
+        <th>Ends</th>
+        <th>Times</th>
+        <th>Days</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |availableTime|}}
+        {{list/available-time-item availableTime onDelete=(action 'delete')}}
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  No available times configured.
+{{/if}}

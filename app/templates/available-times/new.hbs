@@ -1,0 +1,58 @@
+<form {{action "save" on="submit"}}>
+  {{#bulma-control}}
+    <label for="start-date">Starts on (optional)</label>
+    {{bulma-input type="datetime-local" id="start-date" oninput=(action 'mutateStartDate' value='target.value')}}
+  {{/bulma-control}}
+
+  {{#bulma-control}}
+    <label for="end-date">Ends on (optional)</label>
+    {{bulma-input type="datetime-local" id="end-date" oninput=(action 'mutateEndDate' value='target.value')}}
+  {{/bulma-control}}
+
+  <div>
+    <label for="block-selection">Enter available time blocks (two hour, even increments in 24 hour format)</label>
+  </div>
+  {{#bulma-control hasAddons=true}}
+    {{bulma-input
+      type="text"
+      id="block-selection"
+      oninput=(action (mut currentBlock) value='target.value')
+      value=currentBlock
+      placeholder="ex. 12-14 (for 12-2pm)"}}
+
+    {{bulma-button
+      label="Add"
+      isSuccess=true
+      onmousedown=(action "addBlock" currentBlock)}}
+  {{/bulma-control}}
+
+  <ul>
+    {{#each model.blocks as |block|}}
+      <li>{{block.firstObject}}-{{block.lastObject}} <a href="#" {{action "removeClass" exception}}>remove</a></li>
+    {{/each}}
+  </ul>
+
+  {{#bulma-control}}
+    <div>
+      <label for="select-day">Select Available Days</label>
+    </div>
+    {{#bulma-select}}
+      <select selected={{selectedDay}} class="is-fullwidth" name="select-day" onchange={{action "addDay" value="target.value"}}>
+        <option value>Select a day to add</option>
+        {{#each availableDays as |day index|}}
+          <option value="{{index}}">{{day}}</option>
+        {{/each}}
+      </select>
+    {{/bulma-select}}
+  {{/bulma-control}}
+
+  <ul>
+    {{#each model.days as |day|}}
+      <li>{{object-at day availableDays}} <a href="#" {{action "removeDay" day}}>remove</a></li>
+    {{/each}}
+  </ul>
+
+  {{#bulma-control}}
+    {{#form/action-button type="submit" class="button is-large is-primary is-fullwidth" loading=working}}Save{{/form/action-button}}
+  {{/bulma-control}}
+</form>

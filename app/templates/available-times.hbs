@@ -1,0 +1,18 @@
+<div class="segment container is-spaced">
+  {{#bulma-nav}}
+    <div class="nav-left">
+      {{#link-to 'available-times.new' class='nav-item'}}
+        <i class="fa fa-fw fa-plus"></i>
+      {{/link-to}}
+    </div>
+
+    <div class="nav-center">
+      {{#link-to 'available-times' class="nav-item is-brand"}}Available Times{{/link-to}}
+    </div>
+
+    <div class="nav-right nav-menu"></div>
+  {{/bulma-nav}}
+  <hr />
+
+  {{outlet}}
+</div>
