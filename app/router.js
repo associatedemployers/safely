@@ -30,6 +30,9 @@ Router.map(function() {
   this.route('catchall', {path: '/*wildcard'});
   this.route('registrations');
   this.route('activate', { path: '/activate/:id' });
+  this.route('available-times', function() {
+    this.route('new');
+  });
 });
 
 export default Router;
