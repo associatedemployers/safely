@@ -1,4 +1,5 @@
 {
+  "https_only": true,
   "proxies": {
     "/api/v1/": {
       "origin": "${API_URL}"
