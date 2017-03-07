@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import addEdit from 'safely/mixins/controller-abstractions/add-edit';
 
 const { Controller, A, computed } = Ember;
 
-export default Controller.extend({
+export default Controller.extend(addEdit, {
   queryParams: [ 'range', 'date', 'lookback' ],
   date: null,
   range: 'week',
@@ -61,6 +62,11 @@ export default Controller.extend({
   actions: {
     changeLookback (type) {
       this[`${type}Property`]('lookback');
+    },
+
+    cancelRegistration (reg) {
+      reg.set('cancelledOn', new Date());
+      this.saveModel(reg);
     }
   }
 });

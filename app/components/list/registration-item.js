@@ -5,10 +5,17 @@ const { Component, computed } = Ember;
 
 const ListRegistrationItemComponent = Component.extend({
   tagName: 'tr',
+  classNameBindings: [ 'registration.cancelledOn:list-item__registration--cancelled' ],
 
-  allowCancel: computed('registration.start', function () {
-    return moment().isBefore(this.get('registration.start'));
-  })
+  allowCancel: computed('registration.{start,cancelledOn}', function () {
+    return !this.get('registration.cancelledOn') && moment().isBefore(this.get('registration.start'));
+  }),
+
+  actions: {
+    cancel () {
+      this.get('onCancel')(this.get('registration'));
+    }
+  }
 });
 
 ListRegistrationItemComponent.reopenClass({

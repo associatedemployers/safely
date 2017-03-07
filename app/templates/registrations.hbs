@@ -36,7 +36,7 @@
           {{#each modelGroups as |day|}}
             <tr><th colspan="6">Registrations for {{time day.date defaultFormat}}</th></tr>
             {{#each day.registrations as |registration|}}
-              {{list/registration-item registration}}
+              {{list/registration-item registration onCancel=(action "cancelRegistration")}}
             {{/each}}
           {{/each}}
         </tbody>

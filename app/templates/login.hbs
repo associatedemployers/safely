@@ -33,7 +33,7 @@
           {{#bulma-control}}
             <label for="password">
               Password
-              <a href="#">Forgot</a>
+              {{!-- <a href="#">Forgot</a> --}}
             </label>
             {{bulma-input type="password" id="password" class="is-large" placeholder="Your Account Password" oninput=(action (mut password) value='target.value')}}
           {{/bulma-control}}

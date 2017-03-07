@@ -7,6 +7,9 @@
       <span> {{registration.trainee.email}}</span>
     </span>
   {{/if}}
+  {{#if registration.cancelledOn}}
+    <strong>Cancelled on {{time registration.cancelledOn}}</strong>
+  {{/if}}
   <br />
   <small>{{registration.trainee.ssnMasked}}</small>
 </td>
@@ -24,10 +27,12 @@
   {{/tooltip-on-element}}
 </td>
 <td>
-<a href="#" {{action "cancel"}}>
-  <i class="fa fa-fw fa-ban"></i>
-  {{#tooltip-on-element}}
-    Cancel Registration
-  {{/tooltip-on-element}}
-</a>
+  {{#if allowCancel}}
+    <a href="#" {{action "cancel"}}>
+      <i class="fa fa-fw fa-ban"></i>
+      {{#tooltip-on-element}}
+        Cancel Registration
+      {{/tooltip-on-element}}
+    </a>
+  {{/if}}
 </td>
