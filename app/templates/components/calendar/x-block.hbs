@@ -1,7 +1,8 @@
 {{#if block.information.seats}}
-  <span>{{block.start}}-{{block.end}}</span>
+  <span class="cal__block-label--extended">{{block.start}}-{{block.end}}</span>
+  <span class="cal__block-label--minimal">{{time block.startF 'h'}}-{{time block.endF 'h'}}</span>
   <span class="cal__avail-seats">
-    Seats:{{block.information.seats}}
+    {{block.information.seats}} Seats
   </span>
 {{else}}
   <span>{{block.start}}-{{block.end}}</span>

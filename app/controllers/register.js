@@ -18,6 +18,10 @@ export default Controller.extend(ajaxStatus, {
     return classes ? classes.reduce((sum, i) => sum + i.get('hours'), 0) : 0;
   }),
 
+  resetRegistrationForm () {
+    this.set('selectedClasses', A());
+  },
+
   actions: {
     register (selectedTime) {
       this.ajaxStart();
@@ -48,6 +52,7 @@ export default Controller.extend(ajaxStatus, {
           }
         });
       }, RSVP.resolve()).then(() => {
+        this.resetRegistrationForm();
         this.ajaxSuccess();
       })
       .catch(this.ajaxError.bind(this));

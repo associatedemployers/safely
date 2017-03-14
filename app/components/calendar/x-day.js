@@ -20,12 +20,16 @@ export default Component.extend({
         day = weeks ? weeks[date.day()] : undefined;
 
     return day ? day.map(block => {
-      let information = block[2];
+      let information = block[2],
+          startF = moment().hour(block[0]),
+          endF = moment().hour(block[1]);
 
       return {
+        startF,
+        endF,
         information,
-        start: moment().hour(block[0]).format('ha'),
-        end: moment().hour(block[1]).format('ha'),
+        start: startF.format('ha'),
+        end: endF.format('ha'),
         lowSeats: information && information.seats < 5,
         originalBlock: block
       };

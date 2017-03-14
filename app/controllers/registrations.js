@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 import addEdit from 'safely/mixins/controller-abstractions/add-edit';
 
 const { Controller, A, computed } = Ember;
