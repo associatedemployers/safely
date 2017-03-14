@@ -14,8 +14,10 @@ export default Controller.extend(ajaxStatus, {
   },
 
   hours: computed('selectedClasses.[]', function () {
-    const classes = this.get('selectedClasses');
-    return classes ? classes.reduce((sum, i) => sum + i.get('hours'), 0) : 0;
+    const classes = this.get('selectedClasses'),
+          hours = classes ? classes.reduce((sum, i) => sum + i.get('hours'), 0) : 0;
+
+    return hours % 2 ? Math.ceil(hours / 2) * 2 : hours;
   }),
 
   resetRegistrationForm () {
