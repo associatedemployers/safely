@@ -59,6 +59,7 @@ export default Controller.extend(ajaxStatus, {
       }, RSVP.resolve()).then(() => {
         this.resetRegistrationForm();
         this.ajaxSuccess();
+        Ember.$(window).scrollTo(0);
       })
       .catch(this.ajaxError.bind(this));
     }
