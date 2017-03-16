@@ -22,6 +22,16 @@
         }}
           {{company.name}}
         {{/power-select}}
+
+        {{#bulma-control}}
+          <label for="reg-comments">Class Description</label>
+          {{bulma-textarea
+            id="reg-comments"
+            value=comments
+            placeholder="Comments for this registration"
+            oninput=(action (mut comments)
+            value='target.value')}}
+        {{/bulma-control}}
       </div>
     </div>
   {{/if}}

@@ -7,6 +7,7 @@ export default Model.extend({
   end:         attr('date'),
   cancelledOn: attr('date'),
   times:       attr('array'),
+  comments:    attr('string'),
 
   trainee: belongsTo('trainee', { inverse: null, async: true }),
   company: belongsTo('company', { inverse: null, async: true }),

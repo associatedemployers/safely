@@ -22,6 +22,7 @@ export default Controller.extend(ajaxStatus, {
 
   resetRegistrationForm () {
     this.set('selectedClasses', A());
+    this.set('comments', null);
   },
 
   actions: {
@@ -29,7 +30,8 @@ export default Controller.extend(ajaxStatus, {
       this.ajaxStart();
 
       const registrants = A(this.get('registrants')),
-            classes = this.get('selectedClasses');
+            classes = this.get('selectedClasses'),
+            comments = this.get('comments');
 
       let registeredRegistrant = registration => {
         let regs = this.get('registrants');
@@ -39,6 +41,7 @@ export default Controller.extend(ajaxStatus, {
       registrants.reduce((promise, registrant) => {
         let registration = this.store.createRecord('registration', {
           classes,
+          comments,
           trainee: registrant,
           start: selectedTime,
           company: this.get('company') || this.get('auth.user.company')
