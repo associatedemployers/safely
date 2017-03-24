@@ -14,7 +14,7 @@ export default Route.extend(authenticated, {
 
     if ( this.get('auth.user.administrative') ) {
       hash.companies = this.store.query('company',
-      );
+      { sort: { name: 1 }});
     }
 
     return RSVP.hash(hash);
