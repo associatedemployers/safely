@@ -8,11 +8,13 @@ export default Route.extend(authenticated, {
 
   model () {
     let hash = {
-      classes: this.store.findAll('class')
+      classes: this.store.query('class',
+      { sort: { name: 1 }})
     };
 
     if ( this.get('auth.user.administrative') ) {
-      hash.companies = this.store.findAll('company');
+      hash.companies = this.store.query('company',
+      { sort: { name: 1 }});
     }
 
     return RSVP.hash(hash);
