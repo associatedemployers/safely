@@ -22,7 +22,8 @@ export default Controller.extend(ajaxStatus, {
 
   resetRegistrationForm () {
     this.set('selectedClasses', A());
-    this.set('comments', null);
+    Ember.$('#reg-comments').val('');
+    this.set('company', null);
   },
 
   actions: {
