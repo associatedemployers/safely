@@ -27,8 +27,8 @@
   {{/bulma-control}}
 
   <ul>
-    {{#each model.blocks as |block|}}
-      <li>{{block.firstObject}}-{{block.lastObject}} <a href="#" {{action "removeClass" exception}}>remove</a></li>
+    {{#each model.blocks as |block index|}}
+      <li>{{block.firstObject}}-{{block.lastObject}} <a href="#" {{action "removeBlock" index}}>remove</a></li>
     {{/each}}
   </ul>
 
@@ -47,8 +47,8 @@
   {{/bulma-control}}
 
   <ul>
-    {{#each model.days as |day|}}
-      <li>{{object-at day availableDays}} <a href="#" {{action "removeDay" day}}>remove</a></li>
+    {{#each model.days as |day index|}}
+      <li>{{object-at day availableDays}} <a href="#" {{action "removeDay" index}}>remove</a></li>
     {{/each}}
   </ul>
 
