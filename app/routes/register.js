@@ -8,8 +8,7 @@ export default Route.extend(authenticated, {
 
   model () {
     let hash = {
-      classes: this.store.query('class',
-      { sort: { name: 1 }})
+      classes: this.store.findAll('class')
     };
 
     if ( this.get('auth.user.administrative') ) {
