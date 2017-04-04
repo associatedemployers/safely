@@ -49,8 +49,8 @@
   {{/if}}
 
   <ul>
-    {{#each model.blocks as |block|}}
-      <li>{{block.firstObject}}-{{block.lastObject}} <a href="#" {{action "removeBlock" block}}>remove</a></li>
+    {{#each model.blocks as |block index|}}
+      <li>{{block.firstObject}}-{{block.lastObject}} <a href="#" {{action "removeBlock" index}}>remove</a></li>
     {{/each}}
   </ul>
 
