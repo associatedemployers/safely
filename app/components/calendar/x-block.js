@@ -11,7 +11,7 @@ export default Component.extend({
     'inActiveBlocks:cal__avail-button--active',
     'unsuitable:cal__avail-button--unsuitable',
     'noSeats:cal__avail-button--no-seats',
-    'loading:disabled'
+    'loading:is-loading'
   ],
 
   loading: computed.and('hover', 'loadingState'),
