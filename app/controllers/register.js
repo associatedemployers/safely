@@ -20,6 +20,11 @@ export default Controller.extend(ajaxStatus, {
     return hours % 2 ? Math.ceil(hours / 2) * 2 : hours;
   }),
 
+  //keep click-happy users from double-registering
+  stopClicks () {
+    Ember.$('button').off('dblClick');
+  },
+
   resetRegistrationForm () {
     this.set('selectedClasses', A());
     Ember.$('#reg-comments').val('');
@@ -29,6 +34,7 @@ export default Controller.extend(ajaxStatus, {
   actions: {
     register (selectedTime) {
       this.ajaxStart();
+      this.stopClicks();
 
       const registrants = A(this.get('registrants')),
             classes = this.get('selectedClasses'),
