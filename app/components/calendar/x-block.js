@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { Component, computed } = Ember;
+const { Component, A, computed } = Ember;
 
 export default Component.extend({
   tagName: 'button',
@@ -59,5 +59,23 @@ export default Component.extend({
 
   unsuitable: computed('inActiveBlocks', 'hover', function () {
     return !this.get('inActiveBlocks') && this.get('hover') ? true : false;
+  }),
+
+  seats: computed('block.information.{seats,onlyClasses,reduceSeats}', 'classes.[]', function () {
+    const {
+      seats,
+      onlyClasses,
+      reduceSeats
+    } = this.get('block.information') || {};
+
+    const selection = A(this.get('classes')).mapBy('id'),
+          cl = A(onlyClasses).mapBy('_id'),
+          reduced = seats - reduceSeats;
+
+    if (!reduceSeats) {
+      return seats;
+    }
+
+    return selection.find(c => cl.includes(c)) ? seats : reduced || 0;
   })
 });
