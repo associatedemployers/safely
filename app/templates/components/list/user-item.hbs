@@ -1,0 +1,15 @@
+<td>{{user.email}}</td>
+<td>
+  {{user.name.first}}
+  {{user.name.last}}
+</td>
+<td>
+  {{#if user.activatedOn}}
+    Activated {{time user.activatedOn}}
+  {{else}}
+    Not Activated
+    {{#unless notified}}
+      <a href="#" {{action "notify"}}>Resend</a>
+    {{/unless}}
+  {{/if}}
+</td>

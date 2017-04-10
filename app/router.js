@@ -33,6 +33,7 @@ Router.map(function() {
   this.route('available-times', function() {
     this.route('new');
   });
+  this.route('users');
 });
 
 export default Router;
