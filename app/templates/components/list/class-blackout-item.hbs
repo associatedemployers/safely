@@ -15,5 +15,8 @@
   {{/each}}
 </td>
 <td>
+  {{or model.seats 'N/A'}}
+</td>
+<td>
   <a href="#" {{action "delete"}}><i class="fa fa-trash-o"></i></a>
 </td>

@@ -169,12 +169,18 @@ export default Component.extend({
         return unsuitable();
       }
 
-      if ( information && information.onlyClasses && information.onlyClasses && !allClassesInRestriction(information.onlyClasses) ) {
+      const inRestriction = information && information.onlyClasses && !allClassesInRestriction(information.onlyClasses);
+
+      if (inRestriction && !information.reduceSeats) {
         this.set('registerWarning', 'The classes you have selected fall within a class-specific blackout date.');
         return unsuitable();
       }
 
-      if ( information && information.seats < numberRegistering ) {
+      if (inRestriction && information.seats - information.reduceSeats < 1) {
+        return unsuitable();
+      }
+
+      if (information && information.seats < numberRegistering) {
         this.set('registerWarning', `Only ${information.seats} will be able to register for this time block.`);
       }
 
