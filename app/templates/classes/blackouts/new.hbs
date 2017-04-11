@@ -30,6 +30,11 @@
   {{/bulma-control}}
 
   {{#if model.classExceptions.length}}
+    {{#bulma-control}}
+      <label for="reserve-seats">Number of seats to reserve</label>
+      {{bulma-input type="number" id="reserve-seats" oninput=(action (mut model.seats) value='target.value')}}
+    {{/bulma-control}}
+
     <div>
       <label for="block-selection">Enter blackout blocks (two hour, even increments in 24 hour format)</label>
     </div>
