@@ -175,3 +175,7 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
     }
   }
 }
+
+button.cal__avail-button {
+  display: flex;
+}
