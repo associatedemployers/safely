@@ -19,20 +19,20 @@
       <label class="label" for="registrant-name-first">Name</label>
       <div class="control is-grouped">
         <p class="control is-expanded">
-          {{input type="text" id="registrant-name-first" class="input" value=registrant.name.first placeholder="First"}}
+          {{input type="text" id="registrant-name-first" class="input" value=registrant.name.first placeholder="First" required=true}}
         </p>
         <p class="control is-expanded">
-          {{input type="text" id="registrant-name-middle" class="input" value=registrant.name.middle placeholder="Middle"}}
+          {{input type="text" id="registrant-name-middle" class="input" value=registrant.name.middle placeholder="Middle (Optional)"}}
         </p>
         <p class="control is-expanded">
-          {{input type="text" id="registrant-name-last" class="input" value=registrant.name.last placeholder="Last"}}
+          {{input type="text" id="registrant-name-last" class="input" value=registrant.name.last placeholder="Last" required=true}}
         </p>
       </div>
       <div class="control is-grouped">
         <p class="control is-expanded">
           <label class="label" for="registrant-ssn">SSN</label>
           <p class="control has-addons">
-            {{masked-input id="registrant-ssn" type=ssnInputType maskholder='X' mask="999-99-9999" class="input is-expanded" placeholder="Social Security Number" value=registrant.ssn}}
+            {{masked-input id="registrant-ssn" type=ssnInputType maskholder='X' mask="999-99-9999" class="input is-expanded" placeholder="Social Security Number" value=registrant.ssn pattern="\d{3}-\d{2}-\d{4}"}}
             <button type="button" class="button" {{action (toggle 'showSsn' this)}}>
               <i class="fa {{if showSsn 'fa-eye-slash' 'fa-eye'}}"></i>
             </button>
@@ -40,7 +40,7 @@
         </p>
         <p class="control is-expanded">
           <label class="label" for="registrant-email">Email Address</label>
-          {{input type="text" id="registrant-email" class="input" value=registrant.email placeholder="registrant@yoohoo.com"}}
+          {{input type="email" id="registrant-email" class="input" value=registrant.email placeholder="registrant@yoohoo.com (Optional)"}}
         </p>
       </div>
       <button class="button is-success is-fullwidth" action="submit">
