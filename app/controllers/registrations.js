@@ -5,11 +5,12 @@ import addEdit from 'safely/mixins/controller-abstractions/add-edit';
 const { Controller, A, computed } = Ember;
 
 export default Controller.extend(addEdit, {
-  queryParams: [ 'range', 'date', 'lookback' ],
+  queryParams: [ 'range', 'date', 'lookback', 'showCancellations' ],
   date: null,
   range: 'week',
   lookback: 0,
   ranges: [ 'day', 'week', 'month' ],
+  showCancellations: false,
 
   defaultFormat: 'dddd, MMMM Do YYYY',
 

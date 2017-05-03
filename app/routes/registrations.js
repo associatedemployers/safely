@@ -7,15 +7,16 @@ export default Route.extend({
   queryParams: {
     range: { refreshModel: true },
     date: { refreshModel: true },
-    lookback: { refreshModel: true }
+    lookback: { refreshModel: true },
+    showCancellations: { refreshModel: true }
   },
 
   model (params) {
-    const { range, date, lookback } = params,
+    const { range, date, lookback, showCancellations } = params,
           start = moment(date || new Date()).add(lookback, range).startOf(range).toDate(),
           end = moment(date || new Date()).add(lookback, range).endOf(range).toDate();
 
-    return this.store.query('registration', {
+    let allRegistrationsQuery = {
       $or: [{
         start: {
           $gte: start,
@@ -27,6 +28,14 @@ export default Route.extend({
           $gte: start
         }
       }]
-    });
+    };
+
+    let activeRegistrationsQuery = {
+      $and: [ allRegistrationsQuery, { cancelledOn: { $type: 10 } } ]
+    };
+
+    return this.store.query('registration',
+      showCancellations ? allRegistrationsQuery : activeRegistrationsQuery
+    );
   }
 });

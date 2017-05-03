@@ -18,7 +18,9 @@
           </a>
         </div>
       {{/bulma-nav}}
-
+      <a href="#" {{action (toggle "showCancellations" this)}}>
+        {{if showCancellations "Hide Cancellations" "Show Cancellations"}}
+      </a>
       <hr />
 
       <table class="table is-striped is-bordered">
