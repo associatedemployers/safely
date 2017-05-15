@@ -32,7 +32,7 @@ export default Component.extend({
   },
 
   click () {
-    let date = moment(this.get('date')).hour(this.get('block.originalBlock')[0]).toDate();
+    let date = moment(this.get('date')).tz('America/Denver').hour(this.get('block.originalBlock')[0]).toDate();
     this.get('onClick')(date);
   },
 
@@ -70,7 +70,7 @@ export default Component.extend({
 
     const selection = A(this.get('classes')).mapBy('id'),
           cl = A(onlyClasses).mapBy('_id'),
-          reduced = seats - reduceSeats;
+          reduced = (seats - reduceSeats) || 0;
 
     if (!reduceSeats) {
       return seats;
