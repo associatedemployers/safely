@@ -32,22 +32,25 @@
           Classes
         {{/link-to}}
         <span class="nav-item">
-          {{#link-to 'register' class='button is-success'}}
+          {{#link-to 'register' class="button is-success"}}
             Register
           {{/link-to}}
         </span>
       {{else}}
-        {{#link-to 'index' class='nav-item'}}
+        {{#link-to 'index' class="nav-item"}}
           Dashboard
         {{/link-to}}
         {{#link-to 'registrations' class="nav-item"}}
           Registrations
         {{/link-to}}
         <span class="nav-item">
-          {{#link-to 'register' class='button is-success'}}
+          {{#link-to 'register' class="button is-success"}}
             Register
           {{/link-to}}
         </span>
+        <a href="/assets/pdf/Safely Instructions - Website.pdf" class="nav-item" download>
+          Help
+        </a>
       {{/if}}
     {{/if}}
   </div>
