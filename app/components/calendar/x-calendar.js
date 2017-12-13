@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
+import ajaxStatus from 'safely/mixins/ajax-status';
 
 const { Component, A, computed, on, inject: { service } } = Ember;
 
@@ -11,8 +12,9 @@ function getWeekNums (momentObj) {
   return moment.duration(end - start).weeks() + 1;
 }
 
-export default Component.extend({
+export default Component.extend(ajaxStatus, {
   classNames: [ 'cal__component' ],
+  classNameBindings: [ 'working:cal__component--loading' ],
   month: undefined,
   year: undefined,
   ajax: service(),
@@ -31,14 +33,16 @@ export default Component.extend({
   }),
 
   setAvailability: on('init', function () {
-    let currentMonthSelected = moment(this.get('_momentComputed'));
+    let currentMonthSelected = moment(this.get('_momentComputed')),
+        month = currentMonthSelected.month() + 1,
+        year = currentMonthSelected.year();
+
+    this.ajaxStart();
     return this.get('ajax').request('/api/v1/availability', {
-      data: {
-        month: currentMonthSelected.month() + 1,
-        year: currentMonthSelected.year()
-      }
+      data: { month, year }
     })
     .then(res => {
+      this.ajaxSuccess(null, true); // silent mode
       this.set('availability', res.availability);
       this.get('flattenedAvailabilities');
     });

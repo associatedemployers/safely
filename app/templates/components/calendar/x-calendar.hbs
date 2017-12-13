@@ -6,7 +6,12 @@
     </a>
   </div>
   <div class="column">
-    <span class="cal__label-month">{{month}} {{year}}</span>
+    <span class="cal__label-month">
+      {{month}} {{year}}
+      {{#if working}}
+        <i class="fa fa-fw fa-spinner fa-spin"></i>
+      {{/if}}
+    </span>
   </div>
   <div class="column has-text-right">
     <a href="#" {{action "changeMonth" nextMonth}}>

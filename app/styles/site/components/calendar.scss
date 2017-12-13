@@ -4,10 +4,46 @@
 
 $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .cal__component {
   position: relative;
   width: 90%;
   margin: 1em auto;
+
+  &.cal__component--loading {
+    .cal__controls {
+      a {
+        color: $gray;
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+
+    .cal__calendar-view:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      bottom: -10px;
+      right: -10px;
+      background-color: rgba($gray, 0.3);
+      z-index: 1000;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .cal__calendar-view {
+      color: lighten($gray, 2%) !important;
+    }
+  }
 
   .cal__controls {
     font-size: 1.3em;
@@ -20,6 +56,8 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
   }
 
   .cal__calendar-view {
+    position: relative;
+
     &.cal__calendar-view--warning .cal__avail-button--active {
       background-color: $danger !important;
     }
@@ -66,7 +104,7 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
         transition: all .2s ease-in-out;
         flex: 1 1 auto;
 
-        .cal__unavail-day{
+        .cal__unavail-day {
           text-align: center;
           transform: translateY(50%);
           color: $gray;
@@ -86,11 +124,15 @@ $cal-active-state-shadow: 0 1px 10px rgba(lighten($black, 10%), 0.5);
             text-align: left;
             transition: all .3s ease-in-out;
 
+            .cal__block-label--extended,
+            .cal__block-label--minimal {
+              margin-right: 4px;
+            }
+
             .cal__block-label--minimal {
               display: none;
               visibility: hidden;
             }
-
 
             @media all and (min-width: 770px) and (max-width: 1180px) {
               .cal__block-label--extended {
