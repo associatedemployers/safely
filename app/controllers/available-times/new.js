@@ -10,11 +10,11 @@ export default Controller.extend(addEdit, {
 
   actions: {
     mutateStartDate (val) {
-      this.set('model.start', val ? new Date(val) : val);
+      this.set('model.start', val ? moment(new Date(val)).startOf('day').toDate() : val);
     },
 
     mutateEndDate (val) {
-      this.set('model.end', val ? new Date(val) : val);
+      this.set('model.end', val ? moment(new Date(val)).endOf('day').toDate() : val);
     },
 
     addBlock (block) {
