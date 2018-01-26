@@ -1,9 +1,9 @@
 import Ember from 'ember';
-import ajaxStatus from '../mixins/ajax-status';
+import addEdit from '../mixins/controller-abstractions/add-edit';
 
 const { Controller, inject: { service } } = Ember;
 
-export default Controller.extend(ajaxStatus, {
+export default Controller.extend(addEdit, {
   ajax: service(),
 
   actions: {
@@ -19,6 +19,21 @@ export default Controller.extend(ajaxStatus, {
         this.ajaxSuccess(`Sent user activation email to ${user.get('email')}`);
       })
       .catch(this.ajaxError.bind(this));
+    },
+
+    resetUser (user) {
+      if (this.get('working') || !user) {
+        return;
+      }
+
+      this.ajaxStart();
+
+      user.setProperties({
+        password: null,
+        activatedOn: null
+      });
+
+      this.saveModel(user);
     }
   }
 });

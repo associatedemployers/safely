@@ -22,7 +22,10 @@
       </thead>
       <tbody>
         {{#each model as |user|}}
-          {{list/user-item user onNotify=(action 'notifyUser')}}
+          {{list/user-item
+            user
+            onNotify=(action 'notifyUser')
+            onResetUser=(action 'resetUser')}}
         {{/each}}
       </tbody>
     </table>

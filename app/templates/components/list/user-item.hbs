@@ -6,10 +6,17 @@
 <td>
   {{#if user.activatedOn}}
     Activated {{time user.activatedOn}}
+    <a href="#" class="text-danger" {{action "resetUser"}}>Reset Activation</a>
   {{else}}
     Not Activated
     {{#unless notified}}
-      <a href="#" {{action "notify"}}>Resend</a>
+      <a href="#" {{action "notify"}}>Resend Email</a>
     {{/unless}}
+
+    {{#if showingActLink}}
+      <a href="http://lab.mssc.org/activate/{{user.id}}">http://lab.mssc.org/activate/{{user.id}}</a>
+    {{else}}
+      <a href="#" class="text-muted" {{action (toggle "showingActLink" this)}}>Show Activation Link</a>
+    {{/if}}
   {{/if}}
 </td>
