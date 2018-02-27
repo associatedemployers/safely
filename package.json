@@ -49,7 +49,7 @@
     "ember-power-select": "1.0.0",
     "ember-resolver": "^2.0.3",
     "ember-rl-dropdown": "0.7.0",
-    "ember-route-action-helper": "2.0.0",
+    "ember-route-action-helper": "2.0.6",
     "ember-tether": "https://github.com/scottmessinger/ember-tether.git#patch-1",
     "ember-tooltips": "2.5.0",
     "ember-webcam": "0.0.2",

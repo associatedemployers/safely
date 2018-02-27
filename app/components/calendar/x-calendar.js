@@ -92,7 +92,7 @@ export default Component.extend(ajaxStatus, {
 
       for ( var d = 0; d < 7; d++ ) {
         var day = {
-          date: moment(week.range.start).add(d, 'days').toDate()
+          date: moment.tz(moment(week.range.start).format('YYYY-MM-DD HH:MM'), 'America/Denver').add(d, 'days').toDate()
         };
 
         day.outOfMonth = !moment(day.date).isSame(startFrom, 'month');
