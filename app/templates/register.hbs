@@ -38,7 +38,7 @@
   {{#bulma-message class="animated fadeInUp" isPrimary=true}}
     <div class="message-header">
       <i class="fa fa-fw fa-info-circle"></i>
-      You can register multiple trainees for more than one class if they are all taking the same classes. Add all the trainees you'd like to register then select all the classes they will take. 
+      You can register multiple trainees for more than one class if they are all taking the same classes. Add all the trainees you'd like to register then select all the classes they will take.
     </div>
   {{/bulma-message}}
   <div class="card is-fullwidth animated fadeInUp">
@@ -101,7 +101,11 @@
         <p class="card-header-title">
           <i class="fa fa-fw fa-calendar"></i> Select Dates
         </p>
+        {{#if tzDiffers}}
+          <p class="card-header-right"><span>Dates & times are displayed in <strong>Mountain Time</strong>.</span></p>
+        {{/if}}
       </header>
+
       <div class="card-content">
         {{calendar/x-calendar
           hours=hours

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 import ajaxStatus from 'safely/mixins/ajax-status';
 
 const { Controller, RSVP, A, computed, inject: { service } } = Ember;
@@ -12,6 +13,10 @@ export default Controller.extend(ajaxStatus, {
     this._super(...arguments);
     this.set('company', this.get('auth.user.company'));
   },
+
+  tzDiffers: computed(function () {
+    return moment.tz.guess() !== 'America/Denver';
+  }),
 
   hours: computed('selectedClasses.[]', function () {
     const classes = this.get('selectedClasses'),
