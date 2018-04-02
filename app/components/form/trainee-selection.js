@@ -10,6 +10,7 @@ export default Component.extend(addEdit, {
   enableNotify: false,
   transitionAfterSave: false,
   showSsn: true,
+  preventDualAction: true,
 
   _selection: A(),
 

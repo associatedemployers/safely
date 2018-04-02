@@ -58,6 +58,10 @@ export default Ember.Mixin.create(AjaxHooks, {
   saveModel ( model ) {
     const _model = model || this.get('model');
 
+    if (this.get('preventDualAction') && this.get('working')) {
+      return;
+    }
+
     if ( !_model ) {
       return Promise.resolve();
     }
