@@ -40,7 +40,7 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-component-inbound-actions": "0.0.4",
     "ember-composable-helpers": "1.1.2",
-    "ember-data": "^2.10.0-beta.1",
+    "ember-data": "2.12.2",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-localforage-adapter": "2.2.1",
@@ -54,13 +54,13 @@
     "ember-tooltips": "2.5.0",
     "ember-webcam": "0.0.2",
     "liquid-fire": "0.26.5",
-    "loader.js": "^4.0.10"
+    "loader.js": "^4.0.10",
+    "babel-eslint": "^8.2.2",
+    "ember-cli-release": "^0.2.9",
+    "eslint": "^4.19.1"
   },
   "engines": {
     "node": ">= 0.12.0"
   },
-  "private": true,
-  "dependencies": {
-    "ember-cli-release": "^0.2.9"
-  }
+  "private": true
 }

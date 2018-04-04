@@ -4,6 +4,7 @@ import AjaxServiceSupport from 'ember-ajax/mixins/ajax-support';
 
 export default DS.RESTAdapter.extend(AjaxServiceSupport, {
   namespace: '/api/v1',
+  coalesceFindRequests: true,
 
   pathForType ( type ) {
     return Ember.String.pluralize(type);
