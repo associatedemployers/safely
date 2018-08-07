@@ -1,9 +1,8 @@
 import Ember from 'ember';
 import moment from 'moment';
-import { inject as service } from '@ember/service';
 import addEdit from 'safely/mixins/controller-abstractions/add-edit';
 
-const { Controller, A, computed } = Ember;
+const { Controller, A, computed, service } = Ember;
 
 export default Controller.extend(addEdit, {
   auth: service(),
