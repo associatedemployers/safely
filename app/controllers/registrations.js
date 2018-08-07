@@ -1,10 +1,12 @@
 import Ember from 'ember';
 import moment from 'moment';
+import { inject as service } from '@ember/service';
 import addEdit from 'safely/mixins/controller-abstractions/add-edit';
 
 const { Controller, A, computed } = Ember;
 
 export default Controller.extend(addEdit, {
+  auth: service(),
   queryParams: [ 'range', 'date', 'lookback', 'showCancellations' ],
   date: null,
   range: 'week',
@@ -68,6 +70,11 @@ export default Controller.extend(addEdit, {
 
     cancelRegistration (reg) {
       reg.set('cancelledOn', new Date());
+      this.saveModel(reg);
+    },
+
+    forceOp (op, reg) {
+      reg.set('FORCE_SQL_OP', op);
       this.saveModel(reg);
     }
   }

@@ -13,6 +13,8 @@ export default Model.extend({
   company: belongsTo('company', { inverse: null, async: true }),
   classes: hasMany('class', { inverse: null, async: true }),
 
+  FORCE_SQL_OP: attr('string'),
+
   created: attr('date', {
     defaultValue: () => new Date()
   })

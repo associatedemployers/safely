@@ -38,7 +38,12 @@
           {{#each modelGroups as |day|}}
             <tr><th colspan="6">Registrations for {{time day.date defaultFormat}}</th></tr>
             {{#each day.registrations as |registration|}}
-              {{list/registration-item registration onCancel=(action "cancelRegistration")}}
+              {{list/registration-item
+                registration
+                isDev=auth.user.dev
+                onCancel=(action "cancelRegistration")
+                onForceOp=(action "forceOp")
+              }}
             {{/each}}
           {{/each}}
         </tbody>

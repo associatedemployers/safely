@@ -14,6 +14,10 @@ const ListRegistrationItemComponent = Component.extend({
   actions: {
     cancel () {
       this.get('onCancel')(this.get('registration'));
+    },
+
+    forceOp (op) {
+      this.get('onForceOp')(op, this.get('registration'));
     }
   }
 });
