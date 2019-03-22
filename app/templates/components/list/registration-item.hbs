@@ -10,12 +10,12 @@
   {{#if registration.cancelledOn}}
     <strong>Cancelled on {{time registration.cancelledOn}}</strong>
   {{/if}}
-  <br />
+  <br>
   <small>{{registration.trainee.ssnMasked}}</small>
 </td>
 <td>{{registration.company.name}}</td>
-<td>{{time registration.start 'M/D/YY h:mma'}}</td>
-<td>{{time registration.end 'M/D/YY h:mma'}}</td>
+<td>{{time registration.start (if tzDiffers 'M/D/YY h:mma z' 'M/D/YY h:mma')}}</td>
+<td>{{time registration.end (if tzDiffers 'M/D/YY h:mma z' 'M/D/YY h:mma')}}</td>
 <td>
   {{registration.classes.length}}
   {{#tooltip-on-element}}

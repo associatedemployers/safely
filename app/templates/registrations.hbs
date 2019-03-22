@@ -21,7 +21,7 @@
       <a href="#" {{action (toggle "showCancellations" this)}}>
         {{if showCancellations "Hide Cancellations" "Show Cancellations"}}
       </a>
-      <hr />
+      <hr>
 
       <table class="table is-striped is-bordered">
         <thead>
@@ -41,6 +41,7 @@
               {{list/registration-item
                 registration
                 isDev=auth.user.dev
+                tzDiffers=tzDiffers
                 onCancel=(action "cancelRegistration")
                 onForceOp=(action "forceOp")
               }}

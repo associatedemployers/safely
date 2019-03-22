@@ -15,6 +15,10 @@ export default Controller.extend(addEdit, {
 
   defaultFormat: 'dddd, MMMM Do YYYY',
 
+  tzDiffers: computed(function () {
+    return moment.tz.guess() !== 'America/Denver';
+  }),
+
   rangeHumanized: computed('range', 'lookback', function () {
     let range = this.get('range'),
         lookback = this.get('lookback'),
