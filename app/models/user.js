@@ -9,6 +9,5 @@ export default DS.Model.extend({
   dev:            attr('boolean'),
   activatedOn:    attr('date'),
   password:       attr('string'),
-  FORCE_SQL_OP:   attr('string'),
   company:        belongsTo('company', { async: true, inverse: null })
 });

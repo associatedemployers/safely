@@ -13,6 +13,7 @@ export default Model.extend({
   }),
   email: attr('string'),
   ssn: attr('string'),
+  FORCE_SQL_OP:   attr('string'),
 
   company: hasMany('company'),
 

@@ -17,9 +17,8 @@ const ListRegistrationItemComponent = Component.extend({
       this.get('onCancel')(this.get('registration'));
     },
 
-    async forceOp (op, model) {
-      let m = await resolve(model);
-      this.get('onForceOp')(op, m);
+    forceOp (op, model) {
+      this.get('onForceOp')(op, model);
     }
   }
 });
