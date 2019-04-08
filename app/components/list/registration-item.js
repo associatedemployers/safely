@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
+import { resolve } from 'rsvp';
 
 const { Component, computed } = Ember;
 
@@ -16,8 +17,9 @@ const ListRegistrationItemComponent = Component.extend({
       this.get('onCancel')(this.get('registration'));
     },
 
-    forceOp (op, model) {
-      this.get('onForceOp')(op, model);
+    async forceOp (op, model) {
+      let m = await resolve(model);
+      this.get('onForceOp')(op, m);
     }
   }
 });
