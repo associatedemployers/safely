@@ -37,16 +37,22 @@
   {{/if}}
 
   {{#if isDev}}
-    <a href="#" {{action "forceOp" "createRecord"}}>
+    <a href="#" {{action "forceOp" "createRecord" registration}}>
       <i class="fa fa-fw fa-share"></i>
       {{#tooltip-on-element}}
-        Force Ground Record Creation
+        Force Ground Record Creation (registration)
       {{/tooltip-on-element}}
     </a>
-    <a href="#" {{action "forceOp" "updateRecord"}}>
+    <a href="#" {{action "forceOp" "createRecord" registration.trainee}}>
+      <i class="fa fa-fw fa-share"></i>
+      {{#tooltip-on-element}}
+        Force Ground Record Creation (user)
+      {{/tooltip-on-element}}
+    </a>
+    <a href="#" {{action "forceOp" "updateRecord" registration}}>
       <i class="fa fa-fw fa-refresh"></i>
       {{#tooltip-on-element}}
-        Force Ground Record Update
+        Force Ground Record Update (registration)
       {{/tooltip-on-element}}
     </a>
   {{/if}}
