@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import moment from 'moment';
-import { resolve } from 'rsvp';
 
 const { Component, computed } = Ember;
 
