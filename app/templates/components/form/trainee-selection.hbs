@@ -32,7 +32,7 @@
         <p class="control is-expanded">
           <label class="label" for="registrant-ssn">SSN</label>
           <p class="control has-addons">
-            {{masked-input id="registrant-ssn" type=ssnInputType maskholder='X' mask="999-99-9999" class="input is-expanded" placeholder="Social Security Number" value=registrant.ssn pattern="\d{3}-\d{2}-\d{4}"}}
+            {{masked-input id="registrant-ssn" type=ssnInputType mask="111-11-1111" class="input is-expanded" placeholder="Social Security Number" value=registrant.ssn pattern="\d{3}-\d{2}-\d{4}"}}
             <button type="button" class="button" {{action (toggle 'showSsn' this)}}>
               <i class="fa {{if showSsn 'fa-eye-slash' 'fa-eye'}}"></i>
             </button>
