@@ -18,42 +18,42 @@
 <td>{{time registration.end (if tzDiffers 'M/D/YY h:mma z' 'M/D/YY h:mma')}}</td>
 <td>
   {{registration.classes.length}}
-  {{#tooltip-on-element}}
+  {{#ember-tooltip}}
     <ul>
       {{#each registration.classes as |class|}}
         <li>{{class.name}} ({{class.hours}}hrs)</li>
       {{/each}}
     </ul>
-  {{/tooltip-on-element}}
+  {{/ember-tooltip}}
 </td>
 <td>
   {{#if allowCancel}}
     <a href="#" {{action "cancel"}}>
       <i class="fa fa-fw fa-ban"></i>
-      {{#tooltip-on-element}}
+      {{#ember-tooltip}}
         Cancel Registration
-      {{/tooltip-on-element}}
+      {{/ember-tooltip}}
     </a>
   {{/if}}
 
   {{#if isDev}}
     <a href="#" {{action "forceOp" "createRecord" registration}}>
       <i class="fa fa-fw fa-share"></i>
-      {{#tooltip-on-element}}
+      {{#ember-tooltip}}
         Force Ground Record Creation (registration)
-      {{/tooltip-on-element}}
+      {{/ember-tooltip}}
     </a>
     <a href="#" {{action "forceOp" "createRecord" registration.trainee.content}}>
       <i class="fa fa-fw fa-share"></i>
-      {{#tooltip-on-element}}
+      {{#ember-tooltip}}
         Force Ground Record Creation (user)
-      {{/tooltip-on-element}}
+      {{/ember-tooltip}}
     </a>
     <a href="#" {{action "forceOp" "updateRecord" registration}}>
       <i class="fa fa-fw fa-refresh"></i>
-      {{#tooltip-on-element}}
+      {{#ember-tooltip}}
         Force Ground Record Update (registration)
-      {{/tooltip-on-element}}
+      {{/ember-tooltip}}
     </a>
   {{/if}}
 </td>

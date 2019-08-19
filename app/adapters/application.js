@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import { pluralize } from 'ember-inflector';
 import AjaxServiceSupport from 'ember-ajax/mixins/ajax-support';
 
 export default DS.RESTAdapter.extend(AjaxServiceSupport, {
@@ -7,6 +8,6 @@ export default DS.RESTAdapter.extend(AjaxServiceSupport, {
   coalesceFindRequests: true,
 
   pathForType ( type ) {
-    return Ember.String.pluralize(type);
+    return pluralize(type);
   }
 });
