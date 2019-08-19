@@ -18,7 +18,8 @@
     "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
   },
   "dependencies": {
-    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0"
+    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0",
+    "@bower_components/animate.css": "daneden/animate.css#^3.5.1"
   },
   "devDependencies": {
     "ember-font-awesome": "^4.0.0-rc.4",
