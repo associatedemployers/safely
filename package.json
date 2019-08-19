@@ -15,6 +15,7 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "2.5.2",
     "ember-bulma": "0.1.2",
@@ -51,12 +52,11 @@
     "ember-rl-dropdown": "0.7.0",
     "ember-route-action-helper": "2.0.6",
     "ember-tether": "https://github.com/scottmessinger/ember-tether.git#patch-1",
-    "ember-tooltips": "2.5.0",
+    "ember-tooltips": "^3.4.0",
     "ember-webcam": "0.0.2",
+    "eslint": "^4.19.1",
     "liquid-fire": "0.26.5",
-    "loader.js": "^4.0.10",
-    "babel-eslint": "^8.2.2",
-    "eslint": "^4.19.1"
+    "loader.js": "^4.0.10"
   },
   "engines": {
     "node": ">=8.11.3"
