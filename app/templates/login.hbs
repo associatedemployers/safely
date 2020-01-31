@@ -3,6 +3,11 @@
     <section class="section">
       <h2 class="has-text-centered">Sign into Safely</h2>
 
+      {{#bulma-notification isSuccess=true}}
+        <h3><strong>Need a login to schedule with us?</strong> <a href="https://www.mssc.org/contact-us/">Request one here</a></h3>
+      {{/bulma-notification}}
+
+
       {{#if previousTransition}}
         {{#bulma-notification isDanger=true}}
           <h3><i class="warning icon"></i> You need to log in to access <strong>{{previousTransition.intent.url}}</strong></h3>
