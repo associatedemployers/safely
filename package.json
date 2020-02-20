@@ -18,11 +18,10 @@
     "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
   },
   "dependencies": {
-    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0",
-    "@bower_components/animate.css": "daneden/animate.css#^3.5.1"
+    "@bower_components/animate.css": "daneden/animate.css#^3.5.1",
+    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0"
   },
   "devDependencies": {
-    "ember-font-awesome": "^4.0.0-rc.4",
     "babel-eslint": "^10.0.2",
     "broccoli-asset-rev": "^3.0.0",
     "bulma": "^0.3.0",
@@ -50,6 +49,7 @@
     "ember-composable-helpers": "2.3.1",
     "ember-data": "~2.18.0",
     "ember-export-application-global": "^2.0.0",
+    "ember-font-awesome": "^4.0.0-rc.4",
     "ember-load-initializers": "^1.1.0",
     "ember-localforage-adapter": "^3.0.0-beta4",
     "ember-moment": "7.8.1",

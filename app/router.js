@@ -34,6 +34,11 @@ Router.map(function() {
     this.route('new');
   });
   this.route('users');
+  this.route('hub', function() {
+    this.route('register', function() {
+      this.route('complete');
+    });
+  });
 });
 
 export default Router;
