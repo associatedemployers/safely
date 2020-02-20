@@ -22,6 +22,7 @@
     "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0"
   },
   "devDependencies": {
+    "eslint-plugin-node": "^11.0.0",
     "babel-eslint": "^10.0.2",
     "broccoli-asset-rev": "^3.0.0",
     "bulma": "^0.3.0",
