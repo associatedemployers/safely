@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@bower_components/animate.css": "daneden/animate.css#^3.5.1",
-    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0"
+    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0",
+    "ember-ajax": "^5.0.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.3.0",
@@ -30,8 +31,8 @@
     "broccoli-asset-rev": "^3.0.0",
     "bulma": "^0.3.0",
     "ember-auto-import": "^1.5.3",
-    "ember-bulma": "0.3.1",
-    "ember-cli": "~3.16.0",
+    "ember-bulma": "0.4.3",
+    "ember-cli": "~3.14.0",
     "ember-cli-active-link-wrapper": "^0.5.0",
     "ember-cli-animatecss": "0.0.6",
     "ember-cli-app-version": "^3.2.0",
@@ -42,7 +43,7 @@
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-maskedinput": "^1.0.0",
     "ember-cli-moment-shim": "3.7.1",
-    "ember-cli-notifications": "4.3.3",
+    "ember-cli-notifications": "git+https://github.com/associatedemployers/ember-cli-notifications.git#configurable-icons",
     "ember-cli-nprogress": "0.3.1",
     "ember-cli-sass": "^6.2.0",
     "ember-cli-sri": "^2.1.1",
@@ -70,7 +71,7 @@
     "eslint": "^6.2.0",
     "eslint-plugin-ember": "^7.7.2",
     "eslint-plugin-node": "^11.0.0",
-    "liquid-fire": "0.30.0",
+    "liquid-fire": "^0.31.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^1.0.0"
   },

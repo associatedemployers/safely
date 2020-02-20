@@ -1,8 +1,12 @@
-{{blocks/x-nav}}
-{{notification-container}}
+<div class="ember-view">
+  {{#unless this.onClassHub}}
+    {{blocks/x-nav}}
+  {{/unless}}
+  {{notification-container}}
 
-<div class="application__container">
-  {{outlet}}
+  <div class="application__container">
+    {{outlet}}
+  </div>
+
+  {{blocks/x-footer logout=(route-action "logout")}}
 </div>
-
-{{blocks/x-footer logout=(route-action "logout")}}

@@ -1,11 +1,20 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/computed';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  router: service(),
-  
-  onClassHub: computed('router.currentRouteName', function () {
+export default class HubController extends Controller {
+  @service router
+
+  get onClassHub (){
     return this.get('router.currentRouteName').indexOf('hub') > -1;
-  })
-});
+  }
+  
+  // onClassHub: computed('router.currentRouteName', function () {
+  //   return this.get('router.currentRouteName').indexOf('hub') > -1;
+  // })
+
+  // @action
+
+
+}
