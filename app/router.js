@@ -39,4 +39,8 @@ Router.map(function() {
       this.route('complete');
     });
   });
+  this.route('hub-administration', function() {
+    this.route('instructors');
+    this.route('registrations');
+  });
 });

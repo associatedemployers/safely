@@ -36,6 +36,11 @@
             Register
           {{/link-to}}
         </span>
+        <span class="nav-item">
+          {{#link-to 'hub-administration' class="button is-warning"}}
+          Hub Administration
+          {{/link-to}}
+        </span>
       {{else}}
         {{#link-to 'index' class="nav-item"}}
           Dashboard
@@ -48,10 +53,15 @@
             Register
           {{/link-to}}
         </span>
+
         <a href="/assets/pdf/Safely Instructions - Website.pdf" class="nav-item" download>
           Help
         </a>
       {{/if}}
+    {{else}}
+      {{#link-to 'hub' class="nav-item"}}
+        AE/MSSC Classes
+      {{/link-to}}
     {{/if}}
   </div>
 {{/bulma-nav}}
