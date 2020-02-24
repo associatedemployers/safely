@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import ajaxStatus from 'safely/mixins/ajax-status';
-
-const { Controller } = Ember;
 
 export default Controller.extend(ajaxStatus, {
   traineeFixtures: [ 'Bob Ross', 'Dream Weaver', 'Willie Nelson', 'Janet Jackson' ],

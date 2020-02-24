@@ -1,3 +1,4 @@
+import { helper as buildHelper } from '@ember/component/helper';
 import Ember from 'ember';
 
 const inflector = new Ember.Inflector(Ember.Inflector.defaultRules);
@@ -6,7 +7,7 @@ export function inflectText([text, length]) {
   return length && length === 1 ? inflector.singularize(text) : inflector.pluralize(text);
 }
 
-export default Ember.Helper.helper(inflectText);
+export default buildHelper(inflectText);
 /*
   Usage
   ---

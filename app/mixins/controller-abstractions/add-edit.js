@@ -14,12 +14,13 @@
     }
   });
  */
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+
+import { get } from '@ember/object';
+import { Promise } from 'rsvp';
 import AjaxHooks from '../ajax-status';
 
-const { get, RSVP: { Promise } } = Ember;
-
-export default Ember.Mixin.create(AjaxHooks, {
+export default Mixin.create(AjaxHooks, {
   enableNotify: true,
   transitionWithModel: true,
 

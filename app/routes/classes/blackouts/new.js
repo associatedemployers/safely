@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { hash } from 'rsvp';
 import add from 'safely/mixins/route-abstractions/add';
-
-const { Route, RSVP: { hash } } = Ember;
 
 export default Route.extend(add, {
   modelName: 'blackout-date',

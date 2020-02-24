@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import RSVP from 'rsvp';
+import { set } from '@ember/object';
 
-const { RSVP, set } = Ember;
-
-export default Ember.Mixin.create({
+export default Mixin.create({
   // Public APIs
   confirm ( message, title = 'Confirm', stateKey = 'confirmState' ) {
     return this.__setupState('Confirm', message, title, stateKey);

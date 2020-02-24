@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import Service from '@ember/service';
+import { on } from '@ember/object/evented';
+import { run } from '@ember/runloop';
 import moment from 'moment';
 import ENV from 'safely/config/environment';
 
-const { Service, computed, on, run } = Ember;
-
 export default Service.extend({
   refreshResolution: 1000,
-  t: computed.alias('time'),
+  t: alias('time'),
 
   _tick: on('init', function () {
     const m = moment();

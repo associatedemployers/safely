@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { A } from '@ember/array';
+import { computed } from '@ember/object';
+import { on } from '@ember/object/evented';
+import { inject as service } from '@ember/service';
 import moment from 'moment';
 import ajaxStatus from 'safely/mixins/ajax-status';
-
-const { Component, A, computed, on, inject: { service } } = Ember;
 
 function getWeekNums (momentObj) {
   var clonedMoment = moment(momentObj),
@@ -73,7 +75,7 @@ export default Component.extend(ajaxStatus, {
     }
 
     var startFrom = moment(mc).startOf('month'),
-        weeks = Ember.A();//,
+        weeks = A();//,
         // requests = this.get('requests');
 
     for ( var i = 0; i < getWeekNums(startFrom); i++ ) {

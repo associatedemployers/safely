@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import ajaxStatus from 'safely/mixins/ajax-status';
 
-const { Controller, inject } = Ember;
-
 export default Controller.extend(ajaxStatus, {
-  auth: inject.service(),
+  auth: service(),
   queryParams: [ 'expired' ],
   expired: false,
 

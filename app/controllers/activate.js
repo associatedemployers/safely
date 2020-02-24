@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import ajaxStatus from 'safely/mixins/ajax-status';
-
-const { Controller, inject: { service } } = Ember;
 
 export default Controller.extend(ajaxStatus, {
   ajax: service(),

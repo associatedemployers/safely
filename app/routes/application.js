@@ -1,9 +1,15 @@
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
+import $ from 'jquery';
+import { Promise } from 'rsvp';
 import Ember from 'ember';
 import progress from 'ember-cli-nprogress';
 import { notifyDefaults } from 'safely/config';
 import ENV from 'safely/config/environment';
 
-const { Route, $, Logger, RSVP: { Promise }, inject } = Ember;
+const {
+  Logger
+} = Ember;
 
 const errorRouteMap = {
   401: 'unauthorized',
@@ -13,8 +19,8 @@ const errorRouteMap = {
 };
 
 export default Route.extend({
-  auth: inject.service(),
-  notifications: inject.service('notification-messages'),
+  auth: service(),
+  notifications: service('notification-messages'),
 
   beforeModel () {
     return ENV.environment === 'test' ? Promise.resolve() : this.get('auth').initializeExistingSession();

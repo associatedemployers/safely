@@ -1,8 +1,11 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Controller from '@ember/controller';
+import RSVP from 'rsvp';
+import { A } from '@ember/array';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import moment from 'moment';
 import ajaxStatus from 'safely/mixins/ajax-status';
-
-const { Controller, RSVP, A, computed, inject: { service } } = Ember;
 
 export default Controller.extend(ajaxStatus, {
   auth: service(),
@@ -27,7 +30,7 @@ export default Controller.extend(ajaxStatus, {
 
   resetRegistrationForm () {
     this.set('selectedClasses', A());
-    Ember.$('#reg-comments').val('');
+    $('#reg-comments').val('');
     this.set('company', null);
   },
 
@@ -68,7 +71,7 @@ export default Controller.extend(ajaxStatus, {
       }, RSVP.resolve()).then(() => {
         this.resetRegistrationForm();
         this.ajaxSuccess();
-        Ember.$(window).scrollTop(0);
+        $(window).scrollTop(0);
       })
       .catch(this.ajaxError.bind(this));
     }

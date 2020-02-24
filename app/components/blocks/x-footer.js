@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import moment from 'moment';
-
-const { Component, inject } = Ember;
 
 export default Component.extend({
   tagName: 'footer',
   classNames: [ 'footer' ],
-  auth: inject.service(),
+  auth: service(),
   year: moment().format('YYYY'),
 
   actions: {
