@@ -1,3 +1,28 @@
-{{#each this.model as |class|}}
-  <Hub::Lists::AdminClassItem @model={{class}} />
-{{/each}}
+<div class="segment container is-spaced">
+  <p>
+    {{!-- {{#link-to 'classe'}} --}}
+    <i class="fa fa-fw fa-plus"></i> Add Class
+    {{!-- {{/link-to}} --}}
+  </p>
+  <hr />
+  {{#if this.model}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Org</th>
+          <th>Name/Description</th>
+          <th>Instructor</th>
+          <th>Location</th>
+          <th>Times</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.model as |class|}}
+          <Hub::Lists::AdminClassItem @model={{class}} />
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    No classes available.
+  {{/if}}
+</div>

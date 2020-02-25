@@ -1,3 +1,11 @@
-<div>
-  <h3>{{@model.classInformation.name}}</h3>
-</div>
+<tr>
+  <td>{{@model.organization}}</td>
+  <td>{{@model.classInformation.name}}</td>
+  <td>{{@model.instructor.displayName}}</td>
+  <td>{{@model.location.name}}</td>
+  <td>
+    {{#each @model.times as |t|}}
+      {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}} {{time t.start 'M/D/YY'}}
+    {{/each}}
+  </td>
+</tr>
