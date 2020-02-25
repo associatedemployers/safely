@@ -1,18 +1,11 @@
-{{#each this.model as |class|}}
-  <div class="class__card">
-    <div class="header">
-        {{class.name}} <span>{{class.organization}}</span> 
-        <br/>
-        {{class.location.name}} <span>{{class.cost.memberPrice}}</span>
-    </div>
-    <div class="info">
-    {{class.classInformation}} <span> seats available: {{class.seats}}</span>
-    </div>
-    <div class="class__meta">
-      {{class.location.address.directions}}
-      Start: {{class.times.start}}
-      End:{{class.times.end}}
-    </div>
-  </div>
-{{/each}}
-{{outlet}}
+<div class="segment container is-spaced">
+  <h2>
+    Upcoming classes
+  </h2>
+
+  {{#each this.model as |class|}}
+    {{log "HEY!!!!" class}}
+
+    <Hub::Lists::HubClassItem @model={{class}}/>
+  {{/each}}
+</div>

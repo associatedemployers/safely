@@ -1,0 +1,27 @@
+.class__card{
+  border: 1px solid $gray;
+  margin-bottom: 1em;
+  padding: .8em;
+  border-radius: .3rem;
+
+  .class__times{
+
+  }
+  .right.floated{
+    float: right
+  }
+
+  .class__name{
+    font-size: 1.5em;
+    font-weight: 700;
+    .class-name__organization{}
+  }
+
+  .class__location{
+
+  }
+
+  .class__instructor{
+
+  }
+}
