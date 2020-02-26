@@ -1,11 +1,19 @@
-<div class="segment container is-spaced">
-  <h2>
-    Upcoming classes
-  </h2>
+<div class="segment container is-spaced hub__classes">
+  <div class="level">
+    <h2 class="level-left">
+      Upcoming classes
+      
+    </h2>
+    <span class="level-right">
+      <a href="https://www.associatedemployers.org/membership/benefits-of-membership/" rel="noopener noreferrer" target="_blank">
+        Learn more about becoming a member...
+      </a>
+    </span>
+  </div>
 
   {{#each this.model as |class|}}
-    {{log "HEY!!!!" class}}
-
-    <Hub::Lists::HubClassItem @model={{class}}/>
+    <Hub::Lists::HubClassItem
+      @model={{class}}
+      @onRegister={{this.register}} />
   {{/each}}
 </div>

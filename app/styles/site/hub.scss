@@ -1,4 +1,6 @@
 .hub {
+  overflow-x: hidden;
+
   .hub-header__content {
     display: flex;
     height: 150px;
@@ -13,6 +15,11 @@
       background-size: contain;
       background-repeat: no-repeat;
       z-index: 1;
+
+      @media all and (max-width: 400px) {
+        width: 200px;
+        height: 50px;
+      }
     }
   }
 
@@ -47,4 +54,18 @@
       width: 40%;
     }
   }
+
+  .hub__header {
+    margin-bottom: 50px;
+  }
+
+  .hub__classes {
+    box-shadow: none;
+    padding: 1.5em 2em;
+  }
+}
+
+.ember-google-map {
+  width: 500px;
+  height: 500px;
 }

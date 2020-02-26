@@ -1,1 +1,11 @@
+{{#each this.model as |item|}}
+  <div>{{item.classInformation.name}}</div>
+
+  <GMap @lat={{item.geoLat}} @lng={{item.geoLng}} @zoom={{13}} as |g|>
+    <g.marker
+      @lat={{item.geoLat}}
+      @lng={{item.geoLng}}
+      />
+  </GMap>
+{{/each}}
 {{outlet}}

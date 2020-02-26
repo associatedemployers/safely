@@ -1,12 +1,12 @@
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'safely',
-    environment: environment,
-    rootURL: '/',
+    environment:  environment,
+    rootURL:      '/',
     locationType: 'auto',
-    moment: {
+    moment:       {
       // Options:
       // 'all' - all years, all timezones
       // 'subset' - subset of the timezone data to cover 2010-2020 (or 2012-2022 as of 0.5.12). all timezones.
@@ -29,8 +29,14 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    'ember-cli-notifications': {
-      includeFontAwesome: false
+    'ember-cli-notifications': { includeFontAwesome: false },
+
+    'ember-google-maps': {
+      key:      'AIzaSyA14owHjNkrL_9YrNZfZDyEKMygkDfzXbU',
+      language: 'en',
+      region:   'US',
+      protocol: 'https',
+      version:  '3.35'
     }
   };
 

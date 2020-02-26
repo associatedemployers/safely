@@ -8,10 +8,10 @@ export default DS.Transform.extend({
 
   serialize (deserialized) {
     var type = typeOf(deserialized);
-    if ( type === 'array' ) {
+    if (type === 'array') {
       return deserialized;
-    } else if ( type === 'string' ) {
-      return deserialized.split(',').map(item => $.trim(item));
+    } else if (type === 'string') {
+      return deserialized.split(',').map(item => item.trim());
     } else {
       return [];
     }
