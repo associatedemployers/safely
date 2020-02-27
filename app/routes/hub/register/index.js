@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class RegisterRoute extends Route {
+export default class HubRegisterIndexRoute extends Route {
   @service cart
 
   async model () {
