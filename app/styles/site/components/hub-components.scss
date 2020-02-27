@@ -49,25 +49,119 @@
     justify-content: center;
   }
 
-  // .class__times {
-  //   // width: 50%;
-  // }
-  // .class__seats {
-  //   // width: 50%;
-  // }
-
   .class__name {
     width: 100%;
     font-size: 1.5em;
     font-weight: 700;
-    .class-name__organization{}
+    .class-name__organization {}
   }
 
   .class__location {
     width: 100%;
   }
 
-  .class__instructor{
+  .class__instructor {
+    
+  }
+}
 
+.register__class-registration {
+  margin-bottom: 2em;
+}
+
+.register__class-information {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+
+  
+  .class-information__content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    background-color: $aeblue;
+    color: white;
+    margin-bottom: 1em;
+    box-shadow: 0 14px 10px -10px rgba($black, .4);
+    transform: skew(10deg) translate3d(0, 0, 0);
+    overflow: hidden;
+    border-right: 1px solid $aegold;
+    
+    .class-information__title,
+    .class-information__host-presenter,
+    .class-information__times {
+      color: white;
+      margin: 0;
+      transform: skew(-10deg);
+    }
+    
+    .class-information__title {
+    }
+    
+    .class-information__times {
+      background-color: $aegold;
+      color: $aeblue;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      transform: skew(-30deg) scale(1.2);
+      
+      .class-information__times-content {
+        font-weight: 600;
+        transform: skew(20deg) scale(0.8);
+      }
+    }
+    
+    .class-information__title-banner {
+      padding: 1em;
+    }
+    
+  }
+  
+  .pricing__initial {
+    font-size: 1.2em;
+    margin-bottom: .2em;
+    font-weight: 700;
+  }
+
+  .ember-google-map {
+    width: 400px;
+    height: 200px;
+  }
+
+  .class-information__content--btf {
+    margin: 0 1em;
+  }
+
+  @media all and (max-width: 800px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    .class-information__location {
+      margin-bottom: 1em;
+    }
+
+    .ember-google-map {
+      width: 100%;
+      height: 50vh;
+    }
+
+    .class-information__title-banner {
+      margin-right: 1em;
+    }
+
+    .class-information__content .class-information__times {
+      transform: skew(0);
+      
+      .class-information__times-content {
+        font-weight: 600;
+        transform: skew(-10deg) translateX(10px);
+      }
+    }
   }
 }
