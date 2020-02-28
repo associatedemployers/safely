@@ -11,9 +11,19 @@
     type="email"
     id="email"
     placeholder="Email Address"
-    @oninput={{set @model.email (get _ "target.value")}}
+    isLoading={{this.isFetchingMember}}
+    @oninput={{pipe (set @model.email (get _ "target.value")) this.updatedEmail}}
   />
 </BulmaControl>
+
+
+{{#if this.memberStatus.memberOfOneOrg}}
+<div class="notification is-success">
+  {{!-- <button class="delete"></button> --}}
+  <i class="fa fa-check"></i> You are a member of {{this.memberString}}.
+</div>
+{{/if}}
+
 
 <BulmaControl>
   <label for="company-name">Company Name</label>
@@ -21,6 +31,7 @@
     type="text"
     id="company-name"
     placeholder="Company Name"
+    @value={{this.companyName}}
     @oninput={{set this.companyName (get _ "target.value")}}
   />
 </BulmaControl>
@@ -32,6 +43,7 @@
     type="text"
     id="company-addr-line1"
     placeholder="Company Street Address"
+    @value={{this.companyAddressLine1}}
     @oninput={{set this.companyAddressLine1 (get _ "target.value")}}
   />
 </BulmaControl>
@@ -42,45 +54,51 @@
     type="text"
     id="company-addr-line2"
     placeholder="Company Apt/Suite"
+    @value={{this.companyAddressLine2}}
     @oninput={{set this.companyAddressLine2 (get _ "target.value")}}
   />
 </BulmaControl>
 
 <div class="columns">
+  <BulmaControl class="column">
+    <label for="company-addr-city">City</label>
+    <BulmaInput
+      type="text"
+      id="company-addr-city"
+      placeholder="Company City"
+      @value={{this.companyAddressCity}}
+      @oninput={{set this.companyAddressCity (get _ "target.value")}}
+    />
+  </BulmaControl>
 
-<BulmaControl class="column">
-  <label for="company-addr-city">City</label>
-  <BulmaInput
-    type="text"
-    id="company-addr-city"
-    placeholder="Company City"
-    @oninput={{set this.companyAddressCity (get _ "target.value")}}
-  />
-</BulmaControl>
+  <BulmaControl class="column is-expanded">
+    <label for="company-addr-state">State</label>
 
-<BulmaControl class="column is-expanded">
-  <label for="company-addr-state">State</label>
+    <div class="select is-fullwidth">
+      <select
+        {{on "change" (set this.companyAddressState (get _ "target.value"))}}
+      >
+      {{log this.companyAddressState}}
+        {{#each this.states as |state|}}
+        {{log (eq this.companyAddressState state.value)}}
+          <option value="{{state.value}}" selected={{if (eq this.companyAddressState state.value) true false}}>
+            {{state.label}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+  </BulmaControl>
 
-  <div class="select is-fullwidth">
-    <select
-      {{on "change" (set this.companyAddressState (get _ "target.value"))}}
-    >
-      {{#each this.states as |state|}}
-        <option value="{{state.value}}">{{state.label}}</option>
-      {{/each}}
-    </select>
-  </div>
-</BulmaControl>
-
-<BulmaControl class="column">
-  <label for="company-addr-zipcode">Zipcode</label>
-  <BulmaInput
-    type="text"
-    id="company-addr-zipcode"
-    placeholder="Company Zipcode"
-    @oninput={{set this.companyAddressZipcode (get _ "target.value")}}
-  />
-</BulmaControl>
+  <BulmaControl class="column">
+    <label for="company-addr-zipcode">Zipcode</label>
+    <BulmaInput
+      type="text"
+      id="company-addr-zipcode"
+      placeholder="Company Zipcode"
+      @value={{this.companyAddressZipcode}}
+      @oninput={{set this.companyAddressZipcode (get _ "target.value")}}
+    />
+  </BulmaControl>
 </div>
 
 <BulmaControl>
@@ -92,5 +110,3 @@
     @oninput={{set @model.po (get _ "target.value")}}
   />
 </BulmaControl>
-
-

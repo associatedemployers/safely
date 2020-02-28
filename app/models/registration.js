@@ -9,13 +9,20 @@ export default Model.extend({
   times:       attr('array'),
   comments:    attr('string'),
 
-  trainee: belongsTo('trainee', { inverse: null, async: true }),
-  company: belongsTo('company', { inverse: null, async: true }),
-  classes: hasMany('class', { inverse: null, async: true }),
+  trainee: belongsTo('trainee', {
+    inverse: null,
+    async:   true
+  }),
+  company: belongsTo('company', {
+    inverse: null,
+    async:   true
+  }),
+  classes: hasMany('class', {
+    inverse: null,
+    async:   true
+  }),
 
   FORCE_SQL_OP: attr('string'),
 
-  created: attr('date', {
-    defaultValue: () => new Date()
-  })
+  created: attr('date', { defaultValue: () => new Date() })
 });

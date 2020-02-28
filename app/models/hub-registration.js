@@ -6,6 +6,7 @@ export default Model.extend({
   firstName:   attr('string'),
   lastName:    attr('string'),
   email:       attr('string'),
+  po:          attr('string'),
   class:       belongsTo('hub-class'),
   participant: belongsTo('hub-participant'),
   company:     belongsTo('company'),
