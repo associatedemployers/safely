@@ -38,29 +38,16 @@ export default class HubRegisterCompanyFormComponent extends Component {
   }
 
   autofillData () {
-    const {
-      // args: { model },
-      memberStatus
-    } = this;
+    const { memberStatus } = this;
 
     if (this.companyName || this.companyAddressLine1 || this.companyAddressCity) {
       return;
     }
-    console.log(memberStatus);
 
     const getValueForKey = (key) =>
       [ 'AE', 'MSSC' ].map(org =>
         (memberStatus[org].data || {})[key]
       ).find(Boolean);
-    console.log(
-      getValueForKey('company'),
-      getValueForKey('address'),
-      getValueForKey('address2'),
-      getValueForKey('city'),
-      getValueForKey('state'),
-      getValueForKey('zip')
-
-    );
 
     const st = getValueForKey('state');
 
@@ -70,15 +57,6 @@ export default class HubRegisterCompanyFormComponent extends Component {
     this.companyAddressCity = getValueForKey('city');
     this.companyAddressState = st && st.length > 2 ? (this.states.find(s => s.label.toLowerCase() === st.toLowerCase()) || {}).value : st;
     this.companyAddressZipcode = getValueForKey('zip');
-
-    console.log(
-      this.companyName,
-      this.companyAddressLine1,
-      this.companyAddressLine2,
-      this.companyAddressCity,
-      this.companyAddressState,
-      this.companyAddressZipcode
-    );
   }
 
   @action

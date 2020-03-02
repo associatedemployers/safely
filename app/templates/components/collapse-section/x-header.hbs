@@ -1,0 +1,9 @@
+<a class="level collapse-header" href="#" {{on "click" (fn (prevent-default @toggle))}}>
+  <h2 class="level-left">
+    {{yield}}
+  </h2>
+  <div class="level-right">
+    <i class="fa fa-angle-{{if @open "up" "down"}} fa-3x"></i>
+  </div>
+</a>
+{{#if @open}}<hr />{{/if}}

@@ -1,22 +1,32 @@
-<div>
-  <h2>Your Information</h2>
-  <hr />
-  <Hub::RegisterCompanyForm
-    @model={{this.model.registration}} />
-  <hr />
+<CollapseSection
+  @toggled={{set this.companyInformationOpen _}}
+  @isOpen={{this.companyInformationOpen}}
+  as |c|
+>
+  <c.header>Your Information</c.header>
+  <c.body>
+    <Hub::RegisterCompanyForm
+      @model={{this.model.registration}} />
+  </c.body>
+</CollapseSection>
+<hr />
 
-  {{this.model.registration.email}}
-</div>
-
-<div>
-  <h2>Class & Participant Information</h2>
-  <hr />
-</div>
-{{#each this.model.cart as |classItem|}}
-  <div class="register__class-registration">
-    <Hub::Lists::RegisterClassInformation
-      @model={{classItem}}
-      @mapStyle={{this.mapStyle}} />
-    <Hub::RegisterParticipantForm />
-  </div>
-{{/each}}
+<CollapseSection
+  @toggled={{set this.classInformationOpen _}}
+  @isOpen={{this.classInformationOpen}}
+  as |c|
+>
+  <c.header>Class &amp; Participant Information</c.header>
+  <c.body>
+    {{#each this.model.cart as |classItem|}}
+      <div class="register__class-registration">
+        <Hub::Lists::RegisterClassInformation
+          @model={{classItem}}
+          @mapStyle={{this.mapStyle}}
+        >
+          <Hub::RegisterParticipants />
+        </Hub::Lists::RegisterClassInformation>
+      </div>
+    {{/each}}
+  </c.body>
+</CollapseSection>

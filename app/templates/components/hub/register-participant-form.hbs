@@ -1,0 +1,36 @@
+<form>
+  <div class="columns">
+    <BulmaControl class="column">
+      <label for="participant-fn">First Name</label>
+      <BulmaInput
+        type="text"
+        class="participant-fn"
+        placeholder="Participant's First Name"
+        @value={{@participant.firstName}}
+        @oninput={{set @participant.firstName (get _ "target.value")}}
+      />
+    </BulmaControl>
+
+    <BulmaControl class="column">
+      <label for="participant-ln">First Name</label>
+      <BulmaInput
+        type="text"
+        class="participant-ln"
+        placeholder="Participant's Last Name"
+        @value={{@participant.lastName}}
+        @oninput={{set @participant.lastName (get _ "target.value")}}
+      />
+    </BulmaControl>
+  </div>
+
+    <BulmaControl>
+      <label for="participant-email">Email Address (optional)</label>
+      <BulmaInput
+        type="text"
+        class="participant-email"
+        placeholder="Participant's Email"
+        @value={{@participant.email}}
+        @oninput={{set @participant.email (get _ "target.value")}}
+      />
+    </BulmaControl>
+</form>

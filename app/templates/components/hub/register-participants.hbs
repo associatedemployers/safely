@@ -1,0 +1,4 @@
+{{#each this.participants as |participant index|}}
+  <h4>Participant #{{inc index}}</h4>
+  <Hub::RegisterParticipantForm @participant={{participant}} />
+{{/each}}

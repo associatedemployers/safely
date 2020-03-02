@@ -53,15 +53,10 @@
     width: 100%;
     font-size: 1.5em;
     font-weight: 700;
-    .class-name__organization {}
   }
 
   .class__location {
     width: 100%;
-  }
-
-  .class__instructor {
-    
   }
 }
 
@@ -76,6 +71,11 @@
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 100px;
+
+  .class-information__accompanying-content {
+    width: 100%;
+    margin: .5em 1em;
+  }
 
   
   .class-information__content {
@@ -98,9 +98,9 @@
       color: white;
       margin: 0;
       transform: skew(-10deg);
-    }
-    
-    .class-information__title {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
     
     .class-information__times {

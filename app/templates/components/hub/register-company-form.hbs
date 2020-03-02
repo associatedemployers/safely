@@ -16,14 +16,11 @@
   />
 </BulmaControl>
 
-
 {{#if this.memberStatus.memberOfOneOrg}}
-<div class="notification is-success">
-  {{!-- <button class="delete"></button> --}}
-  <i class="fa fa-check"></i> You are a member of {{this.memberString}}.
-</div>
+  <div class="notification is-success">
+    <i class="fa fa-check"></i> You are a member of {{this.memberString}}.
+  </div>
 {{/if}}
-
 
 <BulmaControl>
   <label for="company-name">Company Name</label>
@@ -78,9 +75,7 @@
       <select
         {{on "change" (set this.companyAddressState (get _ "target.value"))}}
       >
-      {{log this.companyAddressState}}
         {{#each this.states as |state|}}
-        {{log (eq this.companyAddressState state.value)}}
           <option value="{{state.value}}" selected={{if (eq this.companyAddressState state.value) true false}}>
             {{state.label}}
           </option>
@@ -110,3 +105,13 @@
     @oninput={{set @model.po (get _ "target.value")}}
   />
 </BulmaControl>
+
+<Form::ActionButton
+  type="submit"
+  class="button is-large is-success is-fullwidth"
+  {{!-- loading=working --}}
+  {{!-- disabled=(or (not password) (not (eq password passwordConfirm)))> --}}
+>
+  Save Company Information
+</Form::ActionButton>
+
