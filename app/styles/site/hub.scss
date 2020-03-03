@@ -63,4 +63,8 @@
     box-shadow: none;
     padding: 1.5em 2em;
   }
-}
+
+  .columns.columns--with-controls, .columns.columns--with-controls > .column {
+    margin-bottom: 0;
+  }
+} // </ .hub {}

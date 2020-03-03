@@ -2,7 +2,9 @@
   <label for="email">
     Email
     <i class="fa fa-info-circle right floated">
-      <EmberTooltip @popperContainer='.ember-application'>
+      <EmberTooltip
+        @popperContainer=".ember-application"
+        @side="left">
         Pricing will automatically update if you are an AE/MSSC member
       </EmberTooltip>
     </i>
@@ -56,7 +58,7 @@
   />
 </BulmaControl>
 
-<div class="columns">
+<div class="columns columns--with-controls">
   <BulmaControl class="column">
     <label for="company-addr-city">City</label>
     <BulmaInput
@@ -106,12 +108,13 @@
   />
 </BulmaControl>
 
-<Form::ActionButton
-  type="submit"
-  class="button is-large is-success is-fullwidth"
-  {{!-- loading=working --}}
-  {{!-- disabled=(or (not password) (not (eq password passwordConfirm)))> --}}
->
-  Save Company Information
-</Form::ActionButton>
-
+<BulmaControl>
+  <Form::ActionButton
+    type="submit"
+    class="button is-large is-success is-fullwidth"
+    {{!-- loading=working --}}
+    {{!-- disabled=(or (not password) (not (eq password passwordConfirm)))> --}}
+  >
+    Save Company Information
+  </Form::ActionButton>
+</BulmaControl>

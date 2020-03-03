@@ -5,8 +5,11 @@ export default class HubRegisterIndexRoute extends Route {
   @service cart
 
   async model () {
+    const cart = await (this.cart.state || this.cart.fetchingCart);
+
     return {
-      cart:         (await (this.cart.state || this.cart.fetchingCart)).items,
+      cart:         cart.items,
+      cartRecord:   cart,
       registration: this.store.createRecord('hub-registration')
     };
   }

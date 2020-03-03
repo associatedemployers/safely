@@ -1,4 +1,35 @@
-{{#each this.participants as |participant index|}}
-  <h4>Participant #{{inc index}}</h4>
-  <Hub::RegisterParticipantForm @participant={{participant}} />
-{{/each}}
+{{#if this.notFirstClass}}
+  <div class="level">
+    <BulmaControl class="level-item has-text-centered">
+      <label class="checkbox">
+        <BulmaCheckbox
+          onchange={{fn @copyingParticipantSourceChanged}} />
+        Copy participants from first class
+      </label>
+    </BulmaControl>
+  </div>
+{{/if}}
+{{#if @copyingParticipantSource}}
+  <div class="level">
+    <h3 class="level-item has-text-centered">Participants entered in the first class' registration will be used here.</h3>
+  </div>
+{{else}}
+  {{#each this.participants as |participant index|}}
+    <div class="level">
+      <h4 class="level-left">Participant #{{inc index}}</h4>
+      {{#if (not-eq index 0)}}
+        <a href="#" class="level-right" {{on "click" (prevent-default (fn this.removeParticipant participant))}}>
+          Remove Participant
+        </a>
+      {{/if}}
+    </div>
+    <Hub::RegisterParticipantForm
+      @participant={{participant}} />
+  {{/each}}
+
+  <BulmaControl>
+    <BulmaButton type="button" class="is-fullwidth" @isMedium={{true}} @isSuccess={{true}} {{on "click" this.addParticipant}}>
+      <i class="fa fa-fw fa-plus"></i> Add another participant...
+    </BulmaButton>
+  </BulmaControl>
+{{/if}}

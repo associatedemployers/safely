@@ -55,6 +55,11 @@
     </GMap>
   {{/if}}
   <div class="class-information__accompanying-content">
+    <div class="level">
+      <a href="#" class="level-item has-centered-text text-danger" {{on "click" (prevent-default (fn @onRemoveClass @model))}}>
+        <i class="fa fa-fw fa-trash"></i> Remove this class
+      </a>
+    </div>
     <hr />
     {{yield}}
   </div>

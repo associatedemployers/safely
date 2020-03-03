@@ -9,4 +9,8 @@ export default class HubParticipantModel extends Model {
   @belongsTo('company') company
   @belongsTo('hub-registration') registrations
   @attr('date', { defaultValue: () => new Date() }) created
+
+  get name () {
+    return [ this.firstName, this.lastName ].filter(Boolean).join(' ');
+  }
 }

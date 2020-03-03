@@ -42,5 +42,13 @@ Router.map(function() {
   this.route('hub-administration', function() {
     this.route('instructors');
     this.route('registrations');
+
+    this.route('class-information', function() {
+      this.route('add');
+    });
+
+    this.route('class', function() {
+      this.route('add');
+    });
   });
 });

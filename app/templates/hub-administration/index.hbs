@@ -1,9 +1,12 @@
 <div class="segment container is-spaced">
-  <p>
-    {{!-- {{#link-to 'classe'}} --}}
-    <i class="fa fa-fw fa-plus"></i> Add Class
-    {{!-- {{/link-to}} --}}
-  </p>
+  <div class="level">
+    <LinkTo @route="hub-administration.class.add" class="level-left">
+      <i class="fa fa-fw fa-plus"></i> Add Class/Webinar
+    </LinkTo>
+    <LinkTo @route="hub" target="_blank" class="level-right">
+      <i class="fa fa-fw fa-external-link"></i> Open Class Hub
+    </LinkTo>
+  </div>
   <hr />
   {{#if this.model}}
     <table class="table">

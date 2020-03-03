@@ -206,4 +206,6 @@ const states = [
   }
 ];
 
-export { states };
+const organizations = [ 'AE', 'MSSC' ];
+
+export { states, organizations };

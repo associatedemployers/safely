@@ -1,0 +1,53 @@
+<div class="segment container is-spaced">
+  <div class="level">
+    <LinkTo @route="hub-administration.class.add" class="level-left">
+      <i class="fa fa-fw fa-angle-left"></i>Back to classes
+    </LinkTo>
+  </div>
+  <h3>Add a new class/webinar</h3>
+  <hr />
+  <form>
+    <div class="level">
+      <BulmaControl class="level-item has-text-centered">
+        <label class="checkbox">
+          <BulmaCheckbox
+            @onchange={{set this.model.digital _}}
+          />
+          Digital Offering/Webinar
+        </label>
+      </BulmaControl>
+    </div>
+    {{#if this.model.digital}}
+      <BulmaControl>
+        <label for="digital-url">
+          Digital URL
+          <span class="is-right-floated">
+            <i class="fa fa-fw fa-question-circle">
+              <EmberTooltip
+                @popperContainer=".ember-application"
+                @side="left"
+              >
+                Sent to participants after registration
+              </EmberTooltip>
+            </i>
+          </span>
+        </label>
+        <BulmaInput
+          type="text"
+          id="digital-url"
+          placeholder="Digital URL"
+          @value={{this.model.digitalUrl}}
+          @oninput={{set this.model.digitalUrl (get _ "target.value")}}
+        />
+      </BulmaControl>
+    {{/if}}
+    {{! digital offering }}
+    {{! organization }}
+    {{! name }}
+    {{! description }}
+    {{! instructor }}
+    {{! location }}
+    {{! times }}
+    {{! pricing }}
+  </form>
+</div>
