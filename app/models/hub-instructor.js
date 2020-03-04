@@ -4,7 +4,6 @@ export default class HubInstructorModel extends Model {
   @attr('string') displayName
   @attr('string') email
   @attr('number') phone
-  @attr('string') location
   @attr('string') organization
   @attr('date', { defaultValue: () => new Date() }) created
 }

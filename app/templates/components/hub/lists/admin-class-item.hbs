@@ -8,4 +8,9 @@
       {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}} {{time t.start 'M/D/YY'}}
     {{/each}}
   </td>
+  <td>
+    <a href="#" class="text-danger" {{on "click" (prevent-default (fn @onDelete @model))}}>
+      <i class="fa fa-fw fa-trash"></i>
+    </a>
+  </td>
 </tr>

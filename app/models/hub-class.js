@@ -17,6 +17,7 @@ export default class HubClassModel extends Model {
   @attr('number') memberAddParticipantsPrice
   @attr('number') nonMemberAddParticipantsPrice
   @attr('string') digitalUrl
+  @attr('string') emailConfirmationBody
   @attr('boolean') digital
   @attr('string') geoLat
   @attr('string') geoLng

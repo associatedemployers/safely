@@ -17,11 +17,12 @@
           <th>Instructor</th>
           <th>Location</th>
           <th>Times</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each this.model as |class|}}
-          <Hub::Lists::AdminClassItem @model={{class}} />
+          <Hub::Lists::AdminClassItem @model={{class}} @onDelete={{fn this.deleteClass}} />
         {{/each}}
       </tbody>
     </table>

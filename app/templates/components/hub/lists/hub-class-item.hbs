@@ -17,6 +17,13 @@
       by {{@model.organization}}
     </span>
   </div>
+
+  {{#if @model.classInformation.description}}
+    <div class="class__description">
+      {{@model.classInformation.description}}
+    </div>
+  {{/if}}
+
   <div class="class__location">
     <span>
       <i class="fa fa-map-marker"></i> {{@model.locationName}}

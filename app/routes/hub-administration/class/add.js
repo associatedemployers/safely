@@ -1,7 +1,44 @@
 import Route from '@ember/routing/route';
+import { A } from '@ember/array';
 
 export default class HubAdministrationClassAddRoute extends Route {
-  model () {
-    return this.store.createRecord('hub-class');
+  async model () {
+    return {
+      hubClass: this.store.createRecord('hub-class', {
+        classInformation: this.store.createRecord('hub-class-information'),
+        instructor:       this.store.createRecord('hub-instructor'),
+        times:            [{}] // initializes the array
+      }),
+      classes:         await this.store.query('hub-class-information', { sort: { name: 1 } }),
+      instructors:     await this.store.query('hub-instructor', { sort: { displayName: 1 } }),
+      recentLocations: (await this.store.query('hub-class', {
+        sort:  { created: -1 },
+        limit: 20
+      })).toArray().reduce((locations, hubClass) => {
+        if (!locations.find(l => l.locationName === hubClass.locationName && l.locationAddressLine1 === hubClass.locationAddressLine1)) {
+          locations.addObject({
+            id:                        hubClass.id,
+            locationName:              hubClass.locationName,
+            locationAddressLine1:      hubClass.locationAddressLine1,
+            locationAddressLine2:      hubClass.locationAddressLine2,
+            locationAddressCity:       hubClass.locationAddressCity,
+            locationAddressState:      hubClass.locationAddressState,
+            locationAddressZipcode:    hubClass.locationAddressZipcode,
+            locationAddressDirections: hubClass.locationAddressDirections
+          });
+        }
+
+        return locations;
+      }, A())
+    };
+  }
+
+  setupController (controller, model) {
+    controller.setProperties({
+      model:           model.hubClass,
+      classes:         model.classes,
+      instructors:     model.instructors,
+      recentLocations: model.recentLocations
+    });
   }
 }
