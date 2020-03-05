@@ -7,7 +7,12 @@ export default class HubListsHubClassItemComponent extends Component {
 
   @action
   async register () {
-    await this.cart.addItem(this.args.model);
+    if (this.args.inCart) {
+      await this.cart.removeItem(this.args.model);
+    } else {
+      await this.cart.addItem(this.args.model);
+    }
+
     this.args.onRegister();
   }
 }

@@ -11,26 +11,15 @@
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 2px 4px rgba($black, .3);
+  box-shadow: 0 2px 10px -2px rgba($black, .3);
+  color: lighten($black, 30);
+
+  &.class__card--in-cart {
+    background-color: rgba($aegold, 0.7);
+  }
 
   strong {
     transition: all .3s ease-in-out;
-  }
-
-  &:hover {
-    background-color: rgba($aeblue, 0.7);
-    color: white;
-    box-shadow: 0 2px 2px rgba($black, .5);
-    padding-top: 30px;
-
-    strong {
-      color: white;
-    }
-
-    .class-card__hover-help {
-      transform: translateY(0);
-      opacity: 1;
-    }
   }
 
   .class-card__hover-help {
@@ -49,18 +38,45 @@
     justify-content: center;
   }
 
+  .class__seats {
+    font-weight: bold;
+    color: $success;
+  }
+  
+  .class__times {
+    font-size: 1.5em;
+    color: darken($aegold, 5);
+  }
+  
   .class__name {
     width: 100%;
     font-size: 1.5em;
     font-weight: 700;
+    color: $aeblue;
   }
-
+  
   .class__description {
     padding-bottom: 1em;
   }
-
+  
   .class__location {
     width: 100%;
+  }
+
+  &:hover {
+    background-color: rgba($aeblue, 0.7);
+    color: white !important;
+    box-shadow: 0 2px 2px rgba($black, .5);
+    padding-top: 30px;
+  
+    * {
+      color: white;
+    }
+  
+    .class-card__hover-help {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
 

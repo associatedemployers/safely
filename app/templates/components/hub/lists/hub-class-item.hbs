@@ -1,7 +1,7 @@
-<div class="class__card" role='button' {{on 'click' this.register}}>
+<div class="class__card {{if @inCart 'class__card--in-cart'}}" role='button' {{on 'click' this.register}}>
   <div class="class__times">
     {{#each @model.times as |t|}}
-      {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}} {{time t.start 'M/D/YY'}}
+      <div class="class-times__block">{{time t.start 'M/D/YY'}} {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}}</div>
     {{/each}}
   </div>
   <div class="class__seats">
@@ -50,7 +50,11 @@
   </div>
   <div class="class-card__hover-help">
     <div class="hover-help__content">
-      <i class="fa fa-info-circle"></i> Click to register for this class
+      {{#if @inCart}}
+        <i class="fa fa-check"></i> Class added to cart. Click to remove this class
+      {{else}}
+        <i class="fa fa-info-circle"></i> Click to register for this class
+      {{/if}}
     </div>
   </div>
 </div>

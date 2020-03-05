@@ -10,10 +10,11 @@
       </a>
     </span>
   </div>
-
+{{log this.cart.state}}
   {{#each this.model as |class|}}
     <Hub::Lists::HubClassItem
       @model={{class}}
+      @inCart={{contains class this.cart.state.items}}
       @onRegister={{this.register}} />
   {{/each}}
 </div>
