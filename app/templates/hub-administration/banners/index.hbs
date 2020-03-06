@@ -1,0 +1,26 @@
+<div class="level">
+  <LinkTo @route="hub-administration.banners.add" class="level-left">
+    <i class="fa fa-fw fa-plus"></i> Add Banner
+  </LinkTo>
+</div>
+<hr />
+{{#if this.model}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Heading</th>
+        <th>Body</th>
+        <th>Link</th>
+        <th>Color</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each this.model as |banner|}}
+        <Hub::Lists::AdminBannerItem @model={{banner}} @onDelete={{fn this.deleteBanner}} />
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  No banners available.
+{{/if}}

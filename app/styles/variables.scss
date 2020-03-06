@@ -8,5 +8,23 @@ $white: #fff;
 $black: #000;
 $aeblue: #032785;
 $aegold: #e0b800;
+$msscgreen: #0f7b2d;
 
 $screen-md: 769px;
+
+$safely-colors: (
+  "default": #CCC,
+  "primary": $primary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "gray": $gray,
+  "white": $white,
+  "black": $black,
+  "aeblue": $aeblue,
+  "aegold": $aegold,
+  "msscgreen": $msscgreen
+);
+
+$safely-colors-use-inverted: "black", "aeblue", "msscgreen";

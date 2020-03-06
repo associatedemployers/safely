@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { A } from '@ember/array';
+import { action } from '@ember/object';
 
 export default class HubAdministrationClassAddRoute extends Route {
   async model () {
@@ -40,5 +41,21 @@ export default class HubAdministrationClassAddRoute extends Route {
       instructors:     model.instructors,
       recentLocations: model.recentLocations
     });
+  }
+
+  @action
+  willTransition (transition) {
+    var model = this.controller.get('model');
+
+    if (!model || !model.get('isNew')) {
+      return true;
+    }
+
+    if (Object.keys(model.changedAttributes()).length > 0 && !confirm('Are you sure you want to abandon progress on this page?')) {
+      transition.abort();
+    } else {
+      model.destroyRecord();
+      return true;
+    }
   }
 }

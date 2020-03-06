@@ -1,0 +1,83 @@
+<div class="level">
+  <LinkTo @route="hub-administration.banners" class="level-left">
+    <i class="fa fa-fw fa-angle-left"></i>Back to banners
+  </LinkTo>
+</div>
+<h3>Add a new banner</h3>
+<hr />
+<BulmaControl>
+  <label for="heading">
+    Heading ({{or this.model.heading.length 0}}/120 characters)
+  </label>
+  <BulmaInput
+    type="text"
+    id="heading"
+    maxlength="120"
+    placeholder="Banner Heading"
+    @value={{this.model.heading}}
+    @oninput={{set this.model.heading (get _ "target.value")}}
+  />
+</BulmaControl>
+
+<BulmaControl>
+  <label for="banner-body">
+    Body ({{or this.model.body.length 0}}/300 characters)
+  </label>
+  <BulmaInput
+    type="text"
+    id="banner-body"
+    maxlength="300"
+    placeholder="Banner Body"
+    @value={{this.model.body}}
+    @oninput={{set this.model.body (get _ "target.value")}}
+  />
+</BulmaControl>
+
+<div class="columns">
+  <BulmaControl class="column is-expanded">
+    <label for="banner-color">Color</label>
+
+    <div class="select is-fullwidth">
+      <select
+        {{on "change" (set this.model.color (get _ "target.value"))}}
+      >
+        <option value="">default</option>
+        {{#each this.colors as |color|}}
+          <option value="{{color}}" selected={{if (eq this.model.color color) true false}}>
+            {{color}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+  </BulmaControl>
+
+  <BulmaControl class="column">
+    <label for="banner-link">
+      Banner Link
+    </label>
+    <BulmaInput
+      type="text"
+      id="banner-link"
+      placeholder="ex. http://associatedemployers.org/"
+      @value={{this.model.link}}
+      @oninput={{set this.model.link (get _ "target.value")}}
+    />
+  </BulmaControl>
+</div>
+
+<hr />
+<form {{on "submit" (prevent-default (fn this.save))}}>
+  <BulmaControl>
+    <Form::ActionButton
+      type="submit"
+      class="button is-large is-success is-fullwidth"
+      loading={{this.data.statuses.saveBanner.isLoading}}
+      disabled={{this.data.statuses.saveBanner.isLoading}}
+    >
+      Create Banner
+    </Form::ActionButton>
+  </BulmaControl>
+</form>
+<hr />
+<h3>Banner preview</h3>
+<Hub::BannerItem @model={{this.model}} />

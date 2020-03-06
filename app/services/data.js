@@ -190,7 +190,7 @@ export default class DataService extends Service {
     this.__cancelLongRunningProp(label);
 
     this.set(`statuses.${label}`, {
-      isLoading: true,
+      isLoading: false,
       isLoaded:  true,
       isSlow:    false,
       message:   success,
@@ -201,7 +201,7 @@ export default class DataService extends Service {
       setTimeout(() => {
         if (!this.get('isDestroyed') && !this.get('isDestroying')) {
           this.set(`statuses.${label}`, {
-            isLoading: true,
+            isLoading: false,
             isLoaded:  true,
             isSlow:    false,
             message:   null,
