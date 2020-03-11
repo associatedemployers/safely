@@ -59,40 +59,44 @@
     <c.header>Review &amp; Payment</c.header>
     <c.body>
       <h4>You are registering for {{this.model.cart.length}} {{inflect-text 'class' this.model.cart.length}}.</h4>
-      <BulmaTable @isStriped={{true}} >
-        <thead>
-          <th>Class</th>
-          <th>Location</th>
-          <th>Participants</th>
-          <th>Participant ($)</th>
-          <th>Additional Participant ($)</th>
-          <th>Total ($)</th>
-        </thead>
-        <tbody>
-          {{#each this.registrations as |registration|}}
-            <Hub::Lists::CostBreakdown
-              @memberStatus={{this.memberStatus}}
-              @model={{registration}} />
-          {{/each}}
-          <tr>
-            <th colspan="4"></th>
-            <th>Total for all classes</th>
-            <th>
-              {{display-currency this.total}}
-              {{#if this.totalMissingInformation}}
-                <i class="fa fa-fw fa-exclamation-triangle">
-                  <EmberTooltip
-                    @popperContainer=".ember-application"
-                    @side="left"
-                  >
-                    This total does not include classes that do not list pricing.
-                  </EmberTooltip>
-                </i>
-              {{/if}}
-            </th>
-          </tr>
-        </tbody>
-      </BulmaTable>
+      <div class="table-container">
+        <BulmaTable @isStriped={{true}} @isFullWidth={{true}}>
+          <thead>
+            <th>Class</th>
+            <th>Location</th>
+            <th>Participants</th>
+            <th>Participant ($)</th>
+            <th>Additional Participant ($)</th>
+            <th>Total ($)</th>
+          </thead>
+          <tbody>
+            {{#each this.registrations as |registration|}}
+              <Hub::Lists::CostBreakdown
+                @memberStatus={{this.memberStatus}}
+                @model={{registration}} />
+            {{/each}}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="4"></th>
+              <th>Total for all classes</th>
+              <th>
+                {{display-currency this.total}}
+                {{#if this.totalMissingInformation}}
+                  <i class="fa fa-fw fa-exclamation-triangle">
+                    <EmberTooltip
+                      @popperContainer=".ember-application"
+                      @side="left"
+                    >
+                      This total does not include classes that do not list pricing.
+                    </EmberTooltip>
+                  </i>
+                {{/if}}
+              </th>
+            </tr>
+          </tfoot>
+        </BulmaTable>
+      </div>
     </c.body>
   </CollapseSection>
 {{/if}}

@@ -28,7 +28,7 @@ export default class HubIndexRoute extends Route {
       if (!previousModel || !moment(get(previousModel, 'times.lastObject.start')).isSame(classLastStart, 'month')) {
         mixedModel.push({
           type: 'header',
-          text: `${moment(classLastStart).format('MMM YYYY')}`
+          text: `${moment(classLastStart).format('MMMM YYYY')}`
         });
       }
 

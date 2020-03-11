@@ -96,5 +96,10 @@
     color: white;
     background-color: darken($success, 8);
   }
+}
 
+.table-container {
+  overflow: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
