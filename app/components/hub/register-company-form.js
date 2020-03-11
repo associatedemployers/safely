@@ -34,7 +34,7 @@ export default class HubRegisterCompanyFormComponent extends Component {
       return '';
     }
 
-    return [ AE.isMember && 'AE', MSSC.isMember && 'MSSC' ].filter(Boolean).join('and');
+    return [ AE.isMember && 'AE', MSSC.isMember && 'MSSC' ].filter(Boolean).join(' and ');
   }
 
   autofillData () {
@@ -88,6 +88,8 @@ export default class HubRegisterCompanyFormComponent extends Component {
         }
       };
     }, { memberOfOneOrg: memberStatus.some(r => r.isMember) });
+
+    this.args.onMemberStatusChange(this.memberStatus);
 
     this.isFetchingMember = false;
     this.existingCompany = existingCompany;

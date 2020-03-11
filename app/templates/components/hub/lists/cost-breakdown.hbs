@@ -1,8 +1,87 @@
 <tr>
   <td>{{@model.hubClass.classInformation.name}}</td>
+  <td>
+    {{@model.hubClass.locationName}}
+    {{#if (and @model.hubClass.locationAddressState @model.hubClass.locationAddressCity)}}
+      ({{@model.hubClass.locationAddressCity}}, {{@model.hubClass.locationAddressState}})
+    {{/if}}
+  </td>
   <td>{{@model.participants.length}}</td>
-  <th>{{@model.participants.length}}</th>
-  <th>Participant ($)</th>
-  <th>Additional Participant ($)</th>
-  <th>Total ($)</th>
+  <td>
+    {{#if @model.isClassMember}}
+      {{#if @model.hubClass.memberPrice}}
+        {{#if @model.hubClass.nonMemberPrice}}
+          <s>{{display-currency @model.hubClass.nonMemberPrice}}</s>
+        {{/if}}
+        <strong>{{display-currency @model.hubClass.memberPrice}}</strong>
+        <i class="fa fa-fw fa-check">
+          <EmberTooltip
+            @popperContainer=".ember-application"
+            @side="right"
+          >
+            Thank you for your membership.
+          </EmberTooltip>
+        </i>
+      {{else}}
+        Contact for pricing
+      {{/if}}
+    {{else}}
+      {{#if @model.hubClass.nonMemberPrice}}
+        <strong>{{display-currency @model.hubClass.nonMemberPrice}}</strong>
+        {{#if @model.hubClass.memberPrice}}
+          <i class="fa fa-fw fa-question-circle">
+            <EmberTooltip
+              @popperContainer=".ember-application"
+              @side="right"
+            >
+              {{display-currency @model.hubClass.memberPrice}} with membership for {{@model.hubClass.organization}}.
+            </EmberTooltip>
+          </i>
+        {{/if}}
+      {{else}}
+        Contact for pricing
+      {{/if}}
+    {{/if}}
+  </td>
+  <td>
+    {{#if (gt @model.participants.length 1)}}
+      {{#if @model.isClassMember}}
+        {{#if @model.hubClass.memberAddParticipantsPrice}}
+          {{#if @model.hubClass.nonMemberAddParticipantsPrice}}
+            <s>{{display-currency @model.hubClass.nonMemberAddParticipantsPrice}}</s>
+          {{/if}}
+          <strong>{{display-currency @model.hubClass.memberAddParticipantsPrice}}</strong> x {{dec @model.participants.length}}
+          <i class="fa fa-fw fa-check">
+            <EmberTooltip
+              @popperContainer=".ember-application"
+              @side="right"
+            >
+              Thank you for your membership.
+            </EmberTooltip>
+          </i>
+        {{else}}
+          Contact for pricing
+        {{/if}}
+      {{else}}
+        {{#if @model.hubClass.nonMemberAddParticipantsPrice}}
+          <strong>{{display-currency @model.hubClass.nonMemberAddParticipantsPrice}}</strong> x {{dec @model.participants.length}}
+          {{#if @model.hubClass.memberAddParticipantsPrice}}
+            <i class="fa fa-fw fa-question-circle">
+              <EmberTooltip
+                @popperContainer=".ember-application"
+                @side="right"
+              >
+                {{display-currency @model.hubClass.memberAddParticipantsPrice}} with membership for {{@model.hubClass.organization}}.
+              </EmberTooltip>
+            </i>
+          {{/if}}
+        {{else}}
+          Contact for pricing
+        {{/if}}
+      {{/if}}
+    {{else}}
+      N/A
+    {{/if}}
+  </td>
+  <th>{{display-currency this.total}}</th>
 </tr>

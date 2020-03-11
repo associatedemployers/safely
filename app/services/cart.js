@@ -1,6 +1,5 @@
 import Service, { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-// import { A } from '@ember/array';
 
 export default class CartService extends Service {
   @service store
@@ -34,5 +33,9 @@ export default class CartService extends Service {
     this.state.items.removeObject(item);
     await this.state.save();
     return this.state;
+  }
+
+  get empty () {
+    return !this.state || (this.state.items || []).length < 1;
   }
 }

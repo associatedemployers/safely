@@ -67,4 +67,34 @@
   .columns.columns--with-controls, .columns.columns--with-controls > .column {
     margin-bottom: 0;
   }
+
+  .hub-banner {
+    margin-bottom: 1.5em;
+  }
 } // </ .hub {}
+
+.hub__floating-register-link {
+  background-color: $success;
+  color: white;
+  font-size: 2em;
+  font-weight: 700;
+  padding: 1em;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0 -1px 10px rgba(black, .4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease-in-out;
+
+  div {
+    margin-right: .5em;
+  }
+
+  &:hover {
+    color: white;
+    background-color: darken($success, 8);
+  }
+
+}
