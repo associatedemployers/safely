@@ -9,18 +9,36 @@
       </a>
     </span>
   </div>
-  {{#each this.model as |mixedModel|}}
-    {{#if (eq mixedModel.type 'header')}}
-      <h2>{{mixedModel.text}}</h2>
-    {{else if (eq mixedModel.constructor.modelName 'hub-class')}}
-      <Hub::Lists::HubClassItem
-        @model={{mixedModel}}
-        @inCart={{contains mixedModel this.cart.state.items}}
-        @onRegister={{this.register}} />
-    {{else}}
-      <Hub::BannerItem @model={{mixedModel}} />
-    {{/if}}
-  {{/each}}
+  <div class="level">
+    <a href="#" class="level-item" {{on "click" (prevent-default (toggle 'calendarView' this))}}>
+      {{#if this.calendarView}}
+        <i class="fa fa-fw fa-list"></i>List view
+      {{else}}
+        <i class="fa fa-fw fa-calendar"></i>Calendar view
+      {{/if}}
+    </a>
+  </div>
+
+  {{#if this.calendarView}}
+    <FullCalendar
+      @events={{this.calendarItems}}
+      @views={{this.calendarViews}}
+      @header={{this.calendarHeader}}
+      @eventClick={{this.addEventToCart}} />
+  {{else}}
+    {{#each this.model as |mixedModel|}}
+      {{#if (eq mixedModel.type 'header')}}
+        <h2>{{mixedModel.text}}</h2>
+      {{else if (eq mixedModel.constructor.modelName 'hub-class')}}
+        <Hub::Lists::HubClassItem
+          @model={{mixedModel}}
+          @inCart={{contains mixedModel this.cart.state.items}}
+          @addToCart={{this.addToCart}} />
+      {{else}}
+        <Hub::BannerItem @model={{mixedModel}} />
+      {{/if}}
+    {{/each}}
+  {{/if}}
 
   {{#unless this.cart.empty}}
     <EmberWormhole @destinationElement={{this.tlWormholeTarget}}>

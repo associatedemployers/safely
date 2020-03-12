@@ -74,6 +74,7 @@
 } // </ .hub {}
 
 .hub__floating-register-link {
+  z-index: 2;
   background-color: $success;
   color: white;
   font-size: 2em;

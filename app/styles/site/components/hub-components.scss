@@ -92,6 +92,16 @@
       padding: .5em 0;
     }
   }
+
+  &.class__card--full {
+    &:hover {
+      background-color: rgba($danger, 0.7);
+    }
+
+    .class__seats {
+      color: $danger;
+    }
+  }
 }
 
 .register__class-registration {

@@ -1,9 +1,12 @@
+<h1>Registration</h1>
 <div class="level">
   <div class="level-left">
-    <LinkTo @route="hub.index"><i class="fa fa-fw fa-angle-left"></i>Back to all classes</LinkTo>
+    <LinkTo @route="hub.index"><i class="fa fa-fw fa-angle-left"></i>Add/View another class</LinkTo>
   </div>
   <div class="level-right">
-    <a href="#" class="text-danger" {{on "click" (prevent-default (fn this.resetCart))}}>Empty cart &amp; start over</a>
+    <a href="#" {{on "click" (prevent-default (fn this.resetCart))}}>
+      <strong class="text-danger">Empty cart &amp; start over</strong>
+    </a>
   </div>
 </div>
 {{#if this.cart.empty}}
@@ -18,7 +21,7 @@
     <c.body>
       <Hub::RegisterCompanyForm
         @onMemberStatusChange={{set this.memberStatus _}}
-        @model={{this.model.registration}} />
+        @model={{this.model.cartRecord}} />
     </c.body>
   </CollapseSection>
   <hr />
@@ -99,4 +102,20 @@
       </div>
     </c.body>
   </CollapseSection>
+
+  <form {{on "submit" (prevent-default this.submitRegistration)}}>
+    {{#if this.invalid}}
+      <EmberTooltip @side="top">
+        {{this.invalid}}
+      </EmberTooltip>
+    {{/if}}
+    <Form::ActionButton
+      type="submit"
+      class="button is-large {{if this.invalid 'is-warning' 'is-success'}} is-fullwidth"
+      @disabled={{if this.invalid true false}}
+      @loading={{this.data.statuses.registration.isLoading}}
+    >
+      Complete Registration
+    </Form::ActionButton>
+  </form>
 {{/if}}

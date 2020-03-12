@@ -1,3 +1,25 @@
+<div class="columns">
+  <BulmaControl class="column">
+    <label for="first-name">First Name</label>
+    <BulmaInput
+      type="text"
+      id="first-name"
+      placeholder="First Name"
+      @value={{@model.firstName}}
+      @oninput={{set @model.firstName (get _ "target.value")}}
+    />
+  </BulmaControl>
+  <BulmaControl class="column">
+    <label for="last-name">Last Name</label>
+    <BulmaInput
+      type="text"
+      id="last-name"
+      placeholder="Last Name"
+      @value={{@model.lastName}}
+      @oninput={{set @model.lastName (get _ "target.value")}}
+    />
+  </BulmaControl>
+</div>
 <BulmaControl>
   <label for="email">
     Email
@@ -14,6 +36,7 @@
     id="email"
     placeholder="Email Address"
     isLoading={{this.isFetchingMember}}
+    @value={{@model.email}}
     @oninput={{pipe (set @model.email (get _ "target.value")) this.updatedEmail}}
   />
 </BulmaControl>
@@ -30,11 +53,10 @@
     type="text"
     id="company-name"
     placeholder="Company Name"
-    @value={{this.companyName}}
-    @oninput={{set this.companyName (get _ "target.value")}}
+    @value={{@model.companyName}}
+    @oninput={{set @model.companyName (get _ "target.value")}}
   />
 </BulmaControl>
-
 
 <BulmaControl>
   <label for="company-addr-line1">Street Address</label>
@@ -42,8 +64,8 @@
     type="text"
     id="company-addr-line1"
     placeholder="Company Street Address"
-    @value={{this.companyAddressLine1}}
-    @oninput={{set this.companyAddressLine1 (get _ "target.value")}}
+    @value={{@model.companyAddressLine1}}
+    @oninput={{set @model.addressLine1 (get _ "target.value")}}
   />
 </BulmaControl>
 
@@ -53,8 +75,8 @@
     type="text"
     id="company-addr-line2"
     placeholder="Company Apt/Suite"
-    @value={{this.companyAddressLine2}}
-    @oninput={{set this.companyAddressLine2 (get _ "target.value")}}
+    @value={{@model.addressLine2}}
+    @oninput={{set @model.addressLine2 (get _ "target.value")}}
   />
 </BulmaControl>
 
@@ -65,8 +87,8 @@
       type="text"
       id="company-addr-city"
       placeholder="Company City"
-      @value={{this.companyAddressCity}}
-      @oninput={{set this.companyAddressCity (get _ "target.value")}}
+      @value={{@model.addressCity}}
+      @oninput={{set @model.addressCity (get _ "target.value")}}
     />
   </BulmaControl>
 
@@ -75,10 +97,10 @@
 
     <div class="select is-fullwidth">
       <select
-        {{on "change" (set this.companyAddressState (get _ "target.value"))}}
+        {{on "change" (set @model.addressState (get _ "target.value"))}}
       >
         {{#each this.states as |state|}}
-          <option value="{{state.value}}" selected={{if (eq this.companyAddressState state.value) true false}}>
+          <option value="{{state.value}}" selected={{if (eq @model.addressState state.value) true false}}>
             {{state.label}}
           </option>
         {{/each}}
@@ -92,8 +114,8 @@
       type="text"
       id="company-addr-zipcode"
       placeholder="Company Zipcode"
-      @value={{this.companyAddressZipcode}}
-      @oninput={{set this.companyAddressZipcode (get _ "target.value")}}
+      @value={{@model.addressZipcode}}
+      @oninput={{set @model.addressZipcode (get _ "target.value")}}
     />
   </BulmaControl>
 </div>
@@ -108,13 +130,11 @@
   />
 </BulmaControl>
 
-<BulmaControl>
+{{!-- <BulmaControl>
   <Form::ActionButton
     type="submit"
     class="button is-large is-success is-fullwidth"
-    {{!-- loading=working --}}
-    {{!-- disabled=(or (not password) (not (eq password passwordConfirm)))> --}}
   >
     Save Company Information
   </Form::ActionButton>
-</BulmaControl>
+</BulmaControl> --}}

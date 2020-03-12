@@ -35,6 +35,13 @@ export default class CartService extends Service {
     return this.state;
   }
 
+  async resetCart () {
+    if (this.state) {
+      await this.state.destroyRecord();
+      await this.__getOrCreateCart();
+    }
+  }
+
   get empty () {
     return !this.state || (this.state.items || []).length < 1;
   }

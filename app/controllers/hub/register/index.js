@@ -4,7 +4,6 @@ import { action, get } from '@ember/object';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import mapStyle from 'safely/styles/map';
-import registrations from '../../registrations';
 
 export default class HubRegisterIndexController extends Controller {
   mapStyle = mapStyle
@@ -12,6 +11,7 @@ export default class HubRegisterIndexController extends Controller {
   classInformationOpen = true
   paymentOpen = true
   @service cart
+  @service data
   @tracked usingCopyAll = A()
   @tracked allParticipants = []
 
@@ -23,6 +23,37 @@ export default class HubRegisterIndexController extends Controller {
     return this.flattenedParticipants.filter(p => {
       return p.firstName || p.lastName;
     });
+  }
+
+  get invalid () {
+    const requiredRegistrationKeys = [
+      'companyName',
+      'addressLine1',
+      'addressCity',
+      'addressState',
+      'addressZipcode',
+      'email',
+      'firstName',
+      'lastName'
+    ];
+
+    const {
+      model: { cartRecord },
+      flattenedParticipants,
+      filledFlattenedParticipants
+    } = this;
+
+    if (flattenedParticipants.length !== filledFlattenedParticipants.length) {
+      return 'Some participant information is incomplete.';
+    }
+
+    const invalidKeys = requiredRegistrationKeys.filter(k => !cartRecord[k]);
+
+    if (invalidKeys.length) {
+      return `The following fields are required: ${invalidKeys.join(', ')}.`;
+    }
+
+    return false;
   }
 
   get registrations () {
@@ -108,7 +139,75 @@ export default class HubRegisterIndexController extends Controller {
       return;
     }
 
-    await this.model.cartRecord.destroyRecord();
+    await this.cart.resetCart();
     this.transitionToRoute('hub.index');
+  }
+
+  @action
+  async submitRegistration () {
+    if (this.invalid) {
+      return;
+    }
+
+    const {
+      model: {
+        cartRecord: {
+          firstName,
+          lastName,
+          email,
+          po,
+          companyName,
+          addressLine1,
+          addressLine2,
+          addressCity,
+          addressState,
+          addressZipcode
+        }
+      },
+      registrations
+    } = this;
+
+    const { success, error } = this.data.createStatus('registration');
+
+    let createdRegistrations = [];
+
+    for (let i = 0; i < registrations.length; i++) {
+      const {
+        participants,
+        hubClass
+      } = registrations[i];
+
+      try {
+        let participantRecords = [];
+
+        for (let pi = 0; pi < participants.length; pi++) {
+          participantRecords.push(await this.store.createRecord('hub-participant', participants[pi]).save());
+        }
+
+        let registration = this.store.createRecord('hub-registration', {
+          firstName,
+          lastName,
+          email,
+          po,
+          companyName,
+          addressLine1,
+          addressLine2,
+          addressCity,
+          addressState,
+          addressZipcode,
+          hubClass,
+          participants: participantRecords
+        });
+
+        registration = await registration.save();
+        createdRegistrations.push(registration);
+      } catch (e) {
+        return error(e);
+      }
+    }
+
+    success('Successfully registered.');
+    await this.cart.resetCart();
+    this.transitionToRoute('hub.register.complete');
   }
 }

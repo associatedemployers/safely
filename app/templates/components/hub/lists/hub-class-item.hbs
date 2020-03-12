@@ -1,4 +1,4 @@
-<div class="class__card {{if @inCart 'class__card--in-cart'}}" role='button' {{on 'click' this.register}}>
+<div class="class__card {{if @inCart 'class__card--in-cart'}} {{if @model.isFull 'class__card--full'}}" role='button' {{on 'click' this.register}}>
   <div class="class__times">
     {{#each @model.times as |t|}}
       <div class="class-times__block">{{time t.start 'M/D/YY'}} {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}}</div>
@@ -50,7 +50,9 @@
   </div>
   <div class="class-card__hover-help">
     <div class="hover-help__content">
-      {{#if @inCart}}
+      {{#if @model.isFull}}
+        <i class="fa fa-times"></i> This class is full and no longer accepting registrations.
+      {{else if @inCart}}
         <i class="fa fa-check"></i> Class added to cart. Click to remove this class
       {{else}}
         <i class="fa fa-info-circle"></i> Click to register for this class
