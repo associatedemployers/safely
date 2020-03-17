@@ -49,6 +49,7 @@ Router.map(function () {
 
     this.route('class', function () {
       this.route('add');
+      this.route('edit');
     });
     this.route('banners', function () {
       this.route('add');
