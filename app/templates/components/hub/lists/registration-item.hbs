@@ -1,0 +1,28 @@
+<tr>
+  <td>{{@model.companyName}}</td>
+  <td>{{@model.firstName}} {{@model.lastName}} <a href="mailto:{{@model.email}}">{{@model.email}}</a></td>
+  <td>
+    {{@model.addressLine1}}<br>
+    {{#if @model.addressLine2}}
+      {{@model.addressLine2}}<br>
+    {{/if}}
+    {{@model.addressCity}}, {{@model.addressState}} {{@model.addressZipcode}}
+  </td>
+  <td>{{if @model.isClassMember 'Yes' 'No'}}</td>
+  <td>
+    {{#each @model.participants as |partic|}}
+      <p>
+        {{partic.firstName}} {{partic.lastName}}
+        {{#if partic.email}}<a href="mailto:{{partic.email}}">{{partic.email}}</a>{{/if}}
+      </p>
+    {{/each}}
+  </td>
+  <td>{{if @model.total (display-currency @model.total) 'N/A'}}</td>
+  <td>{{time @model.created 'M/D/YY h:mma'}}</td>
+  <td>{{or @model.po 'N/A'}}</td>
+  <td>
+    <a href="#" class="text-danger" {{on "click" (prevent-default (fn @onDelete @model))}}>
+      <i class="fa fa-fw fa-trash"></i>
+    </a>
+  </td>
+</tr>

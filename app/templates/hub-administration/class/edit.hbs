@@ -1,1 +1,423 @@
-{{outlet}}
+<div class="segment container is-spaced">
+  <div class="level">
+    <LinkTo @route="hub-administration.index" class="level-left">
+      <i class="fa fa-fw fa-angle-left"></i>Back to classes
+    </LinkTo>
+  </div>
+  <h3>Add a new class/webinar</h3>
+  <hr />
+  <div class="level">
+    <BulmaControl class="level-item has-text-centered">
+      <label class="checkbox">
+        <BulmaCheckbox
+          @checked={{this.model.digital}}
+          @onchange={{set this.model.digital (get _ "target.checked")}}
+        />
+        Digital Offering/Webinar
+      </label>
+    </BulmaControl>
+  </div>
+  {{! digital offering }}
+  {{#if this.model.digital}}
+    <BulmaControl>
+      <label for="digital-url">
+        Digital URL
+        <span class="is-right-floated">
+          <i class="fa fa-fw fa-question-circle">
+            <EmberTooltip
+              @popperContainer=".ember-application"
+              @side="left"
+            >
+              Sent to participants after registration 
+            </EmberTooltip>
+          </i>
+        </span>
+      </label>
+      <BulmaInput
+        type="text"
+        id="digital-url"
+        placeholder="Digital URL"
+        @value={{this.model.digitalUrl}}
+        @oninput={{set this.model.digitalUrl (get _ "target.value")}}
+      />
+    </BulmaControl>
+  {{/if}}
+
+  <div class="columns">
+    {{! organization }}
+    <BulmaControl class="column is-expanded">
+      <label for="org">Organization</label>
+
+      <div class="select is-fullwidth">
+        <select
+          id="org"
+          {{on "change" (set this.model.organization (get _ "target.value"))}}
+        >
+          <option value="">--Select--</option>
+          {{#each this.orgs as |org|}}
+            <option value="{{org}}" selected={{if (eq this.model.organization org) true false}}>
+              {{org}}
+            </option>
+          {{/each}}
+        </select>
+      </div>
+    </BulmaControl>
+    <BulmaControl class="column">
+      <label for="seats">Spots Available</label>
+      <BulmaInput
+        type="number"
+        id="seats"
+        placeholder="Spots available in this class"
+        @value={{this.model.seats}}
+        @oninput={{set this.model.seats (get _ "target.value")}}
+      />
+    </BulmaControl>
+  </div>
+  <hr />
+
+  <h3>What</h3>
+
+  <BulmaControl class="is-expanded">
+    <label for="class-information">Class Information Set</label>
+
+    <div class="select is-fullwidth">
+      <select
+        id="class-information"
+        {{on "change" (fn this.changeClassInformationSet)}}
+      >
+        <option value="">* Create new *</option>
+        {{#each this.classes as |cl|}}
+          <option
+            value="{{cl.id}}"
+            selected={{if (eq this.model.classInformation.id cl.id) true false}}
+          >
+            {{cl.name}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+  </BulmaControl>
+
+  {{! name }}
+  <div class="columns">
+    <BulmaControl class="column">
+      <label for="name">Class Name</label>
+      <BulmaInput
+        type="text"
+        id="name"
+        placeholder="Class Name"
+        @value={{this.model.classInformation.name}}
+        @disabled={{not this.model.classInformation.isNew}}
+        @oninput={{set this.model.classInformation.name (get _ "target.value")}}
+      />
+    </BulmaControl>
+    <BulmaControl class="column">
+      <label for="code">Course Code</label>
+      <BulmaInput
+        type="text"
+        id="code"
+        placeholder="Course Code"
+        @value={{this.model.classInformation.code}}
+        @disabled={{not this.model.classInformation.isNew}}
+        @oninput={{set this.model.classInformation.code (get _ "target.value")}}
+      />
+    </BulmaControl>
+  </div>
+
+  {{! description }}
+  <BulmaControl>
+    <label for="description">Class Description</label>
+    <BulmaTextarea
+      id="description"
+      placeholder="Class Description"
+      @value={{this.model.classInformation.description}}
+      @disabled={{not this.model.classInformation.isNew}}
+      @oninput={{set this.model.classInformation.description (get _ "target.value")}}
+    />
+  </BulmaControl>
+  <hr />
+  <h3>Who</h3>
+  {{! instructor }}
+  <BulmaControl class="is-expanded">
+    <label for="class-information">Class Instructor</label>
+
+    <div class="select is-fullwidth">
+      <select
+        id="class-information"
+        {{on "change" (fn this.changeInstructor)}}
+      >
+        <option value="">* Create new *</option>
+        {{#each this.instructors as |ins|}}
+          <option
+            value="{{ins.id}}"
+            selected={{if (eq this.model.instructor.id ins.id) true false}}
+          >
+            {{ins.displayName}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+  </BulmaControl>
+
+  <BulmaControl>
+    <label for="instructor-name">Instructor Name</label>
+    <BulmaInput
+      type="text"
+      id="instructor-name"
+      placeholder="Instructor Name"
+      @value={{this.model.instructor.displayName}}
+      @disabled={{not this.model.instructor.isNew}}
+      @oninput={{set this.model.instructor.displayName (get _ "target.value")}}
+    />
+  </BulmaControl>
+
+  <div class="columns">
+    <BulmaControl class="column">
+      <label for="instructor-email">Instructor Email</label>
+      <BulmaInput
+        type="text"
+        id="instructor-email"
+        placeholder="Instructor Email"
+        @value={{this.model.instructor.email}}
+        @disabled={{not this.model.instructor.isNew}}
+        @oninput={{set this.model.instructor.email (get _ "target.value")}}
+      />
+    </BulmaControl>
+
+    <BulmaControl class="column">
+      <label for="instructor-phone">Instructor Phone</label>
+      <BulmaInput
+        type="text"
+        id="instructor-phone"
+        placeholder="Instructor Phone"
+        @value={{this.model.instructor.phone}}
+        @disabled={{not this.model.instructor.isNew}}
+        @oninput={{set this.model.instructor.phone (get _ "target.value")}}
+      />
+    </BulmaControl>
+
+    <BulmaControl class="column">
+      <label for="instructor-org">Instructor Organization</label>
+      <BulmaInput
+        type="text"
+        id="instructor-org"
+        placeholder="Instructor Organization (AE, MSSC, or another value)"
+        @value={{this.model.instructor.organization}}
+        @disabled={{not this.model.instructor.isNew}}
+        @oninput={{set this.model.instructor.organization (get _ "target.value")}}
+      />
+    </BulmaControl>
+  </div>
+  <hr />
+
+  <h3>Where</h3>
+  {{#if this.recentLocations.length}}
+    <BulmaControl class="is-expanded">
+      <label for="location-fill">Fill Location From History</label>
+
+      <div class="select is-fullwidth">
+        <select
+          id="location-fill"
+          {{on "change" (fn this.fillLocation)}}
+        >
+          <option value="">Select To Fill Location From History -></option>
+          {{#each this.recentLocations as |loc|}}
+            <option
+              value="{{loc.id}}"
+              selected={{eq this.selectedFillLocation loc.id}}
+            >
+              {{loc.locationName}} ~ {{loc.locationAddressLine1}}
+            </option>
+          {{/each}}
+        </select>
+      </div>
+    </BulmaControl>
+  {{/if}}
+  {{! location }}
+  <BulmaControl>
+    <label for="location-name">Name</label>
+    <BulmaInput
+      type="text"
+      id="location-name"
+      placeholder="Facility Name"
+      @value={{this.model.locationName}}
+      @oninput={{set this.locationName (get _ "target.value")}}
+    />
+  </BulmaControl>
+
+
+  <BulmaControl>
+    <label for="location-addr-line1">Street Address</label>
+    <BulmaInput
+      type="text"
+      id="location-addr-line1"
+      placeholder="Facility Street Address"
+      @value={{this.model.locationAddressLine1}}
+      @oninput={{set this.model.locationAddressLine1 (get _ "target.value")}}
+    />
+  </BulmaControl>
+
+  <BulmaControl>
+    <label for="location-addr-line2">Apt/Suite (Optional)</label>
+    <BulmaInput
+      type="text"
+      id="location-addr-line2"
+      placeholder="Facility Apt/Suite"
+      @value={{this.model.locationAddressLine2}}
+      @oninput={{set this.model.locationAddressLine2 (get _ "target.value")}}
+    />
+  </BulmaControl>
+
+  <div class="columns columns--with-controls">
+    <BulmaControl class="column">
+      <label for="location-addr-city">City</label>
+      <BulmaInput
+        type="text"
+        id="location-addr-city"
+        placeholder="Facility City"
+        @value={{this.model.locationAddressCity}}
+        @oninput={{set this.model.locationAddressCity (get _ "target.value")}}
+      />
+    </BulmaControl>
+
+    <BulmaControl class="column is-expanded">
+      <label for="location-addr-state">State</label>
+
+      <div class="select is-fullwidth">
+        <select
+          {{on "change" (set this.model.locationAddressState (get _ "target.value"))}}
+        >
+          <option value="">--Select--</option>
+          {{#each this.states as |state|}}
+            <option value="{{state.value}}" selected={{if (eq this.model.locationAddressState state.value) true false}}>
+              {{state.label}}
+            </option>
+          {{/each}}
+        </select>
+      </div>
+    </BulmaControl>
+
+    <BulmaControl class="column">
+      <label for="location-addr-zipcode">Zipcode</label>
+      <BulmaInput
+        type="text"
+        id="location-addr-zipcode"
+        placeholder="Facility Zipcode"
+        @value={{this.model.locationAddressZipcode}}
+        @oninput={{set this.model.locationAddressZipcode (get _ "target.value")}}
+      />
+    </BulmaControl>
+  </div>
+  <BulmaControl>
+    <label for="location-directions">Directions</label>
+    <BulmaInput
+      type="text"
+      id="location-directions"
+      placeholder="Facility Directions"
+      @value={{this.model.locationAddressDirections}}
+      @oninput={{set this.model.locationAddressDirections (get _ "target.value")}}
+    />
+  </BulmaControl>
+  <hr />
+  <h3>When</h3>
+  {{#each this.model.times as |timeBlock timeBlockIndex|}}
+    <div class="level">
+      <h5 class="level-left">
+        Time #{{inc timeBlockIndex}}
+      </h5>
+      {{#if (not (eq timeBlockIndex 0))}}
+        <a href="#" class="level-right text-danger" {{on "click" (prevent-default (fn this.removeTimeBlock timeBlock))}}>
+          <i class="fa fa-fw fa-trash"></i>
+        </a>
+      {{/if}}
+    </div>
+    {{! times }}
+    <div class="columns">
+      <BulmaControl class="column">
+        <label for="time-block-start">Start</label>
+        <BulmaInput
+          type="datetime-local"
+          class="time-block-start"
+          value={{convert-to-date timeBlock.start}}
+          @oninput={{set timeBlock.start (get _ "target.value")}}
+        />
+      </BulmaControl>
+      <BulmaControl class="column">
+        <label for="time-block-end">End</label>
+        <BulmaInput
+          type="datetime-local"
+          class="time-block-end"
+          @value={{convert-to-date timeBlock.end}}
+          @oninput={{set timeBlock.end (get _ "target.value")}}
+        />
+      </BulmaControl>
+    </div>
+  {{/each}}
+  <div class="level">
+    <a href="#" class="level-item text-success has-text-centered" {{on "click" (prevent-default (fn this.addTimeBlock))}}>
+      <i class="fa fa-fw fa-plus"></i> Add another time...
+    </a>
+  </div>
+
+  <hr />
+  <h3>Pricing</h3>
+  <BulmaControl>
+    <p><i class="fa fa-fw fa-exclamation-triangle"></i>Currency is input here as non-decimal format with smallest denomination possible for currency. <strong>$200.00</strong> should be input as <strong>20000</strong>, <strong>$149.89</strong> as <strong>14989</strong>.</p>
+  </BulmaControl>
+  {{! pricing }}
+  <div class="columns">
+    <BulmaControl class="column">
+      <label for="member-price">Member</label>
+      <BulmaInput
+        type="number"
+        id="member-price"
+        placeholder="Member Price"
+        @value={{this.model.memberPrice}}
+        @oninput={{set this.model.memberPrice (get _ "target.value")}}
+      />
+    </BulmaControl>
+    <BulmaControl class="column">
+      <label for="nmember-price">Non-Member</label>
+      <BulmaInput
+        type="number"
+        id="nmember-price"
+        placeholder="Non-Member Price"
+        @value={{this.model.nonMemberPrice}}
+        @oninput={{set this.model.nonMemberPrice (get _ "target.value")}}
+      />
+    </BulmaControl>
+    <BulmaControl class="column">
+      <label for="member-price-add">Addt. Member</label>
+      <BulmaInput
+        type="number"
+        id="member-price-add"
+        placeholder="Additional Member Price"
+        @value={{this.model.memberAddParticipantsPrice}}
+        @oninput={{set this.model.memberAddParticipantsPrice (get _ "target.value")}}
+      />
+    </BulmaControl>
+    <BulmaControl class="column">
+      <label for="member-price-add">Addt. Non-Member</label>
+      <BulmaInput
+        type="number"
+        id="member-price-add"
+        placeholder="Additional Non-Member Price"
+        @value={{this.model.nonMemberAddParticipantsPrice}}
+        @oninput={{set this.model.nonMemberAddParticipantsPrice (get _ "target.value")}}
+      />
+    </BulmaControl>
+  </div>
+  <hr />
+  <form {{on "submit" (prevent-default (fn this.save))}}>
+    <BulmaControl>
+      <Form::ActionButton
+        type="submit"
+        class="button is-large is-success is-fullwidth"
+        loading={{this.data.statuses.saveClass.isLoading}}
+        disabled={{this.data.statuses.saveClass.isLoading}}
+      >
+        Save Class
+      </Form::ActionButton>
+    </BulmaControl>
+  </form>
+</div>

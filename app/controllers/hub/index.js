@@ -9,9 +9,11 @@ const eventColors = {
 };
 
 export default class HubIndexController extends Controller {
-  queryParams = [ 'calendarView' ]
+  queryParams = [ 'calendarView', 'org' ]
   @service cart
   @tracked calendarView = false
+  @tracked org = null
+  orgs = [ null, 'AE', 'MSSC' ]
 
   calendarHeader= { center: 'month,agendaWeek' }
 
@@ -51,7 +53,6 @@ export default class HubIndexController extends Controller {
 
   @action
   addEventToCart (ev) {
-    console.log(ev);
     this.addToCart(ev.hubClass);
   }
 

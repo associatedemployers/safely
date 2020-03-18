@@ -42,8 +42,16 @@
     </ul>
   </td>
   <td>
+    <p>
+      <LinkTo @route="hub-administration.class.index" @model={{@model.id}}>
+        View Registrations
+      </LinkTo>
+    </p>
     <a href="#" class="text-danger" {{on "click" (prevent-default (fn @onDelete @model))}}>
       <i class="fa fa-fw fa-trash"></i>
     </a>
+    <LinkTo @route="hub-administration.class.edit" @model={{@model.id}}>
+      <i class="fa fa-fw fa-edit"></i>
+    </LinkTo>
   </td>
 </tr>

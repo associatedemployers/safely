@@ -12,12 +12,6 @@ export default class HubRegisterCompanyFormComponent extends Component {
   @tracked isFetchingMember = false
   @tracked memberStatus = {}
   @tracked existingCompany = null
-  @tracked companyName = null
-  @tracked companyAddressLine1 = null
-  @tracked companyAddressLine2 = null
-  @tracked companyAddressCity = null
-  @tracked companyAddressState = 'MT'
-  @tracked companyAddressZipcode = null
 
   enqueueMemberCheck () {
     this.throttleId = throttle(this, this.memberCheck, this.memberCheckThrottleMs, false);

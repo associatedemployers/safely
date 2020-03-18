@@ -9,14 +9,21 @@
       </a>
     </span>
   </div>
+
   <div class="level">
-    <a href="#" class="level-item" {{on "click" (prevent-default (toggle 'calendarView' this))}}>
+    <a href="#" class="level-left" {{on "click" (prevent-default (toggle 'calendarView' this))}}>
       {{#if this.calendarView}}
         <i class="fa fa-fw fa-list"></i>List view
       {{else}}
         <i class="fa fa-fw fa-calendar"></i>Calendar view
       {{/if}}
     </a>
+    <div class="level-right">
+      <Hub::OrganizationSwitcher
+        @org={{this.org}}
+        @orgs={{this.orgs}}
+        @onChange={{set this.org _}} />
+    </div>
   </div>
 
   {{#if this.calendarView}}

@@ -4,8 +4,16 @@ import { get } from '@ember/object';
 const BANNER_MIX_RATE = 2;
 
 export default class HubIndexRoute extends Route {
-  async model () {
-    const classes = await this.store.query('hub-class', { $report: 'withAvailability' });
+  queryParams = { org: { refreshModel: true } }
+
+  async model ({ org }) {
+    let classQuery = { $report: 'withAvailability' };
+
+    if (org) {
+      classQuery.organization = org;
+    }
+
+    const classes = await this.store.query('hub-class', classQuery);
 
     return {
       classes,

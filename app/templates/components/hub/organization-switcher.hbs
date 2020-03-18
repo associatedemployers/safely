@@ -1,0 +1,4 @@
+<a href="#" {{on "click" (prevent-default (fn @onChange this.nextValue))}}>
+  {{or @org "AE & MSSC"}}
+  <EmberTooltip @side="bottom">Click to change to {{or this.nextValue "AE & MSSC"}}</EmberTooltip>
+</a>

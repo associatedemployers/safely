@@ -10,11 +10,13 @@ export default class HubRegistrationModel extends Model {
   @belongsTo('hub-class') hubClass
   @hasMany('hub-participant') participants
 
+  @attr('boolean') isClassMember
+
   @attr('string') companyName
   @attr('string') addressLine1
   @attr('string') addressLine2
   @attr('string') addressCity
-  @attr('string') addressState
+  @attr('string', { defaultValue: 'MT' }) addressState
   @attr('string') addressZipcode
 
   @attr('number') total
