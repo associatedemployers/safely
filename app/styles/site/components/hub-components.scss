@@ -118,7 +118,12 @@
 
   &.class__card--is-digital {
     .class__times {
-      width: 100%;
+      width: 80%;
+    }
+
+    .class__seats {
+      width: 20%;
+      text-align: right;
     }
 
     .class__name {
