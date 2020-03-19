@@ -46,7 +46,7 @@ export default class HubIndexRoute extends Route {
       mixedModel.push(cl);
 
       if (!((i + 1) % BANNER_MIX_RATE)) {
-        let banner = banners.objectAt((i + 1) / BANNER_MIX_RATE);
+        let banner = banners.objectAt((i + 1) / BANNER_MIX_RATE - 1);
 
         if (banner) {
           mixedModel.push(banner);
