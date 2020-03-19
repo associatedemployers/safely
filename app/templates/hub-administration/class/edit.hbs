@@ -77,6 +77,18 @@
 
   <h3>What</h3>
 
+  <BulmaControl>
+    <label for="code">Course Code (this event)</label>
+    <BulmaInput
+      type="text"
+      id="code"
+      placeholder="Course Code"
+      @value={{this.model.code}}
+      @oninput={{set this.model.code (get _ "target.value")}}
+    />
+  </BulmaControl>
+
+
   <BulmaControl class="is-expanded">
     <label for="class-information">Class Information Set</label>
 

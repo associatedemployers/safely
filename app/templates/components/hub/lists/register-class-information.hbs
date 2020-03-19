@@ -11,7 +11,7 @@
     <div class="class-information__times">
       <div class="class-information__times-content">
         {{#each @model.times as |t|}}
-          {{time t.start 'MMMM Do, YYYY'}} &#8226; {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}}
+          <div>{{time t.start 'MMMM Do, YYYY'}} &#8226; {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}}</div>
         {{/each}}
       </div>
     </div>
@@ -21,8 +21,10 @@
     <div class="class-information__pricing">
       {{#if @model.memberPrice}}
         <p class="pricing__initial">{{display-currency @model.memberPrice}} Member / {{display-currency @model.nonMemberPrice}} Non-Member</p>
-        <p>Additional Participants:</p>
-        <p>{{display-currency @model.memberAddParticipantsPrice}} Member / {{display-currency @model.nonMemberAddParticipantsPrice}} Non-Member</p>
+        {{#if (and @model.memberAddParticipantsPrice @model.nonMemberAddParticipantsPrice)}}
+          <p>Additional Participants:</p>
+          <p>{{display-currency @model.memberAddParticipantsPrice}} Member / {{display-currency @model.nonMemberAddParticipantsPrice}} Non-Member</p>
+        {{/if}}
       {{else}}
         Call for pricing
       {{/if}}
@@ -30,14 +32,18 @@
     <hr />
 
     <div class="class-information__location">
-      <p>{{@model.locationName}}</p>
-      <p>{{@model.locationAddressLine1}}</p>
-      {{#if @model.locationAddressLine2}}
-        <p>{{@model.locationAddressLine2}}</p>
-      {{/if}}
-      <p>{{@model.locationAddressCity}}, {{@model.locationAddressState}} {{@model.locationAddressZipcode}}</p>
-      {{#if @model.locationAddressDirections}}
-        {{@model.locationAddressDirections}}
+      {{#if @model.digital}}
+        <strong>Digital offering. Details provided before event.</strong>
+      {{else}}
+        <p>{{@model.locationName}}</p>
+        <p>{{@model.locationAddressLine1}}</p>
+        {{#if @model.locationAddressLine2}}
+          <p>{{@model.locationAddressLine2}}</p>
+        {{/if}}
+        <p>{{@model.locationAddressCity}}, {{@model.locationAddressState}} {{@model.locationAddressZipcode}}</p>
+        {{#if @model.locationAddressDirections}}
+          {{@model.locationAddressDirections}}
+        {{/if}}
       {{/if}}
     </div>
   </div>

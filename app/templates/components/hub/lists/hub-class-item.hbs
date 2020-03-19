@@ -1,4 +1,4 @@
-<div class="class__card {{if @inCart 'class__card--in-cart'}} {{if @model.isFull 'class__card--full'}}" role='button' {{on 'click' this.register}}>
+<div class="class__card {{if @model.digital 'class__card--is-digital'}} {{if @inCart 'class__card--in-cart'}} {{if @model.isFull 'class__card--full'}}" role='button' {{on 'click' this.register}}>
   <div class="class__times">
     {{#each @model.times as |t|}}
       <div class="class-times__block">{{time t.start 'M/D/YY'}} {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}}</div>
@@ -7,6 +7,7 @@
   <div class="class__seats">
     {{#if @model.isFull}}
       Full
+    {{else if (not @model.seatsRemaining)}}
     {{else}}
       {{@model.seatsRemaining}} spots left
     {{/if}}
@@ -17,9 +18,17 @@
       by {{@model.organization}}
     </span>
   </div>
+  {{#if @model.digital}}
+    <div class="header class__digital">
+      Digital/Online
+    </div>
+  {{/if}}
 
   {{#if @model.classInformation.description}}
     <div class="class__description">
+      {{#if (or @model.code @model.classInformation.code)}}
+        <p>Course code: {{or @model.code @model.classInformation.code}}</p>
+      {{/if}}
       {{{@model.classInformation.description}}}
     </div>
   {{/if}}
@@ -40,10 +49,12 @@
   <div>
     {{#if @model.memberPrice}}
       <strong>{{display-currency @model.memberPrice}} Member</strong> / {{display-currency @model.nonMemberPrice}} Non-Member
-      <EmberTooltip @side="right" @popperContainer=".ember-application">
-        Additional Participants:<br>
-        {{display-currency @model.memberAddParticipantsPrice}} Member / {{display-currency @model.nonMemberAddParticipantsPrice}} Non-Member
-      </EmberTooltip>
+      {{#if (and @model.memberAddParticipantsPrice @model.nonMemberAddParticipantsPrice)}}
+        <EmberTooltip @side="right" @popperContainer=".ember-application">
+          Additional Participants:<br>
+          {{display-currency @model.memberAddParticipantsPrice}} Member / {{display-currency @model.nonMemberAddParticipantsPrice}} Non-Member
+        </EmberTooltip>
+      {{/if}}
     {{else}}
       Call for pricing
     {{/if}}

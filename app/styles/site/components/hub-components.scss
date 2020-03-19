@@ -44,11 +44,20 @@
   
   .class__name {
     width: 100%;
+    padding-right: 30%;
     font-size: 1.5em;
     font-weight: 700;
     color: $aeblue;
   }
-  
+
+  .class__digital {
+    width: 50%;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: $aeblue;
+    text-align: right;
+  }
+
   .class__description {
     padding-bottom: 1em;
 
@@ -104,6 +113,17 @@
 
     .class__seats {
       color: $danger;
+    }
+  }
+
+  &.class__card--is-digital {
+    .class__times {
+      width: 100%;
+    }
+
+    .class__name {
+      width: 50%;
+      padding-right: 1em;
     }
   }
 }
@@ -233,4 +253,3 @@
     }
   }
 }
-  

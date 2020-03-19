@@ -7,7 +7,10 @@ export default class HubIndexRoute extends Route {
   queryParams = { org: { refreshModel: true } }
 
   async model ({ org }) {
-    let classQuery = { $report: 'withAvailability' };
+    let classQuery = {
+      $report: 'withAvailability',
+      sort:    { 'times.0.start': -1 }
+    };
 
     if (org) {
       classQuery.organization = org;

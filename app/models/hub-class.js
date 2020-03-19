@@ -5,6 +5,7 @@ export default class HubClassModel extends Model {
   @attr('string') organization
   @belongsTo('hub-instructor') instructor
   @belongsTo('hub-class-information') classInformation
+  @attr('string') code
   @attr('string') locationName
   @attr('string') locationAddressLine1
   @attr('string') locationAddressLine2
@@ -28,6 +29,6 @@ export default class HubClassModel extends Model {
   @attr('date', { defaultValue: () => new Date() }) created
 
   get isFull () {
-    return !this.seatsRemaining;
+    return typeof this.seatsRemaining === 'number' && !this.seatsRemaining;
   }
 }
