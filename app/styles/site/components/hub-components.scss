@@ -51,6 +51,10 @@
   
   .class__description {
     padding-bottom: 1em;
+
+    ol, ul {
+      padding-left: 1em;
+    }
   }
   
   .class__location {

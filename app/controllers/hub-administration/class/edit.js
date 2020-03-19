@@ -9,6 +9,20 @@ export default class HubAdministrationClassEditController extends Controller {
   orgs = organizations
   states = states
 
+  quillOptions = {
+    theme:   'snow',
+    modules: {
+      toolbar: [
+        [{ header: [ 2, 3, 4, false ] }],
+        [ 'bold', 'italic', 'underline', 'strike' ],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        [ 'link' ],
+        [ 'clean' ]
+      ]
+    }
+  }
+
   @action
   changeClassInformationSet (e) {
     const value = e.target.value;
@@ -75,7 +89,7 @@ export default class HubAdministrationClassEditController extends Controller {
 
     const modelsToSave = [];
 
-    if (newClassInfo) {
+    if (newClassInfo || model.classInformation.get('hasDirtyAttributes')) {
       let cl = model.classInformation,
           invalid = this.data._validateModel(cl, [
             'name',

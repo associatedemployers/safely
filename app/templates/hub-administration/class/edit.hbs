@@ -107,7 +107,6 @@
         id="name"
         placeholder="Class Name"
         @value={{this.model.classInformation.name}}
-        @disabled={{not this.model.classInformation.isNew}}
         @oninput={{set this.model.classInformation.name (get _ "target.value")}}
       />
     </BulmaControl>
@@ -118,7 +117,6 @@
         id="code"
         placeholder="Course Code"
         @value={{this.model.classInformation.code}}
-        @disabled={{not this.model.classInformation.isNew}}
         @oninput={{set this.model.classInformation.code (get _ "target.value")}}
       />
     </BulmaControl>
@@ -127,13 +125,9 @@
   {{! description }}
   <BulmaControl>
     <label for="description">Class Description</label>
-    <BulmaTextarea
-      id="description"
-      placeholder="Class Description"
+    <RichText
       @value={{this.model.classInformation.description}}
-      @disabled={{not this.model.classInformation.isNew}}
-      @oninput={{set this.model.classInformation.description (get _ "target.value")}}
-    />
+      @onChange={{set this.model.classInformation.description _}} />
   </BulmaControl>
   <hr />
   <h3>Who</h3>

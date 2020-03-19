@@ -126,14 +126,14 @@
 
   {{! description }}
   <BulmaControl>
-    <label for="description">Class Description</label>
-    <BulmaTextarea
-      id="description"
-      placeholder="Class Description"
-      @value={{this.model.classInformation.description}}
-      @disabled={{not this.model.classInformation.isNew}}
-      @oninput={{set this.model.classInformation.description (get _ "target.value")}}
-    />
+    {{#if this.model.classInformation.isNew}}
+      <label for="description">Class Description</label>
+      <RichText
+        @value={{this.model.classInformation.description}}
+        @onChange={{set this.model.classInformation.description _}} />
+    {{else}}
+      <blockquote>{{{this.model.classInformation.description}}}</blockquote>
+    {{/if}}
   </BulmaControl>
   <hr />
   <h3>Who</h3>
