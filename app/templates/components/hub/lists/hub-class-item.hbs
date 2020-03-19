@@ -36,11 +36,17 @@
   <div class="class__location">
     <span>
       <i class="fa fa-map-marker"></i> {{@model.locationName}}
-      <EmberTooltip @side="left" @popperContainer=".ember-application">
-        {{@model.locationAddressLine1}}<br>
-        {{@model.locationAddressCity}}, {{@model.locationAddressState}} {{@model.locationAddressZipcode}}<br>
-        {{@model.locationAddressDirections}}
-      </EmberTooltip>
+      {{#if @model.digital}}
+        Digital offering
+      {{else}}
+        <EmberTooltip @side="left" @popperContainer=".ember-application">
+          {{@model.locationAddressLine1}}<br>
+          {{#if @model.locationAddressCity}}
+            {{@model.locationAddressCity}}, {{@model.locationAddressState}} {{@model.locationAddressZipcode}}<br>
+          {{/if}}
+          {{@model.locationAddressDirections}}
+        </EmberTooltip>
+      {{/if}}
     </span>
   </div>
   <div class="class__instructor">
