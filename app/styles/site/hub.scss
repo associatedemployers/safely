@@ -1,0 +1,106 @@
+.hub {
+  overflow-x: hidden;
+
+  .hub-header__content {
+    display: flex;
+    height: 150px;
+    align-items: center;
+    margin: 0 1em;
+
+    .header-logo {
+      position: relative;
+      background-image: url('/assets/images/ae_logo.png');
+      width: 300px;
+      height: 100px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 1;
+
+      @media all and (max-width: 400px) {
+        width: 200px;
+        height: 50px;
+      }
+    }
+  }
+
+  .hub-header__band {
+    width: 100%;
+    height: 0;
+    display: flex;
+    transform: rotate(-8deg) scale(2.5) translateY(-170px);
+
+    @media all and (max-width: 1000px) {
+      transform: rotate(-7deg) scale(2.5) translateY(-140px);
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      height: 20vh;
+      min-height: 150px;
+      background-color: $aegold;
+      height: 100%;
+      width: 60%;
+      transform: rotate(3deg) scale(1.05) translateY(-15%);
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      height: 20vh;
+      min-height: 150px;
+      background-color: $aeblue;
+      height: 100%;
+      width: 40%;
+    }
+  }
+
+  .hub__header {
+    margin-bottom: 50px;
+  }
+
+  .hub__classes {
+    box-shadow: none;
+    padding: 1.5em 2em;
+  }
+
+  .columns.columns--with-controls, .columns.columns--with-controls > .column {
+    margin-bottom: 0;
+  }
+
+  .hub-banner {
+    margin-bottom: 1.5em;
+  }
+} // </ .hub {}
+
+.hub__floating-register-link {
+  z-index: 2;
+  background-color: $success;
+  color: white;
+  font-size: 2em;
+  font-weight: 700;
+  padding: 1em;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0 -1px 10px rgba(black, .4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease-in-out;
+
+  div {
+    margin-right: .5em;
+  }
+
+  &:hover {
+    color: white;
+    background-color: darken($success, 8);
+  }
+}
+
+.table-container {
+  overflow: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}

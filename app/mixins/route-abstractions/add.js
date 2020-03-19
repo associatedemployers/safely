@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { assert } from '@ember/debug';
+import $ from 'jquery';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   modelDefaults: {},
 
   model () {
@@ -9,10 +11,10 @@ export default Ember.Mixin.create({
           getDefaults = this.getModelDefaults;
 
     if ( getDefaults && typeof getDefaults === 'function' ) {
-      Ember.$.extend(defaults, this.getModelDefaults());
+      $.extend(defaults, this.getModelDefaults());
     }
 
-    Ember.assert('You must specify a modelName.', modelName);
+    assert('You must specify a modelName.', modelName);
 
     return this.store.createRecord(modelName, defaults);
   },

@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { and, equal } from '@ember/object/computed';
+import Component from '@ember/component';
+import { A } from '@ember/array';
+import { computed } from '@ember/object';
 import moment from 'moment';
-
-const { Component, A, computed } = Ember;
 
 export default Component.extend({
   tagName: 'button',
@@ -14,8 +15,8 @@ export default Component.extend({
     'loading:is-loading'
   ],
 
-  loading: computed.and('hover', 'loadingState'),
-  noSeats: computed.equal('block.information.seats', 0),
+  loading: and('hover', 'loadingState'),
+  noSeats: equal('block.information.seats', 0),
 
   mouseEnter () {
     if ( this.get('hover') ) {

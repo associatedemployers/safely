@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 import AjaxHooks from '../ajax-status';
 
-export default Ember.Mixin.create(AjaxHooks, {
+export default Mixin.create(AjaxHooks, {
   _afterSave ( record ) {
     const transitionAfterSave = this.get('transitionAfterDelete') || this.get('transitionAfterSave');
 

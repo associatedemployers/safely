@@ -1,0 +1,30 @@
+<BulmaNav>
+  <div class="nav-center">
+    <ActiveLink class="nav-item is-brand">
+      <LinkTo @route="index">
+        Back to Safely
+      </LinkTo>
+    </ActiveLink>
+  </div>
+
+  <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+
+  <div class="nav-right nav-menu">
+    <LinkTo @route="hub-administration.index" class="nav-item">
+      Classes/Events
+    </LinkTo>
+    <LinkTo @route="hub-administration.banners" class="nav-item">
+      Banners
+    </LinkTo>
+    <LinkTo @route="hub-administration.instructors" class="nav-item">
+      Instructors
+    </LinkTo>
+    <LinkTo @route="hub-administration.registrations" class="nav-item">
+      Registrations
+    </LinkTo>
+  </div>
+</BulmaNav>

@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { assert } from '@ember/debug';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   model ( params ) {
     if ( this.get('bypassModelHook') ) {
       return this._super(...arguments);
     }
 
     const modelName = this.get('modelName');
-    Ember.assert('You must specify a modelName.', modelName);
+    assert('You must specify a modelName.', modelName);
 
     return this.store.find(modelName, params.id);
   },

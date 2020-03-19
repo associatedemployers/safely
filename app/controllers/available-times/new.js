@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Controller from '@ember/controller';
 import addEdit from 'safely/mixins/controller-abstractions/add-edit';
-
-const { Controller } = Ember;
 
 export default Controller.extend(addEdit, {
   transitionAfterSave: 'available-times.index',
@@ -25,7 +24,7 @@ export default Controller.extend(addEdit, {
       }
 
       if ( !this.get('model.blocks') ) {
-        this.set('model.blocks', Ember.A());
+        this.set('model.blocks', A());
       }
 
       this.get('model.blocks').addObject(b);
@@ -44,7 +43,7 @@ export default Controller.extend(addEdit, {
 
     addDay (day) {
       if ( !this.get('model.days') ) {
-        this.set('model.days', Ember.A());
+        this.set('model.days', A());
       }
 
       this.get('model.days').addObject(day);

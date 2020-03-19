@@ -1,0 +1,27 @@
+<div class="segment container is-spaced">
+  <div class="level">
+    <LinkTo @route="hub" target="_blank" class="level-right">
+      <i class="fa fa-fw fa-external-link"></i> Open Class Hub
+    </LinkTo>
+  </div>
+  <hr />
+  {{#if this.model}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Org</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.model as |instructor|}}
+          <Hub::Lists::InstructorItem @model={{instructor}} @onDelete={{fn this.deleteInstructor}} />
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    No instructors available.
+  {{/if}}
+</div>

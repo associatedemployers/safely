@@ -1,0 +1,66 @@
+<div class="register__class-information">
+  <div class="class-information__content">
+    <hgroup class="class-information__title-banner">
+      <h3 class="class-information__title">
+        {{@model.classInformation.name}}
+      </h3>
+      <h4 class="class-information__host-presenter">
+        hosted by {{@model.organization}} &amp; presented by {{@model.instructor.displayName}}
+      </h4>
+    </hgroup>
+    <div class="class-information__times">
+      <div class="class-information__times-content">
+        {{#each @model.times as |t|}}
+          {{time t.start 'MMMM Do, YYYY'}} &#8226; {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="class-information__content--btf">
+    <div class="class-information__pricing">
+      {{#if @model.memberPrice}}
+        <p class="pricing__initial">{{display-currency @model.memberPrice}} Member / {{display-currency @model.nonMemberPrice}} Non-Member</p>
+        <p>Additional Participants:</p>
+        <p>{{display-currency @model.memberAddParticipantsPrice}} Member / {{display-currency @model.nonMemberAddParticipantsPrice}} Non-Member</p>
+      {{else}}
+        Call for pricing
+      {{/if}}
+    </div>
+    <hr />
+
+    <div class="class-information__location">
+      <p>{{@model.locationName}}</p>
+      <p>{{@model.locationAddressLine1}}</p>
+      {{#if @model.locationAddressLine2}}
+        <p>{{@model.locationAddressLine2}}</p>
+      {{/if}}
+      <p>{{@model.locationAddressCity}}, {{@model.locationAddressState}} {{@model.locationAddressZipcode}}</p>
+      {{#if @model.locationAddressDirections}}
+        {{@model.locationAddressDirections}}
+      {{/if}}
+    </div>
+  </div>
+
+  {{#if (and @model.geoLat @model.geoLng)}}
+    <GMap
+      @lat={{@model.geoLat}}
+      @lng={{@model.geoLng}}
+      @zoom={{13}}
+      @styles={{@mapStyle}} as |g|
+    >
+      <g.marker
+        @lat={{@model.geoLat}}
+        @lng={{@model.geoLng}} />
+    </GMap>
+  {{/if}}
+  <div class="class-information__accompanying-content">
+    <div class="level">
+      <a href="#" class="level-item has-centered-text text-danger" {{on "click" (prevent-default (fn @onRemoveClass @model))}}>
+        <i class="fa fa-fw fa-trash"></i> Remove this class
+      </a>
+    </div>
+    <hr />
+    {{yield}}
+  </div>
+</div>

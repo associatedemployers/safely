@@ -1,0 +1,26 @@
+<div class="hub-banner hero {{if @model.link 'hub-banner--link'}}" data-color={{or @model.color "default"}}>
+  {{#if @model.link}}
+    <a href={{@model.link}} target="_blank" rel="noopener noreferrer" class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          {{@model.heading}}
+          <i class="is-pulled-right fa fa-fw fa-external-link"></i>
+        </h1>
+        <div class="subtitle">
+          {{@model.body}}
+        </div>
+      </div>
+    </a>
+  {{else}}
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          {{@model.heading}}
+        </h1>
+        <div class="subtitle">
+          {{@model.body}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</div>

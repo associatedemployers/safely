@@ -1,0 +1,58 @@
+<div class="segment container is-spaced hub__classes">
+  <div class="level">
+    <h1 class="level-left">
+      Upcoming classes
+    </h1>
+    <span class="level-right">
+      <a href="https://www.associatedemployers.org/membership/benefits-of-membership/" rel="noopener noreferrer" target="_blank">
+        Learn more about becoming a member...
+      </a>
+    </span>
+  </div>
+
+  <div class="level">
+    <a href="#" class="level-left" {{on "click" (prevent-default (toggle 'calendarView' this))}}>
+      {{#if this.calendarView}}
+        <i class="fa fa-fw fa-list"></i>List view
+      {{else}}
+        <i class="fa fa-fw fa-calendar"></i>Calendar view
+      {{/if}}
+    </a>
+    <div class="level-right">
+      <Hub::OrganizationSwitcher
+        @org={{this.org}}
+        @orgs={{this.orgs}}
+        @onChange={{set this.org _}} />
+    </div>
+  </div>
+
+  {{#if this.calendarView}}
+    <FullCalendar
+      @events={{this.calendarItems}}
+      @views={{this.calendarViews}}
+      @header={{this.calendarHeader}}
+      @eventClick={{this.addEventToCart}} />
+  {{else}}
+    {{#each this.model as |mixedModel|}}
+      {{#if (eq mixedModel.type 'header')}}
+        <h2>{{mixedModel.text}}</h2>
+      {{else if (eq mixedModel.constructor.modelName 'hub-class')}}
+        <Hub::Lists::HubClassItem
+          @model={{mixedModel}}
+          @inCart={{contains mixedModel this.cart.state.items}}
+          @addToCart={{this.addToCart}} />
+      {{else}}
+        <Hub::BannerItem @model={{mixedModel}} />
+      {{/if}}
+    {{/each}}
+  {{/if}}
+
+  {{#unless this.cart.empty}}
+    <EmberWormhole @destinationElement={{this.tlWormholeTarget}}>
+      <LinkTo class="hub__floating-register-link" @route="hub.register">
+        <div>Complete registration for {{this.cart.state.items.length}} {{inflect-text 'class' this.cart.state.items.length}}</div>
+        <i class="fa fa-fw fa-arrow-right"></i>
+      </LinkTo>
+    </EmberWormhole>
+  {{/unless}}
+</div>

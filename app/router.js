@@ -1,39 +1,59 @@
-import EmberRouter from '@ember/routing/router';
+import RouterScroll from 'ember-router-scroll';
 import config from './config/environment';
 
-const Router = EmberRouter.extend({
-  location: config.locationType,
-  rootURL: config.rootURL
-});
+export default class Router extends RouterScroll {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
 
-Router.map(function() {
+Router.map(function () {
   this.route('login');
   this.route('register');
-  this.route('classes', function() {
+  this.route('classes', function () {
     this.route('add');
-    this.route('class', function() {});
-    this.route('blackouts', function() {
+    this.route('class', function () {});
+    this.route('blackouts', function () {
       this.route('new');
     });
   });
   this.route('check-in');
-  this.route('companies', function() {
+  this.route('companies', function () {
     this.route('add');
   });
-  this.route('seats', function() {
+  this.route('seats', function () {
     this.route('add');
   });
 
   // this.route('error');
   this.route('not-found');
   this.route('unauthorized');
-  this.route('catchall', {path: '/*wildcard'});
+  this.route('catchall', { path: '/*wildcard' });
   this.route('registrations');
   this.route('activate', { path: '/activate/:id' });
-  this.route('available-times', function() {
+  this.route('available-times', function () {
     this.route('new');
   });
   this.route('users');
-});
+  this.route('hub', function () {
+    this.route('register', function () {
+      this.route('complete');
+    });
+  });
+  this.route('hub-administration', function () {
+    this.route('instructors');
+    this.route('registrations');
 
-export default Router;
+    this.route('class-information', function () {
+      this.route('add');
+    });
+
+    this.route('class', function () {
+      this.route('index', { path: '/:id' });
+      this.route('add');
+      this.route('edit', { path: '/:id/edit' });
+    });
+    this.route('banners', function () {
+      this.route('add');
+    });
+  });
+});

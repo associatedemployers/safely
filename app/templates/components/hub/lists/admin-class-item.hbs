@@ -1,0 +1,57 @@
+<tr>
+  <td>{{@model.organization}}</td>
+  <td>
+    {{@model.classInformation.name}}
+    {{#if @model.classInformation.description}}
+      <p>
+        <a href="#" {{on "click" (prevent-default (toggle 'expandDescription' this))}}>
+          Description <i class="fa fa-fw fa-angle-{{if this.expandDescription 'up' 'down'}}"></i>
+        </a>
+      </p>
+      {{#if this.expandDescription}}
+        <p>
+          {{@model.classInformation.description}}
+        </p>
+      {{/if}}
+    {{/if}}
+  </td>
+  <td>{{@model.instructor.displayName}}</td>
+  <td>
+    {{@model.locationName}}
+    {{#if @model.locationAddressLine1}}
+      {{#if this.expandAddress}}
+        <p>
+          {{@model.locationAddressLine1}}<br>
+          {{@model.locationAddressCity}}, {{@model.locationAddressState}} {{@model.locationAddressZipcode}}<br>
+          {{@model.locationAddressDirections}}
+        </p>
+      {{/if}}
+      <p>
+        <a href="#" {{on "click" (prevent-default (toggle 'expandAddress' this))}}>
+          Address <i class="fa fa-fw fa-angle-{{if this.expandAddress 'up' 'down'}}"></i>
+        </a>
+      </p>
+    {{/if}}
+  </td>
+  <td>{{#if @model.seats}}{{@model.seatsRemaining}}/{{@model.seats}}{{else}}N/A{{/if}}</td>
+  <td>
+    <ul>
+    {{#each @model.times as |t|}}
+      <li>{{time t.start 'h:mma'}}-{{time t.end 'h:mma'}} {{time t.start 'M/D/YY'}}</li>
+    {{/each}}
+    </ul>
+  </td>
+  <td>
+    <p>
+      <LinkTo @route="hub-administration.class.index" @model={{@model.id}}>
+        View Registrations
+      </LinkTo>
+    </p>
+    <a href="#" class="text-danger" {{on "click" (prevent-default (fn @onDelete @model))}}>
+      <i class="fa fa-fw fa-trash"></i>
+    </a>
+    <LinkTo @route="hub-administration.class.edit" @model={{@model.id}}>
+      <i class="fa fa-fw fa-edit"></i>
+    </LinkTo>
+  </td>
+</tr>

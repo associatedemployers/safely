@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { assert } from '@ember/debug';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   limit: 10,
   queryParams: {
     page: {
@@ -19,7 +21,7 @@ export default Ember.Mixin.create({
           filters = this.get('filterSettings'),
           page = params.page - 1;
 
-    Ember.assert('You must specify a modelName.', modelName);
+    assert('You must specify a modelName.', modelName);
 
     let query = {
       page: page || 0,
@@ -32,7 +34,7 @@ export default Ember.Mixin.create({
     if ( filters ) {
       filters.forEach(filter => {
         if ( params[filter.name] ) {
-          Ember.$.extend(query, filter.merge(params));
+          $.extend(query, filter.merge(params));
         }
       });
     }

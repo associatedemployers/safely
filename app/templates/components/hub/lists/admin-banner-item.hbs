@@ -1,0 +1,11 @@
+<tr>
+  <td>{{@model.heading}}</td>
+  <td>{{@model.body}}</td>
+  <td>{{@model.link}}</td>
+  <td>{{@model.color}}</td>
+  <td>
+    <a href="#" class="text-danger" {{on "click" (prevent-default (fn @onDelete @model))}}>
+      <i class="fa fa-fw fa-trash"></i>
+    </a>
+  </td>
+</tr>

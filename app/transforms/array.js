@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import { typeOf } from '@ember/utils';
 import DS from 'ember-data';
-
-const { typeOf } = Ember;
 
 export default DS.Transform.extend({
   deserialize (serialized) {
@@ -10,10 +8,10 @@ export default DS.Transform.extend({
 
   serialize (deserialized) {
     var type = typeOf(deserialized);
-    if ( type === 'array' ) {
+    if (type === 'array') {
       return deserialized;
-    } else if ( type === 'string' ) {
-      return deserialized.split(',').map(item => $.trim(item));
+    } else if (type === 'string') {
+      return deserialized.split(',').map(item => item.trim());
     } else {
       return [];
     }

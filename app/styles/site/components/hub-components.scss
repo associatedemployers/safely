@@ -1,0 +1,232 @@
+@use "sass:list";
+
+.class__card {
+  position: relative;
+  // border: 1px solid $gray;
+  margin-bottom: 1.5em;
+  padding: 1.2em;
+  border-radius: .3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 10px -2px rgba($black, .3);
+  color: lighten($black, 30);
+
+  .class-card__hover-help {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    text-align: center;
+    vertical-align: center;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .class__seats {
+    font-weight: bold;
+    color: $success;
+  }
+  
+  .class__times {
+    font-size: 1.5em;
+    color: darken($aegold, 5);
+  }
+  
+  .class__name {
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: $aeblue;
+  }
+  
+  .class__description {
+    padding-bottom: 1em;
+  }
+  
+  .class__location {
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: rgba($aeblue, 0.7);
+    color: white !important;
+    box-shadow: 0 2px 2px rgba($black, .5);
+    padding-top: 30px;
+  
+    * {
+      color: white;
+      transition: all 0.3s ease-in-out;
+    }
+  
+    .class-card__hover-help {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &.class__card--in-cart {
+    background-color: rgba($aegold, 0.4);
+    padding-top: 40px;
+
+    &:hover {
+      background-color: $success;
+    }
+
+    .class-card__hover-help {
+      transform: translateY(0);
+      opacity: 1;
+      color: white;
+      font-weight: 700;
+      background-color: $success;
+      top: 0;
+      padding: .5em 0;
+    }
+  }
+
+  &.class__card--full {
+    &:hover {
+      background-color: rgba($danger, 0.7);
+    }
+
+    .class__seats {
+      color: $danger;
+    }
+  }
+}
+
+.register__class-registration {
+  margin-bottom: 2em;
+}
+
+.register__class-information {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+
+  .class-information__accompanying-content {
+    width: 100%;
+    margin: .5em 1em;
+  }
+
+  
+  .class-information__content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    background-color: $aeblue;
+    color: white;
+    margin-bottom: 1em;
+    box-shadow: 0 14px 10px -10px rgba($black, .4);
+    transform: skew(10deg) translate3d(0, 0, 0);
+    overflow: hidden;
+    border-right: 1px solid $aegold;
+    
+    .class-information__title,
+    .class-information__host-presenter,
+    .class-information__times {
+      color: white;
+      margin: 0;
+      transform: skew(-10deg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    
+    .class-information__times {
+      background-color: $aegold;
+      color: $aeblue;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      transform: skew(-30deg) scale(1.2);
+      
+      .class-information__times-content {
+        font-weight: 600;
+        transform: skew(20deg) scale(0.8);
+      }
+    }
+    
+    .class-information__title-banner {
+      padding: 1em;
+    }
+  }
+  
+  .pricing__initial {
+    font-size: 1.2em;
+    margin-bottom: .2em;
+    font-weight: 700;
+  }
+
+  .ember-google-map {
+    width: 400px;
+    height: 200px;
+  }
+
+  .class-information__content--btf {
+    margin: 0 1em;
+  }
+
+  @media all and (max-width: 800px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    .class-information__location {
+      margin-bottom: 1em;
+    }
+
+    .ember-google-map {
+      width: 100%;
+      height: 50vh;
+    }
+
+    .class-information__title-banner {
+      margin-right: 1em;
+    }
+
+    .class-information__content .class-information__times {
+      transform: skew(0);
+      
+      .class-information__times-content {
+        font-weight: 600;
+        transform: skew(-10deg) translateX(10px);
+      }
+    }
+  }
+}
+
+.hub-banner {
+  padding: 0 2em;
+  border-radius: .3rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 10px -2px rgba($black, .3);
+
+  @each $colorKey, $color in $safely-colors {
+    &[data-color="#{$colorKey}"] {
+      background-color: $color;
+  
+      &.hub-banner--link:hover {
+        background-color: lighten($color, 10);
+      }
+
+      @if (index($safely-colors-use-inverted, $colorKey)) {
+        * { color: white; }
+      }
+    }
+  }
+}
+  

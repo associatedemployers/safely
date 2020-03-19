@@ -1,0 +1,121 @@
+<h1>Registration</h1>
+<div class="level">
+  <div class="level-left">
+    <LinkTo @route="hub.index"><i class="fa fa-fw fa-angle-left"></i>Add/View another class</LinkTo>
+  </div>
+  <div class="level-right">
+    <a href="#" {{on "click" (prevent-default (fn this.resetCart))}}>
+      <strong class="text-danger">Empty cart &amp; start over</strong>
+    </a>
+  </div>
+</div>
+{{#if this.cart.empty}}
+  <h1 class="has-text-centered">Your cart is empty.</h1>
+{{else}}
+  <CollapseSection
+    @toggled={{set this.companyInformationOpen _}}
+    @isOpen={{this.companyInformationOpen}}
+    as |c|
+  >
+    <c.header>Your Information</c.header>
+    <c.body>
+      <Hub::RegisterCompanyForm
+        @onMemberStatusChange={{set this.memberStatus _}}
+        @model={{this.model.cartRecord}} />
+    </c.body>
+  </CollapseSection>
+  <hr />
+
+  <CollapseSection
+    @toggled={{set this.classInformationOpen _}}
+    @isOpen={{this.classInformationOpen}}
+    as |c|
+  >
+    <c.header>Class &amp; Participant Information</c.header>
+    <c.body>
+      {{#each this.model.cart as |classItem index|}}
+        <div class="register__class-registration">
+          <Hub::Lists::RegisterClassInformation
+            @model={{classItem}}
+            @mapStyle={{this.mapStyle}}
+            @classIndex={{index}}
+            @onRemoveClass={{fn this.removeClass}}
+          >
+            <Hub::RegisterParticipants
+              @classIndex={{index}}
+              @allParticipants={{this.filledFlattenedParticipants}}
+              @copyingParticipantSource={{contains index this.usingCopyAll}}
+              @copyingParticipantSourceChanged={{fn this.toggleCopyingParticipantSource index}}
+              @onParticipantsChanged={{fn this.participantsChanged index}}
+            />
+          </Hub::Lists::RegisterClassInformation>
+        </div>
+      {{/each}}
+    </c.body>
+  </CollapseSection>
+
+  <CollapseSection
+    @toggled={{set this.paymentOpen _}}
+    @isOpen={{this.paymentOpen}}
+    as |c|
+  >
+    <c.header>Review &amp; Payment</c.header>
+    <c.body>
+      <h4>You are registering for {{this.model.cart.length}} {{inflect-text 'class' this.model.cart.length}}.</h4>
+      <div class="table-container">
+        <BulmaTable @isStriped={{true}} @isFullWidth={{true}}>
+          <thead>
+            <th>Class</th>
+            <th>Location</th>
+            <th>Participants</th>
+            <th>Participant ($)</th>
+            <th>Additional Participant ($)</th>
+            <th>Total ($)</th>
+          </thead>
+          <tbody>
+            {{#each this.registrations as |registration|}}
+              <Hub::Lists::CostBreakdown
+                @memberStatus={{this.memberStatus}}
+                @model={{registration}} />
+            {{/each}}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="4"></th>
+              <th>Total for all classes</th>
+              <th>
+                {{display-currency this.total}}
+                {{#if this.totalMissingInformation}}
+                  <i class="fa fa-fw fa-exclamation-triangle">
+                    <EmberTooltip
+                      @popperContainer=".ember-application"
+                      @side="left"
+                    >
+                      This total does not include classes that do not list pricing.
+                    </EmberTooltip>
+                  </i>
+                {{/if}}
+              </th>
+            </tr>
+          </tfoot>
+        </BulmaTable>
+      </div>
+    </c.body>
+  </CollapseSection>
+
+  <form {{on "submit" (prevent-default this.submitRegistration)}}>
+    {{#if this.invalid}}
+      <EmberTooltip @side="top">
+        {{this.invalid}}
+      </EmberTooltip>
+    {{/if}}
+    <Form::ActionButton
+      type="submit"
+      class="button is-large {{if this.invalid 'is-warning' 'is-success'}} is-fullwidth"
+      @disabled={{if this.invalid true false}}
+      @loading={{this.data.statuses.registration.isLoading}}
+    >
+      Complete Registration
+    </Form::ActionButton>
+  </form>
+{{/if}}

@@ -1,7 +1,11 @@
-import Ember from 'ember';
+import { or, and, not } from '@ember/object/computed';
+import Component from '@ember/component';
+import { A } from '@ember/array';
+import { on } from '@ember/object/evented';
+import { run } from '@ember/runloop';
+import { observer, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import addEdit from 'safely/mixins/controller-abstractions/add-edit';
-
-const { Component, A, on, run, computed, observer, inject: { service } } = Ember;
 
 export default Component.extend(addEdit, {
   store: service(),
@@ -29,9 +33,9 @@ export default Component.extend(addEdit, {
     this.set('_selection', a);
   }),
 
-  disabled: computed.or('working', 'lookupIsShort'),
-  noRecordFound: computed.and('lookedUp', 'noRecord'),
-  noRecord: computed.not('result'),
+  disabled: or('working', 'lookupIsShort'),
+  noRecordFound: and('lookedUp', 'noRecord'),
+  noRecord: not('result'),
 
   lookupIsShort: computed('lookup', function () {
     return !this.get('lookup') || this.get('lookup.length') < 2;

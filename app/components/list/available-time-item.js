@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import moment from 'moment';
-
-const { Component, computed } = Ember;
 
 let AvailableTimeItemComponent =  Component.extend({
   tagName: 'tr',

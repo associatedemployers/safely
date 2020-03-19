@@ -1,18 +1,25 @@
+import { bool, reads } from '@ember/object/computed';
+import Service, { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { on } from '@ember/object/evented';
+import { Promise } from 'rsvp';
 import Ember from 'ember';
 import moment from 'moment';
 import ENV from 'safely/config/environment';
 
-const { Service, inject, computed, on, RSVP: { Promise }, Logger } = Ember;
+const {
+  Logger
+} = Ember;
 
 export default Service.extend({
   authUrl: '/api/v1/login',
-  clock: inject.service(),
-  store: inject.service(),
-  ajax:  inject.service(),
+  clock: service(),
+  store: service(),
+  ajax:  service(),
 
-  authenticated: computed.bool('token'),
-  token: computed.reads('session.token'),
-  userId: computed.reads('session.user'),
+  authenticated: bool('token'),
+  token: reads('session.token'),
+  userId: reads('session.user'),
 
   initializeClock: on('init', function () {
     this.get('clock');
@@ -112,7 +119,7 @@ export default Service.extend({
     const userId = this.get('userId');
 
     if ( !userId || !this.get('authenticated') ) {
-      return Ember.RSVP.Promise.resolve();
+      return Promise.resolve();
     }
 
     return this.get('store').find('user', userId);

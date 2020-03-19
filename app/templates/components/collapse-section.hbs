@@ -1,0 +1,9 @@
+<section>
+  {{yield (hash
+    header=(component "collapse-section/x-header"
+      open=@isOpen
+      toggle=this.onToggle)
+    body=(component "collapse-section/x-body"
+      open=@isOpen)
+  )}}
+</section>

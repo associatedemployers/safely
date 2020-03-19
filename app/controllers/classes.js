@@ -1,8 +1,7 @@
-import Ember from 'ember';
-
-const { Controller, inject, computed } = Ember;
+import { equal } from '@ember/object/computed';
+import Controller, { inject as controller } from '@ember/controller';
 
 export default Controller.extend({
-  application: inject.controller(),
-  inTopRoute: computed.equal('application.currentPath', 'classes.index')
+  application: controller(),
+  inTopRoute: equal('application.currentPath', 'classes.index')
 });

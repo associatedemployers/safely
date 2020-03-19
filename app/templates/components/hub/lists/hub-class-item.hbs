@@ -1,0 +1,62 @@
+<div class="class__card {{if @inCart 'class__card--in-cart'}} {{if @model.isFull 'class__card--full'}}" role='button' {{on 'click' this.register}}>
+  <div class="class__times">
+    {{#each @model.times as |t|}}
+      <div class="class-times__block">{{time t.start 'M/D/YY'}} {{time t.start 'h:mma'}}-{{time t.end 'h:mma'}}</div>
+    {{/each}}
+  </div>
+  <div class="class__seats">
+    {{#if @model.isFull}}
+      Full
+    {{else}}
+      {{@model.seatsRemaining}} spots left
+    {{/if}}
+  </div>
+  <div class="header class__name">
+    {{@model.classInformation.name}}
+    <span class="class-name__organization">
+      by {{@model.organization}}
+    </span>
+  </div>
+
+  {{#if @model.classInformation.description}}
+    <div class="class__description">
+      {{@model.classInformation.description}}
+    </div>
+  {{/if}}
+
+  <div class="class__location">
+    <span>
+      <i class="fa fa-map-marker"></i> {{@model.locationName}}
+      <EmberTooltip @side="left" @popperContainer=".ember-application">
+        {{@model.locationAddressLine1}}<br>
+        {{@model.locationAddressCity}}, {{@model.locationAddressState}} {{@model.locationAddressZipcode}}<br>
+        {{@model.locationAddressDirections}}
+      </EmberTooltip>
+    </span>
+  </div>
+  <div class="class__instructor">
+    Instructor: {{@model.instructor.displayName}}
+  </div>
+  <div>
+    {{#if @model.memberPrice}}
+      <strong>{{display-currency @model.memberPrice}} Member</strong> / {{display-currency @model.nonMemberPrice}} Non-Member
+      <EmberTooltip @side="right" @popperContainer=".ember-application">
+        Additional Participants:<br>
+        {{display-currency @model.memberAddParticipantsPrice}} Member / {{display-currency @model.nonMemberAddParticipantsPrice}} Non-Member
+      </EmberTooltip>
+    {{else}}
+      Call for pricing
+    {{/if}}
+  </div>
+  <div class="class-card__hover-help">
+    <div class="hover-help__content">
+      {{#if @model.isFull}}
+        <i class="fa fa-times"></i> This class is full and no longer accepting registrations.
+      {{else if @inCart}}
+        <i class="fa fa-check"></i> Class added to cart. Click to remove this class
+      {{else}}
+        <i class="fa fa-info-circle"></i> Click to register for this class
+      {{/if}}
+    </div>
+  </div>
+</div>

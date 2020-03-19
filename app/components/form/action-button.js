@@ -1,10 +1,9 @@
-import Ember from 'ember';
-
-const { Component, computed } = Ember;
+import { or } from '@ember/object/computed';
+import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'button',
   classNameBindings: [ 'loading:is-loading' ],
   attributeBindings: [ 'type', '_disabled:disabled' ],
-  _disabled: computed.or('loading', 'disabled')
+  _disabled: or('loading', 'disabled')
 });

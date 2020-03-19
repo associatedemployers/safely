@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import $ from 'jquery';
+import Controller from '@ember/controller';
 import moment from 'moment';
 import addEdit from 'safely/mixins/controller-abstractions/add-edit';
-
-const { Controller } = Ember;
 
 export default Controller.extend(addEdit, {
   transitionAfterSave: 'classes.blackouts.index',
@@ -25,7 +25,7 @@ export default Controller.extend(addEdit, {
       }
 
       this.get('model.classExceptions').addObject(this.get('availableClasses').objectAt(index));
-      Ember.$('select[name="select-class"]').val('');
+      $('select[name="select-class"]').val('');
     },
 
     removeClass (item) {
@@ -40,7 +40,7 @@ export default Controller.extend(addEdit, {
       }
 
       if ( !this.get('model.blocks') ) {
-        this.set('model.blocks', Ember.A());
+        this.set('model.blocks', A());
       }
 
       this.get('model.blocks').addObject(b);

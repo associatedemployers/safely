@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { Component } = Ember;
+import Component from '@ember/component';
 
 let ClassBlackoutItemComponent =  Component.extend({
   tagName: 'tr',
