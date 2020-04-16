@@ -54,6 +54,7 @@ Router.map(function () {
     });
     this.route('banners', function () {
       this.route('add');
+      this.route('edit', { path: '/:id/edit' });
     });
   });
 });

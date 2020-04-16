@@ -9,7 +9,7 @@ export default class HubIndexRoute extends Route {
   async model ({ org }) {
     let classQuery = {
       $report: 'withAvailability',
-      sort:    { 'times.0.start': -1 }
+      sort:    { 'times.0.start': 1 }
     };
 
     if (org) {
